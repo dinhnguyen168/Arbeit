@@ -1,0 +1,18 @@
+@font-face {
+  font-family: 'SpaceGrotesk';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Space Light'), local('Space-Light'), url("./fonts/SpaceGrotesk-Light.woff") format('woff');
+}
+@font-face {
+  font-family: 'SpaceGrotesk';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Space Regular'), local('Space-Regular'), url("./fonts/SpaceGrotesk-Regular.woff") format('woff');
+}
+@font-face {
+  font-family: 'SpaceGrotesk';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Space SemiBold'), local('Space-SemiBold'), url("./fonts/SpaceGrotesk-SemiBold.woff") format('woff');
+}
