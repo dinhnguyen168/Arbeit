@@ -1,0 +1,231 @@
+{
+    "module": "Curation",
+    "name": "Corebox",
+    "table": "curation_corebox",
+    "importTable": null,
+    "parentModel": "ProjectHole",
+    "columns": {
+        "id": {
+            "name": "id",
+            "importSource": "",
+            "type": "integer",
+            "size": 11,
+            "required": false,
+            "primaryKey": true,
+            "autoInc": true,
+            "label": "ID",
+            "description": "auto incremented ID",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "displayColumn": "",
+            "isLocked": null,
+            "oppositionRelation": false,
+            "relatedTable": "",
+            "searchable": true
+        },
+        "hole_id": {
+            "name": "hole_id",
+            "importSource": "",
+            "type": "integer",
+            "size": 11,
+            "required": true,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Hole",
+            "description": "ID of the (bore)hole that the core box belongs to",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "displayColumn": "",
+            "isLocked": null,
+            "oppositionRelation": false,
+            "relatedTable": "",
+            "searchable": true
+        },
+        "corebox": {
+            "name": "corebox",
+            "importSource": "",
+            "type": "string",
+            "size": null,
+            "required": true,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Core Box",
+            "description": "Designation (name, number, internal identifier) of the core box",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "displayColumn": "",
+            "isLocked": null,
+            "oppositionRelation": false,
+            "relatedTable": "",
+            "searchable": true
+        },
+        "combined_id": {
+            "name": "combined_id",
+            "importSource": "",
+            "type": "string",
+            "size": null,
+            "required": false,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "System Combined ID",
+            "description": "Combined ID of the core box",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "displayColumn": "",
+            "isLocked": null,
+            "oppositionRelation": false,
+            "relatedTable": "",
+            "searchable": true
+        },
+        "comment": {
+            "name": "comment",
+            "oldName": "remarks",
+            "importSource": "",
+            "type": "string",
+            "size": null,
+            "required": false,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Additional Information",
+            "description": "Comment on the core box",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "displayColumn": "",
+            "isLocked": null,
+            "oppositionRelation": false,
+            "relatedTable": "",
+            "searchable": true
+        },
+        "storage_curation_storage_id": {
+            "name": "storage_curation_storage_id",
+            "oldName": "storage_id",
+            "importSource": "",
+            "type": "integer",
+            "size": null,
+            "required": false,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Storage ID",
+            "description": "ID of storage information",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "displayColumn": "",
+            "isLocked": null,
+            "oppositionRelation": false,
+            "relatedTable": "",
+            "searchable": true
+        },
+        "contained_section_splits": {
+            "name": "contained_section_splits",
+            "importSource": "",
+            "type": "pseudo",
+            "size": null,
+            "required": false,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Section Splits in Corebox",
+            "description": "Section splits that are stored in this core box",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "$this->getContainedSectionSplits()",
+            "displayColumn": "",
+            "isLocked": null,
+            "oppositionRelation": false,
+            "relatedTable": "",
+            "searchable": false
+        }
+    },
+    "indices": {
+        "pk_id": {
+            "name": "pk_id",
+            "type": "PRIMARY",
+            "columns": [
+                "id"
+            ],
+            "isLocked": null
+        },
+        "storage_curation_storage_id": {
+            "name": "storage_curation_storage_id",
+            "type": "KEY",
+            "columns": [
+                "storage_curation_storage_id"
+            ],
+            "isLocked": null
+        }
+    },
+    "relations": {
+        "curation_corebox__project_hole__parent": {
+            "name": "curation_corebox__project_hole__parent",
+            "relationType": null,
+            "relatedTable": null,
+            "foreignTable": "project_hole",
+            "localColumns": [
+                "hole_id"
+            ],
+            "foreignColumns": [
+                "id"
+            ],
+            "displayColumns": [],
+            "isLocked": null,
+            "oppositionRelation": false,
+            "oppositeColumnName": ""
+        },
+        "curation_corebox__curation_storage__storage_curation_storage_id__1n": {
+            "name": "curation_corebox__curation_storage__storage_curation_storage_id__1n",
+            "relationType": "1n",
+            "relatedTable": null,
+            "foreignTable": "curation_storage",
+            "localColumns": [
+                "storage_curation_storage_id"
+            ],
+            "foreignColumns": [
+                "id"
+            ],
+            "displayColumns": [
+                "combined_id"
+            ],
+            "isLocked": null,
+            "oppositionRelation": false,
+            "oppositeColumnName": ""
+        }
+    },
+    "behaviors": [],
+    "createdAt": 1628860011,
+    "modifiedAt": 1645021869,
+    "generatedAt": 1645021870,
+    "fullName": "CurationCorebox"
+}

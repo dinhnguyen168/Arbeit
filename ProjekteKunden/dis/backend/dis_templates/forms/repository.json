@@ -1,0 +1,343 @@
+{
+    "name": "repository",
+    "dataModel": "ContactRepository",
+    "fields": [
+        {
+            "name": "repository_name",
+            "label": "Name of Repository",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Repository ",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "repository_name_abbreviation",
+            "label": " Abbreviation of Repository Name",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Repository ",
+            "order": 1,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "organisation_name",
+            "label": "Name of Organisation",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Repository ",
+            "order": 2,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "department",
+            "label": "Department",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Repository ",
+            "order": 3,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "street",
+            "label": "Street",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Repository ",
+            "order": 4,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "city",
+            "label": "City",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "list",
+                    "listName": "CITIES",
+                    "textField": "remark",
+                    "valueField": "display"
+                },
+                "allowFreeInput": false,
+                "multiple": false,
+                "jsCalculate": ""
+            },
+            "group": "Repository ",
+            "order": 5,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "postal_code",
+            "label": "Postal Code",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Repository ",
+            "order": 6,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "state",
+            "label": "State",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "list",
+                    "listName": "COUNTRY_STATES",
+                    "textField": "remark",
+                    "valueField": "display"
+                },
+                "allowFreeInput": false,
+                "multiple": false,
+                "jsCalculate": ""
+            },
+            "group": "Repository ",
+            "order": 7,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "country",
+            "label": "Country",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "list",
+                    "listName": "COUNTRIES",
+                    "textField": "remark",
+                    "valueField": "display"
+                },
+                "allowFreeInput": false,
+                "multiple": false,
+                "jsCalculate": ""
+            },
+            "group": "Repository ",
+            "order": 8,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "comment",
+            "label": "Additional Information",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Repository ",
+            "order": 9,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "contact_person",
+            "label": "Contact Person",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Repository Contact",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "contact_email",
+            "label": "Contact Email",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Repository Contact",
+            "order": 1,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "contact_phone",
+            "label": "Contact Phone",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Repository Contact",
+            "order": 2,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "website",
+            "label": "Website",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string"
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Repository Contact",
+            "order": 3,
+            "formatter": null,
+            "searchable": true
+        }
+    ],
+    "subForms": [],
+    "supForms": [],
+    "createdAt": 1629139028,
+    "modifiedAt": 1639122964,
+    "generatedAt": 1639122969,
+    "filterDataModels": [],
+    "requiredFilters": []
+}

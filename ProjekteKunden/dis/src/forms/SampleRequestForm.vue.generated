@@ -1,0 +1,354 @@
+<template>
+    <v-container fluid>
+        <v-flex align-start>
+            <h2>Sample-request</h2>
+            <dis-form ref="disForm" formName="sample-request" dataModel="CurationSampleRequest" :fields="simpleFields" :requiredFilters="requiredFilters" :filterDataModels="filterDataModels" :calculatedFields="calculatedFields">
+                <template v-slot:form-fields="{fields, hasNumberValidator, getInputComponent, formScenario, selectedItem, formModel, serverValidationErrors}">
+                        <v-layout wrap mb-3>
+                            <v-flex v-if="!'Sample Request ID'.startsWith('-')" xs12 pl-2 pt-2 class="title">
+                                Sample Request ID
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['exp_acronym'] !== formModel['exp_acronym']}"
+                                        :disabled="true"
+                                        :validators="validators['exp_acronym']"
+                                        name="exp_acronym"
+                                        label="Expedition Acronym"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['exp_acronym']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['request_no'] !== formModel['request_no']}"
+                                        :disabled="false"
+                                        :validators="validators['request_no']"
+                                        name="request_no"
+                                        label="Request Number"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model.number="formModel['request_no']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['request_part'] !== formModel['request_part']}"
+                                        :disabled="false"
+                                        :validators="validators['request_part']"
+                                        name="request_part"
+                                        label="Request Part"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="Additional Element for Request ID (e.g., A, B, C or Initials of Scientist)"
+                                        v-model="formModel['request_part']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['request_combined_id'] !== formModel['request_combined_id']}"
+                                        :disabled="true"
+                                        :validators="validators['request_combined_id']"
+                                        name="request_combined_id"
+                                        label="Request Combined ID"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['request_combined_id']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                        </v-layout>
+                        <v-layout wrap mb-3>
+                            <v-flex v-if="!'Details Sample Request'.startsWith('-')" xs12 pl-2 pt-2 class="title">
+                                Details Sample Request
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisSelectInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['sample_material'] !== formModel['sample_material']}"
+                                        :disabled="false"
+                                        :validators="validators['sample_material']"
+                                        name="sample_material"
+                                        label="Sample Material Requested"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        :selectSource="selectSources['sample_material']"
+                                        v-model="formModel['sample_material']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisSelectInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['hole_combined_id'] !== formModel['hole_combined_id']}"
+                                        :disabled="false"
+                                        :validators="validators['hole_combined_id']"
+                                        name="hole_combined_id"
+                                        label=" List Combined ID\'s  of Holes to be Sampled"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        :selectSource="selectSources['hole_combined_id']"
+                                        multiple="true"
+                                        v-model="formModel['hole_combined_id']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['number_samples'] !== formModel['number_samples']}"
+                                        :disabled="false"
+                                        :validators="validators['number_samples']"
+                                        name="number_samples"
+                                        label="Number of Samples"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model.number="formModel['number_samples']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['sample_size'] !== formModel['sample_size']}"
+                                        :disabled="false"
+                                        :validators="validators['sample_size']"
+                                        name="sample_size"
+                                        label="Size of Sample"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="e.g. weight, volume, length "
+                                        v-model.number="formModel['sample_size']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisSelectInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['sample_size_unit'] !== formModel['sample_size_unit']}"
+                                        :disabled="false"
+                                        :validators="validators['sample_size_unit']"
+                                        name="sample_size_unit"
+                                        label="Unit of Sample Size"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        :selectSource="selectSources['sample_size_unit']"
+                                        v-model="formModel['sample_size_unit']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['split_fraction_requested'] !== formModel['split_fraction_requested']}"
+                                        :disabled="false"
+                                        :validators="validators['split_fraction_requested']"
+                                        name="split_fraction_requested"
+                                        label="Requested Fraction of Section Split [%]"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="of cross sectional area (rough estimate)"
+                                        v-model.number="formModel['split_fraction_requested']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisSelectInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['purpose'] !== formModel['purpose']}"
+                                        :disabled="false"
+                                        :validators="validators['purpose']"
+                                        name="purpose"
+                                        label="Purpose / Usage"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        :selectSource="selectSources['purpose']"
+                                        hint="Purpose of Sampling / Usage of the Sample"
+                                        v-model="formModel['purpose']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisSwitchInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['destructive'] !== formModel['destructive']}"
+                                        :disabled="false"
+                                        :validators="validators['destructive']"
+                                        name="destructive"
+                                        label="Destructive Usage?"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['destructive']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisSelectInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['project_phase'] !== formModel['project_phase']}"
+                                        :disabled="false"
+                                        :validators="validators['project_phase']"
+                                        name="project_phase"
+                                        label="Project Phase"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        :selectSource="selectSources['project_phase']"
+                                        v-model="formModel['project_phase']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisSelectInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['scientist_1'] !== formModel['scientist_1']}"
+                                        :disabled="false"
+                                        :validators="validators['scientist_1']"
+                                        name="scientist_1"
+                                        label="Scientist 1"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        :selectSource="selectSources['scientist_1']"
+                                        hint="Responsible Scientist"
+                                        v-model="formModel['scientist_1']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisSelectInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['scientist_2'] !== formModel['scientist_2']}"
+                                        :disabled="false"
+                                        :validators="validators['scientist_2']"
+                                        name="scientist_2"
+                                        label="Scientist 2"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        :selectSource="selectSources['scientist_2']"
+                                        v-model="formModel['scientist_2']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisSelectInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['scientist_3'] !== formModel['scientist_3']}"
+                                        :disabled="false"
+                                        :validators="validators['scientist_3']"
+                                        name="scientist_3"
+                                        label="Scientist 3"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        :selectSource="selectSources['scientist_3']"
+                                        v-model="formModel['scientist_3']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['comment'] !== formModel['comment']}"
+                                        :disabled="false"
+                                        :validators="validators['comment']"
+                                        name="comment"
+                                        label="Additional Information"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['comment']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                        </v-layout>
+                        <v-layout wrap mb-3>
+                            <v-flex v-if="!'Request Administration'.startsWith('-')" xs12 pl-2 pt-2 class="title">
+                                Request Administration
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisDateInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['date_submission'] !== formModel['date_submission']}"
+                                        :disabled="false"
+                                        :validators="validators['date_submission']"
+                                        name="date_submission"
+                                        label="Date of Submission"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['date_submission']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisSelectInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['curator'] !== formModel['curator']}"
+                                        :disabled="false"
+                                        :validators="validators['curator']"
+                                        name="curator"
+                                        label="Curator"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        :selectSource="selectSources['curator']"
+                                        v-model="formModel['curator']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisDateInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['date_approval'] !== formModel['date_approval']}"
+                                        :disabled="false"
+                                        :validators="validators['date_approval']"
+                                        name="date_approval"
+                                        label="Date of Approval"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['date_approval']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['approved_by'] !== formModel['approved_by']}"
+                                        :disabled="false"
+                                        :validators="validators['approved_by']"
+                                        name="approved_by"
+                                        label="By whom was the request approved?"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['approved_by']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisDateInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['date_completion'] !== formModel['date_completion']}"
+                                        :disabled="false"
+                                        :validators="validators['date_completion']"
+                                        name="date_completion"
+                                        label="Request Completed"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['date_completion']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['comment_administration'] !== formModel['comment_administration']}"
+                                        :disabled="false"
+                                        :validators="validators['comment_administration']"
+                                        name="comment_administration"
+                                        label="Additional Information"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['comment_administration']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                        </v-layout>
+                </template>
+                <template v-slot:extra-form-actions="{ selectedItem, onSupFormClick }">
+                    <v-btn round class="c-dis-form__btn-sup-form" @click="onSupFormClick('expedition', supForms['expedition'])" color="indigo darken-1" dark :disabled="!selectedItem">
+                        expedition <v-icon>arrow_upward</v-icon>
+                    </v-btn>
+                </template>
+            </dis-form>
+        </v-flex>
+    </v-container>
+</template>
+
+<script>
+export default {
+  name: 'SampleRequestForm',
+  created () {
+    this.validators = {}
+    this.validators['exp_acronym'] = JSON.parse('[]')
+    this.validators['request_no'] = JSON.parse('[{"type":"number","min":null,"max":null}]')
+    this.validators['request_part'] = JSON.parse('[{"type":"required"},{"type":"string","min":null,"max":null}]')
+    this.validators['request_combined_id'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['sample_material'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['hole_combined_id'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['number_samples'] = JSON.parse('[{"type":"required"},{"type":"number","min":null,"max":null}]')
+    this.validators['sample_size'] = JSON.parse('[{"type":"required"},{"type":"number","min":null,"max":null}]')
+    this.validators['sample_size_unit'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['split_fraction_requested'] = JSON.parse('[{"type":"number","min":null,"max":null}]')
+    this.validators['purpose'] = JSON.parse('[{"type":"required"},{"type":"string","min":null,"max":null}]')
+    this.validators['destructive'] = JSON.parse('[{"type":"required"}]')
+    this.validators['project_phase'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['scientist_1'] = JSON.parse('[{"type":"required"},{"type":"string","min":null,"max":null}]')
+    this.validators['scientist_2'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['scientist_3'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['comment'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['date_submission'] = JSON.parse('[]')
+    this.validators['curator'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['date_approval'] = JSON.parse('[]')
+    this.validators['approved_by'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['date_completion'] = JSON.parse('[]')
+    this.validators['comment_administration'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.selectSources = {}
+    this.selectSources['sample_material'] = JSON.parse('{"type":"list","listName":"SAMPLE_MATERIAL","textField":"remark","valueField":"display"}')
+    this.selectSources['hole_combined_id'] = JSON.parse('{"type":"api","listName":"","textField":"hole_name","valueField":"combined_id","model":"ProjectHole"}')
+    this.selectSources['sample_size_unit'] = JSON.parse('{"type":"list","listName":"UNITS","textField":"remark","valueField":"display"}')
+    this.selectSources['purpose'] = JSON.parse('{"type":"list","listName":"SAMPLE_PURPOSE","textField":"remark","valueField":"display"}')
+    this.selectSources['project_phase'] = JSON.parse('{"type":"list","listName":"PROJECT_PHASE","textField":"remark","valueField":"display"}')
+    this.selectSources['scientist_1'] = JSON.parse('{"type":"api","listName":"AN","textField":"affiliation","valueField":"last_name","model":"ContactPerson"}')
+    this.selectSources['scientist_2'] = JSON.parse('{"type":"api","listName":"","textField":"affiliation","valueField":"last_name","model":"ContactPerson"}')
+    this.selectSources['scientist_3'] = JSON.parse('{"type":"api","listName":"","textField":"affiliation","valueField":"last_name","model":"ContactPerson"}')
+    this.selectSources['curator'] = JSON.parse('{"type":"api","listName":"","textField":"full_name","valueField":"person_acronym","model":"ContactPerson"}')
+    this.calculatedFields = {}
+    this.calculatedFields['request_combined_id'] = function () {
+      return this.formModel['exp_acronym'] +"_"+ this.formModel['request_no']  +"_"+ this.formModel['request_part']
+    }
+    this.simpleFields = JSON.parse('[{"name":"exp_acronym","label":"Expedition Acronym","description":"","group":"Sample Request ID","order":0,"inputType":"text","searchable":true},{"name":"request_no","label":"Request Number","description":"","group":"Sample Request ID","order":1,"inputType":"text","searchable":true},{"name":"request_part","label":"Request Part","description":"Additional Element for Request ID (e.g., A, B, C or Initials of Scientist)","group":"Sample Request ID","order":2,"inputType":"text","searchable":true},{"name":"request_combined_id","label":"Request Combined ID","description":"","group":"Sample Request ID","order":3,"inputType":"text","searchable":true},{"name":"sample_material","label":"Sample Material Requested","description":"","group":"Details Sample Request","order":0,"inputType":"select","searchable":true},{"name":"hole_combined_id","label":" List Combined ID's  of Holes to be Sampled","description":"","group":"Details Sample Request","order":1,"inputType":"select","searchable":true},{"name":"number_samples","label":"Number of Samples","description":"","group":"Details Sample Request","order":2,"inputType":"text","searchable":true},{"name":"sample_size","label":"Size of Sample","description":"e.g. weight, volume, length ","group":"Details Sample Request","order":3,"inputType":"text","searchable":true},{"name":"sample_size_unit","label":"Unit of Sample Size","description":"","group":"Details Sample Request","order":4,"inputType":"select","searchable":true},{"name":"split_fraction_requested","label":"Requested Fraction of Section Split [%]","description":"of cross sectional area (rough estimate)","group":"Details Sample Request","order":5,"inputType":"text","searchable":true},{"name":"purpose","label":"Purpose \/ Usage","description":"Purpose of Sampling \/ Usage of the Sample","group":"Details Sample Request","order":6,"inputType":"select","searchable":true},{"name":"destructive","label":"Destructive Usage?","description":"","group":"Details Sample Request","order":7,"inputType":"switch","searchable":true},{"name":"project_phase","label":"Project Phase","description":"","group":"Details Sample Request","order":8,"inputType":"select","searchable":true},{"name":"scientist_1","label":"Scientist 1","description":"Responsible Scientist","group":"Details Sample Request","order":9,"inputType":"select","searchable":true},{"name":"scientist_2","label":"Scientist 2","description":"","group":"Details Sample Request","order":10,"inputType":"select","searchable":true},{"name":"scientist_3","label":"Scientist 3","description":"","group":"Details Sample Request","order":11,"inputType":"select","searchable":true},{"name":"comment","label":"Additional Information","description":"","group":"Details Sample Request","order":12,"inputType":"text","searchable":true},{"name":"date_submission","label":"Date of Submission","description":"","group":"Request Administration","order":0,"inputType":"date","searchable":true},{"name":"curator","label":"Curator","description":"","group":"Request Administration","order":1,"inputType":"select","searchable":true},{"name":"date_approval","label":"Date of Approval","description":"","group":"Request Administration","order":2,"inputType":"date","searchable":true},{"name":"approved_by","label":"By whom was the request approved?","description":"","group":"Request Administration","order":3,"inputType":"text","searchable":true},{"name":"date_completion","label":"Request Completed","description":"","group":"Request Administration","order":4,"inputType":"date","searchable":true},{"name":"comment_administration","label":"Additional Information","description":"","group":"Request Administration","order":5,"inputType":"text","searchable":true}]')
+    this.requiredFilters = JSON.parse('[{"value":"expedition","as":"expedition_id","skipOnEmpty":false}]')
+    this.subForms = JSON.parse('[]')
+    this.supForms = JSON.parse('{"expedition":{"buttonLabel":"expedition","url":"/forms/expedition-form","parentIdField":"expedition_id","filter":[]}}')
+    this.filterDataModels = JSON.parse('{"expedition":{"model":"ProjectExpedition","value":"id","text":"exp_acronym","ref":"expedition_id"}}')
+  }
+}
+</script>
+
+<style scoped>
+
+</style>

@@ -1,0 +1,247 @@
+<template>
+    <v-container fluid>
+        <v-flex align-start>
+            <h2>Section</h2>
+            <dis-form ref="disForm" formName="section" dataModel="CoreSection" :fields="simpleFields" :requiredFilters="requiredFilters" :filterDataModels="filterDataModels" :calculatedFields="calculatedFields">
+                <template v-slot:form-fields="{fields, hasNumberValidator, getInputComponent, formScenario, selectedItem, formModel, serverValidationErrors}">
+                        <v-layout wrap mb-3>
+                            <v-flex v-if="!'Section Information'.startsWith('-')" xs12 pl-2 pt-2 class="title">
+                                Section Information
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['section'] !== formModel['section']}"
+                                        :disabled="true"
+                                        :validators="validators['section']"
+                                        name="section"
+                                        label="Section Number"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model.number="formModel['section']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisSelectInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['curator'] !== formModel['curator']}"
+                                        :disabled="false"
+                                        :validators="validators['curator']"
+                                        name="curator"
+                                        label="Curator"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        :selectSource="selectSources['curator']"
+                                        v-model="formModel['curator']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['top_depth'] !== formModel['top_depth']}"
+                                        :disabled="true"
+                                        :validators="validators['top_depth']"
+                                        name="top_depth"
+                                        label="Section Top Depth [mbs] or [mbsf]"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model.number="formModel['top_depth']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['section_length'] !== formModel['section_length']}"
+                                        :disabled="false"
+                                        :validators="validators['section_length']"
+                                        name="section_length"
+                                        label="Section Length [m]"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model.number="formModel['section_length']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['curated_length'] !== formModel['curated_length']}"
+                                        :disabled="false"
+                                        :validators="validators['curated_length']"
+                                        name="curated_length"
+                                        label="Curated Length [m]"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="can be differing from section length (e.g. due to degassing)"
+                                        v-model.number="formModel['curated_length']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['bottom_depth'] !== formModel['bottom_depth']}"
+                                        :disabled="true"
+                                        :validators="validators['bottom_depth']"
+                                        name="bottom_depth"
+                                        label="Section Bottom Depth [mbs] or [mbsf]"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model.number="formModel['bottom_depth']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisSwitchInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['core_catcher'] !== formModel['core_catcher']}"
+                                        :disabled="false"
+                                        :validators="validators['core_catcher']"
+                                        name="core_catcher"
+                                        label="Core Catcher"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="Is this section a core catcher?"
+                                        v-model="formModel['core_catcher']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisSelectInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['section_condition'] !== formModel['section_condition']}"
+                                        :disabled="false"
+                                        :validators="validators['section_condition']"
+                                        name="section_condition"
+                                        label="Section Condition"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        :selectSource="selectSources['section_condition']"
+                                        v-model="formModel['section_condition']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['section_split_exist'] !== formModel['section_split_exist']}"
+                                        :disabled="true"
+                                        :validators="validators['section_split_exist']"
+                                        name="section_split_exist"
+                                        label="Do section split exist?"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['section_split_exist']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['comment'] !== formModel['comment']}"
+                                        :disabled="false"
+                                        :validators="validators['comment']"
+                                        name="comment"
+                                        label="Additional Information"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['comment']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                        </v-layout>
+                        <v-layout wrap mb-3>
+                            <v-flex v-if="!'Identifiers'.startsWith('-')" xs12 pl-2 pt-2 class="title">
+                                Identifiers
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['combined_id'] !== formModel['combined_id']}"
+                                        :disabled="true"
+                                        :validators="validators['combined_id']"
+                                        name="combined_id"
+                                        label="Combined Id"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="(automatically filled when saved)"
+                                        v-model="formModel['combined_id']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                        </v-layout>
+                        <v-layout wrap mb-3>
+                            <v-flex v-if="!'Depth Correction'.startsWith('-')" xs12 pl-2 pt-2 class="title">
+                                Depth Correction
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['mcd_offset'] !== formModel['mcd_offset']}"
+                                        :disabled="false"
+                                        :validators="validators['mcd_offset']"
+                                        name="mcd_offset"
+                                        label="MCD Offset [m]"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="Distance from sea floor/surface to target within recovered core using a scale of adjusted depths "
+                                        v-model.number="formModel['mcd_offset']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['mcd_top_depth'] !== formModel['mcd_top_depth']}"
+                                        :disabled="true"
+                                        :validators="validators['mcd_top_depth']"
+                                        name="mcd_top_depth"
+                                        label="MCD Top Depth [mcd]"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="Corrected Top Depth of Section below surface/seafloor"
+                                        v-model="formModel['mcd_top_depth']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['mcd_bottom_depth'] !== formModel['mcd_bottom_depth']}"
+                                        :disabled="true"
+                                        :validators="validators['mcd_bottom_depth']"
+                                        name="mcd_bottom_depth"
+                                        label="MCD Bottom Depth [mcd]"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="Corrected Top Depth of Section below surface/seafloor"
+                                        v-model="formModel['mcd_bottom_depth']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['comment_depth'] !== formModel['comment_depth']}"
+                                        :disabled="false"
+                                        :validators="validators['comment_depth']"
+                                        name="comment_depth"
+                                        label="Additional Information"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model.number="formModel['comment_depth']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                        </v-layout>
+                </template>
+                <template v-slot:extra-form-actions="{ selectedItem, onSubFormClick, onSupFormClick }">
+                    <v-btn round class="c-dis-form__btn-sub-form" @click="onSubFormClick('split', subForms['split'])" color="indigo darken-4" dark :disabled="!selectedItem">
+                        split <v-icon>arrow_downward</v-icon>
+                    </v-btn>
+                    <v-btn round class="c-dis-form__btn-sup-form" @click="onSupFormClick('core', supForms['core'])" color="indigo darken-1" dark :disabled="!selectedItem">
+                        core <v-icon>arrow_upward</v-icon>
+                    </v-btn>
+                </template>
+            </dis-form>
+        </v-flex>
+    </v-container>
+</template>
+
+<script>
+export default {
+  name: 'SectionForm',
+  created () {
+    this.validators = {}
+    this.validators['section'] = JSON.parse('[{"type":"number","min":null,"max":null}]')
+    this.validators['curator'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['top_depth'] = JSON.parse('[{"type":"required"},{"type":"number","min":null,"max":null}]')
+    this.validators['section_length'] = JSON.parse('[{"type":"required"},{"type":"number","min":null,"max":null}]')
+    this.validators['curated_length'] = JSON.parse('[{"type":"number","min":null,"max":null}]')
+    this.validators['bottom_depth'] = JSON.parse('[{"type":"number","min":null,"max":null}]')
+    this.validators['core_catcher'] = JSON.parse('[]')
+    this.validators['section_condition'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['section_split_exist'] = JSON.parse('[]')
+    this.validators['comment'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['combined_id'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['mcd_offset'] = JSON.parse('[{"type":"number","min":null,"max":null}]')
+    this.validators['mcd_top_depth'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['mcd_bottom_depth'] = JSON.parse('[]')
+    this.validators['comment_depth'] = JSON.parse('[{"type":"number"}]')
+    this.selectSources = {}
+    this.selectSources['curator'] = JSON.parse('{"type":"api","listName":"","textField":"full_name","valueField":"person_acronym","model":"ContactPerson"}')
+    this.selectSources['section_condition'] = JSON.parse('{"type":"list","listName":"SECTION_CONDITION","textField":"remark","valueField":"display"}')
+    this.calculatedFields = {}
+    this.calculatedFields['bottom_depth'] = function () {
+      return (Math.abs(this.formModel['top_depth'] + this.formModel['section_length']))
+    }
+    this.simpleFields = JSON.parse('[{"name":"section","label":"Section Number","description":"","group":"Section Information","order":0,"inputType":"text","searchable":true},{"name":"curator","label":"Curator","description":"","group":"Section Information","order":1,"inputType":"select","searchable":true},{"name":"top_depth","label":"Section Top Depth [mbs] or [mbsf]","description":"","group":"Section Information","order":2,"inputType":"text","searchable":false},{"name":"section_length","label":"Section Length [m]","description":"","group":"Section Information","order":3,"inputType":"text","searchable":true},{"name":"curated_length","label":"Curated Length [m]","description":"can be differing from section length (e.g. due to degassing)","group":"Section Information","order":4,"inputType":"text","searchable":true},{"name":"bottom_depth","label":"Section Bottom Depth [mbs] or [mbsf]","description":"","group":"Section Information","order":5,"inputType":"text","searchable":false},{"name":"core_catcher","label":"Core Catcher","description":"Is this section a core catcher?","group":"Section Information","order":6,"inputType":"switch","searchable":true},{"name":"section_condition","label":"Section Condition","description":"","group":"Section Information","order":7,"inputType":"select","searchable":true},{"name":"section_split_exist","label":"Do section split exist?","description":"","group":"Section Information","order":8,"inputType":"text","searchable":false},{"name":"comment","label":"Additional Information","description":"","group":"Section Information","order":9,"inputType":"text","searchable":true},{"name":"combined_id","label":"Combined Id","description":"(automatically filled when saved)","group":"Identifiers","order":0,"inputType":"text","searchable":true},{"name":"mcd_offset","label":"MCD Offset [m]","description":"Distance from sea floor\/surface to target within recovered core using a scale of adjusted depths ","group":"Depth Correction","order":0,"inputType":"text","searchable":true},{"name":"mcd_top_depth","label":"MCD Top Depth [mcd]","description":"Corrected Top Depth of Section below surface\/seafloor","group":"Depth Correction","order":1,"inputType":"text","searchable":false},{"name":"mcd_bottom_depth","label":"MCD Bottom Depth [mcd]","description":"Corrected Top Depth of Section below surface\/seafloor","group":"Depth Correction","order":2,"inputType":"text","searchable":false},{"name":"comment_depth","label":"Additional Information","description":"","group":"Depth Correction","order":3,"inputType":"text","searchable":true}]')
+    this.requiredFilters = JSON.parse('[{"value":"core","as":"core_id","skipOnEmpty":false}]')
+    this.subForms = JSON.parse('{"split":{"buttonLabel":"split","url":"/forms/split-form","filter":[{"unit":"expedition","fromField":"expedition_id"},{"unit":"site","fromField":"site_id"},{"unit":"hole","fromField":"hole_id"},{"unit":"core","fromField":"core_id"},{"unit":"section","fromField":"id"}]}}')
+    this.supForms = JSON.parse('{"core":{"buttonLabel":"core","url":"/forms/core-form","parentIdField":"core_id","filter":[{"unit":"expedition","fromField":"expedition_id"},{"unit":"site","fromField":"site_id"},{"unit":"hole","fromField":"hole_id"}]}}')
+    this.filterDataModels = JSON.parse('{"expedition":{"model":"ProjectExpedition","value":"id","text":"exp_acronym","ref":"expedition_id"},"site":{"model":"ProjectSite","value":"id","text":"site","ref":"site_id","require":{"value":"expedition","as":"expedition_id"}},"hole":{"model":"ProjectHole","value":"id","text":"hole","ref":"hole_id","require":{"value":"site","as":"site_id"}},"core":{"model":"CoreCore","value":"id","text":"core","ref":"core_id","require":{"value":"hole","as":"hole_id"}}}')
+  }
+}
+</script>
+
+<style scoped>
+
+</style>

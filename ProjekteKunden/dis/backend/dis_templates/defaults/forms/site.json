@@ -1,0 +1,385 @@
+{
+    "name": "site",
+    "dataModel": "ProjectSite",
+    "fields": [
+        {
+            "name": "combined_id",
+            "label": "Combined ID ",
+            "description": "Combined ID for Site",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Site Details",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "site",
+            "label": "Site Code",
+            "description": "Number or abbreviation of site",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Site Details",
+            "order": 1,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "site_name",
+            "label": "Name of Site",
+            "description": "Name of the site (e.g. as used in the project)",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Site Details",
+            "order": 2,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "site_name_alt",
+            "label": "Alternative Name or Code of Site",
+            "description": "Additional name or code (if any)",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Site Details",
+            "order": 3,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "type_drilling_location",
+            "label": "Type of Drilling Location",
+            "description": "Type of drill site/drilling location",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "list",
+                    "listName": "DRILLING_LOCATION",
+                    "textField": "remark",
+                    "valueField": "display"
+                },
+                "allowFreeInput": false,
+                "multiple": false,
+                "jsCalculate": ""
+            },
+            "group": "Site Details",
+            "order": 4,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "geological_age",
+            "label": "Geological Age",
+            "description": "Geological Eon/Era/Period; age of drilling target",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "list",
+                    "listName": "GEOLOGICAL_AGE",
+                    "textField": "remark",
+                    "valueField": "display"
+                },
+                "allowFreeInput": false,
+                "multiple": true,
+                "jsCalculate": ""
+            },
+            "group": "Site Details",
+            "order": 5,
+            "formatter": "this.$value.toString()",
+            "searchable": true
+        },
+        {
+            "name": "lithology",
+            "label": "Lithology",
+            "description": "Lithologies of the drilling target",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "list",
+                    "listName": "LITHOLOGY",
+                    "textField": "remark",
+                    "valueField": "display"
+                },
+                "allowFreeInput": false,
+                "multiple": true,
+                "jsCalculate": ""
+            },
+            "group": "Site Details",
+            "order": 6,
+            "formatter": "this.$value.toString()",
+            "searchable": true
+        },
+        {
+            "name": "comment",
+            "label": "Additional Information",
+            "description": "Additional information about the site",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Site Details",
+            "order": 7,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "city",
+            "label": "City",
+            "description": "City nearby drill site",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "list",
+                    "listName": "CITIES",
+                    "textField": "remark",
+                    "valueField": "display"
+                },
+                "allowFreeInput": false,
+                "multiple": false,
+                "jsCalculate": ""
+            },
+            "group": "Site Location",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "state",
+            "label": "State",
+            "description": "State of the site location",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "list",
+                    "listName": "COUNTRY_STATES",
+                    "textField": "remark",
+                    "valueField": "display"
+                },
+                "allowFreeInput": false,
+                "multiple": false,
+                "jsCalculate": ""
+            },
+            "group": "Site Location",
+            "order": 1,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "county",
+            "label": "County",
+            "description": "County of site location",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Site Location",
+            "order": 2,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "country",
+            "label": "Country ",
+            "description": "Country of site location",
+            "validators": [
+                {
+                    "type": "required"
+                },
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "list",
+                    "listName": "COUNTRIES",
+                    "textField": "remark",
+                    "valueField": "display"
+                },
+                "allowFreeInput": false,
+                "multiple": false,
+                "jsCalculate": ""
+            },
+            "group": "Site Location",
+            "order": 3,
+            "formatter": "",
+            "searchable": true
+        },
+        {
+            "name": "description",
+            "label": "Description of Drill Site",
+            "description": "Additional information about the drill site",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "textarea",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Site Location",
+            "order": 4,
+            "formatter": null,
+            "searchable": true
+        }
+    ],
+    "subForms": {
+        "hole": {
+            "buttonLabel": "hole",
+            "url": "/forms/hole-form",
+            "filter": [
+                {
+                    "unit": "expedition",
+                    "fromField": "expedition_id"
+                },
+                {
+                    "unit": "site",
+                    "fromField": "id"
+                }
+            ]
+        }
+    },
+    "supForms": {
+        "expedition": {
+            "buttonLabel": "expedition",
+            "url": "/forms/expedition-form",
+            "parentIdField": "expedition_id",
+            "filter": []
+        }
+    },
+    "createdAt": 1583843766,
+    "modifiedAt": 1636702957,
+    "generatedAt": 1636702961,
+    "filterDataModels": {
+        "expedition": {
+            "model": "ProjectExpedition",
+            "value": "id",
+            "text": "exp_acronym",
+            "ref": "expedition_id"
+        }
+    },
+    "requiredFilters": [
+        {
+            "value": "expedition",
+            "as": "expedition_id",
+            "skipOnEmpty": false
+        }
+    ]
+}

@@ -1,0 +1,627 @@
+{
+    "module": "Archive",
+    "name": "File",
+    "table": "archive_file",
+    "importTable": "",
+    "parentModel": "",
+    "columns": {
+        "id": {
+            "name": "id",
+            "importSource": "",
+            "type": "integer",
+            "size": 11,
+            "required": false,
+            "primaryKey": true,
+            "autoInc": true,
+            "label": "ID",
+            "description": "Auto incremented id",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "isLocked": null,
+            "searchable": true
+        },
+        "parent_combined_id": {
+            "name": "parent_combined_id",
+            "importSource": "",
+            "type": "string",
+            "size": 18,
+            "required": false,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Parent ID",
+            "description": "CombinedKey of parent: expedition, site, hole, core, section",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "isLocked": null,
+            "searchable": true
+        },
+        "type": {
+            "name": "type",
+            "importSource": "",
+            "type": "string",
+            "size": 3,
+            "required": true,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "File Type",
+            "description": "File type",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "isLocked": null,
+            "searchable": true
+        },
+        "number": {
+            "name": "number",
+            "importSource": "",
+            "type": "integer",
+            "size": 10,
+            "required": false,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Number (e.g. Core Box Number)",
+            "description": "Number (e.g. core box number)",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "isLocked": null,
+            "searchable": true
+        },
+        "filename": {
+            "name": "filename",
+            "importSource": "filename",
+            "type": "string",
+            "size": 255,
+            "required": true,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "File Name",
+            "description": "Name of the renamed file",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "isLocked": null,
+            "searchable": true
+        },
+        "original_filename": {
+            "name": "original_filename",
+            "importSource": "original_filename",
+            "type": "string",
+            "size": 255,
+            "required": true,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Original File Name",
+            "description": "Name of the originally uploaded file",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "isLocked": null,
+            "searchable": true
+        },
+        "filesize": {
+            "name": "filesize",
+            "importSource": "FILESIZE",
+            "type": "integer",
+            "size": 10,
+            "required": false,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "File Size",
+            "description": "File size",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "isLocked": null,
+            "searchable": true
+        },
+        "mime_type": {
+            "name": "mime_type",
+            "importSource": "",
+            "type": "string",
+            "size": 150,
+            "required": false,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Mime Type",
+            "description": "Mime type",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "isLocked": null,
+            "searchable": true
+        },
+        "checksum": {
+            "name": "checksum",
+            "importSource": "CHECKSUM",
+            "type": "string",
+            "size": 32,
+            "required": false,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Checksum",
+            "description": "Checksum",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "isLocked": null,
+            "searchable": true
+        },
+        "upload_date": {
+            "name": "upload_date",
+            "importSource": "",
+            "type": "dateTime",
+            "size": 0,
+            "required": true,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Upload Date",
+            "description": "Date of file upload",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "isLocked": null,
+            "searchable": true
+        },
+        "expedition_id": {
+            "name": "expedition_id",
+            "importSource": "",
+            "type": "integer",
+            "size": 11,
+            "required": false,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Expedition",
+            "description": "Expedition ID",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "isLocked": null,
+            "searchable": true
+        },
+        "site_id": {
+            "name": "site_id",
+            "importSource": "",
+            "type": "integer",
+            "size": 11,
+            "required": false,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Site",
+            "description": "Site ID",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "isLocked": null,
+            "searchable": true
+        },
+        "hole_id": {
+            "name": "hole_id",
+            "importSource": "",
+            "type": "integer",
+            "size": 11,
+            "required": false,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Hole",
+            "description": "Hole ID",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "isLocked": null,
+            "searchable": true
+        },
+        "core_id": {
+            "name": "core_id",
+            "importSource": "",
+            "type": "integer",
+            "size": 11,
+            "required": false,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Core",
+            "description": "Core ID",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "isLocked": null,
+            "searchable": true
+        },
+        "section_id": {
+            "name": "section_id",
+            "importSource": "",
+            "type": "integer",
+            "size": 11,
+            "required": false,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Section",
+            "description": "Section ID",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "isLocked": null,
+            "searchable": true
+        },
+        "section_split_id": {
+            "name": "section_split_id",
+            "importSource": "",
+            "type": "integer",
+            "size": 11,
+            "required": false,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Split",
+            "description": "Split ID",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "isLocked": null,
+            "searchable": true
+        },
+        "sample_id": {
+            "name": "sample_id",
+            "importSource": "",
+            "type": "integer",
+            "size": 11,
+            "required": false,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Sample",
+            "description": "Sample ID",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "isLocked": null,
+            "searchable": true
+        },
+        "sample_request_id": {
+            "name": "sample_request_id",
+            "importSource": "",
+            "type": "integer",
+            "size": 11,
+            "required": false,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Request",
+            "description": "Request ID",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "isLocked": null,
+            "searchable": true
+        },
+        "commment": {
+            "name": "comment",
+            "importSource": "",
+            "type": "text",
+            "size": null,
+            "required": false,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Additional information",
+            "description": "Additional information on the uploaded file",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "isLocked": null,
+            "searchable": true
+        },
+        "metadata": {
+            "name": "metadata",
+            "importSource": "",
+            "type": "text",
+            "size": null,
+            "required": false,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Metadata",
+            "description": "Metadata",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "isLocked": null,
+            "searchable": true
+        },
+        "curator_contact_person_id": {
+            "name": "curator_contact_person_id",
+            "importSource": "",
+            "type": "one_to_many",
+            "size": null,
+            "required": false,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Curator",
+            "description": "The analyst/curator who created the data record",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "displayColumn": "person_acronym",
+            "isLocked": null,
+            "oppositionRelation": false,
+            "relatedTable": "contact_person",
+            "searchable": true
+        }
+    },
+    "indices": {
+        "id": {
+            "name": "id",
+            "type": "PRIMARY",
+            "columns": [
+                "id"
+            ],
+            "isLocked": null
+        },
+        "expedition_id": {
+            "name": "expedition_id",
+            "type": "KEY",
+            "columns": [
+                "expedition_id"
+            ],
+            "isLocked": null
+        },
+        "site_id": {
+            "name": "site_id",
+            "type": "KEY",
+            "columns": [
+                "site_id"
+            ],
+            "isLocked": null
+        },
+        "hole_id": {
+            "name": "hole_id",
+            "type": "KEY",
+            "columns": [
+                "hole_id"
+            ],
+            "isLocked": null
+        },
+        "core_id": {
+            "name": "core_id",
+            "type": "KEY",
+            "columns": [
+                "core_id"
+            ],
+            "isLocked": null
+        },
+        "section_id": {
+            "name": "section_id",
+            "type": "KEY",
+            "columns": [
+                "section_id"
+            ],
+            "isLocked": null
+        },
+        "section_split_id": {
+            "name": "section_split_id",
+            "type": "KEY",
+            "columns": [
+                "section_split_id"
+            ],
+            "isLocked": null
+        },
+        "sample_id": {
+            "name": "sample_id",
+            "type": "KEY",
+            "columns": [
+                "sample_id"
+            ],
+            "isLocked": null
+        },
+        "sample_request_id": {
+            "name": "sample_request_id",
+            "type": "KEY",
+            "columns": [
+                "sample_request_id"
+            ],
+            "isLocked": null
+        },
+        "curator_contact_person_id": {
+            "name": "curator_contact_person_id",
+            "type": "KEY",
+            "columns": [
+                "curator_contact_person_id"
+            ],
+            "isLocked": true
+        }
+    },
+    "relations": {
+        "fk-archive_file-expedition": {
+            "name": "fk-archive_file-expedition",
+            "foreignTable": "project_expedition",
+            "localColumns": [
+                "expedition_id"
+            ],
+            "foreignColumns": [
+                "id"
+            ],
+            "isLocked": null
+        },
+        "fk-archive_file-site": {
+            "name": "fk-archive_file-site",
+            "foreignTable": "project_site",
+            "localColumns": [
+                "site_id"
+            ],
+            "foreignColumns": [
+                "id"
+            ],
+            "isLocked": null
+        },
+        "fk-archive_file-hole": {
+            "name": "fk-archive_file-hole",
+            "foreignTable": "project_hole",
+            "localColumns": [
+                "hole_id"
+            ],
+            "foreignColumns": [
+                "id"
+            ],
+            "isLocked": null
+        },
+        "fk-archive_file-core": {
+            "name": "fk-archive_file-core",
+            "foreignTable": "core_core",
+            "localColumns": [
+                "core_id"
+            ],
+            "foreignColumns": [
+                "id"
+            ],
+            "isLocked": null
+        },
+        "fk-archive_file-section": {
+            "name": "fk-archive_file-section",
+            "foreignTable": "core_section",
+            "localColumns": [
+                "section_id"
+            ],
+            "foreignColumns": [
+                "id"
+            ],
+            "isLocked": null
+        },
+        "fk-archive_file-section-split": {
+            "name": "fk-archive_file-section-split",
+            "foreignTable": "curation_section_split",
+            "localColumns": [
+                "section_split_id"
+            ],
+            "foreignColumns": [
+                "id"
+            ],
+            "isLocked": null
+        },
+        "fk-archive_file-sample": {
+            "name": "fk-archive_file-sample",
+            "foreignTable": "curation_sample",
+            "localColumns": [
+                "sample_id"
+            ],
+            "foreignColumns": [
+                "id"
+            ],
+            "isLocked": null
+        },
+        "fk-archive_file-sample_request": {
+            "name": "fk-archive_file-sample_request",
+            "foreignTable": "curation_sample_request",
+            "localColumns": [
+                "sample_request_id"
+            ],
+            "foreignColumns": [
+                "id"
+            ],
+            "isLocked": null
+        },
+        "archive_file__contact_person__curator_contact_person_id__1n": {
+            "name": "archive_file__contact_person__curator_contact_person_id__1n",
+            "relationType": "1n",
+            "relatedTable": null,
+            "foreignTable": "contact_person",
+            "localColumns": [
+                "curator_contact_person_id"
+            ],
+            "foreignColumns": [
+                "id"
+            ],
+            "displayColumns": [
+                "person_acronym"
+            ],
+            "isLocked": null,
+            "oppositionRelation": false,
+            "oppositeColumnName": ""
+        }
+    },
+    "behaviors": [],
+    "createdAt": 1549012602,
+    "modifiedAt": 1613748834,
+    "generatedAt": 1613748839,
+    "fullName": "ArchiveFile"
+}

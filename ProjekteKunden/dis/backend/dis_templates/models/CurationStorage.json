@@ -1,0 +1,186 @@
+{
+    "module": "Curation",
+    "name": "Storage",
+    "table": "curation_storage",
+    "importTable": null,
+    "parentModel": "CurationStorage",
+    "columns": {
+        "id": {
+            "name": "id",
+            "importSource": "",
+            "type": "integer",
+            "size": 11,
+            "required": false,
+            "primaryKey": true,
+            "autoInc": true,
+            "label": "ID",
+            "description": "auto incremented ID",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "isLocked": null,
+            "searchable": true
+        },
+        "storage": {
+            "name": "storage",
+            "importSource": "",
+            "type": "string",
+            "size": 100,
+            "required": true,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Storage",
+            "description": "Name of the storage (information)",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "isLocked": null,
+            "searchable": true
+        },
+        "combined_id": {
+            "name": "combined_id",
+            "importSource": "",
+            "type": "string",
+            "size": 255,
+            "required": false,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Combined ID",
+            "description": "Combined ID of the storage (information)",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "isLocked": null,
+            "searchable": true
+        },
+        "type": {
+            "name": "type",
+            "importSource": "",
+            "type": "string",
+            "size": null,
+            "required": true,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Type",
+            "description": "Type of storage",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "isLocked": null,
+            "searchable": true
+        },
+        "parent_id": {
+            "name": "parent_id",
+            "importSource": "",
+            "type": "integer",
+            "size": 11,
+            "required": false,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Parent ID",
+            "description": "Parent ID for storage chain",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "isLocked": null,
+            "searchable": true
+        },
+        "exp_acronym": {
+            "name": "exp_acronym",
+            "importSource": "",
+            "type": "string",
+            "size": null,
+            "required": false,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Expedition Acronym",
+            "description": "",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "isLocked": null,
+            "searchable": true
+        },
+        "comment": {
+            "name": "comment",
+            "oldName": "remarks",
+            "importSource": "",
+            "type": "string",
+            "size": null,
+            "required": false,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Additional Information",
+            "description": "",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "isLocked": null,
+            "searchable": true
+        }
+    },
+    "indices": {
+        "pk_id": {
+            "name": "pk_id",
+            "type": "PRIMARY",
+            "columns": [
+                "id"
+            ],
+            "isLocked": null
+        },
+        "ux_combined_id": {
+            "name": "ux_combined_id",
+            "type": "UNIQUE",
+            "columns": [
+                "combined_id"
+            ],
+            "isLocked": null
+        }
+    },
+    "relations": {
+        "curation_storage__self__parent": {
+            "name": "curation_storage__self__parent",
+            "foreignTable": "curation_storage",
+            "localColumns": [
+                "parent_id"
+            ],
+            "foreignColumns": [
+                "id"
+            ],
+            "isLocked": null
+        }
+    },
+    "behaviors": [],
+    "createdAt": 1607953893,
+    "modifiedAt": 1641476735,
+    "generatedAt": 1638524623,
+    "fullName": "CurationStorage"
+}

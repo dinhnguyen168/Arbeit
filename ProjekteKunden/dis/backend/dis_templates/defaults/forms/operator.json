@@ -1,0 +1,305 @@
+{
+    "name": "operator",
+    "dataModel": "ContactOperator",
+    "fields": [
+        {
+            "name": "operator_name",
+            "label": "Name of Operator",
+            "description": "Organisation name of the operator",
+            "validators": [
+                {
+                    "type": "string"
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Operator Details",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "organsiation",
+            "label": "Organisation",
+            "description": "Organisation name, if different from operator_name",
+            "validators": [
+                {
+                    "type": "string"
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Operator Details",
+            "order": 1,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "ror",
+            "label": "ROR",
+            "description": "Research Organization Registry ID of the organisation",
+            "validators": [
+                {
+                    "type": "string"
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Operator Details",
+            "order": 2,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "department",
+            "label": "Department",
+            "description": "Department in the organisation",
+            "validators": [
+                {
+                    "type": "string"
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Operator Details",
+            "order": 3,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "street",
+            "label": "Street/Post Box",
+            "description": "Delivery point, e.g. street name and number, post box",
+            "validators": [
+                {
+                    "type": "string"
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Operator Details",
+            "order": 4,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "city",
+            "label": "City",
+            "description": "City of the location",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "list",
+                    "listName": "CITIES",
+                    "textField": "remark",
+                    "valueField": "display"
+                },
+                "allowFreeInput": false,
+                "multiple": false,
+                "jsCalculate": ""
+            },
+            "group": "Operator Details",
+            "order": 5,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "postal_code",
+            "label": "Postal Code",
+            "description": "ZIP or other postal code",
+            "validators": [
+                {
+                    "type": "string"
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Operator Details",
+            "order": 6,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "state",
+            "label": "State",
+            "description": "Administrative area: state, province of the location",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "list",
+                    "listName": "COUNTRY_STATES",
+                    "textField": "remark",
+                    "valueField": "display"
+                },
+                "allowFreeInput": false,
+                "multiple": false,
+                "jsCalculate": ""
+            },
+            "group": "Operator Details",
+            "order": 7,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "country",
+            "label": "Country",
+            "description": "Country of the location",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "list",
+                    "listName": "COUNTRIES",
+                    "textField": "remark",
+                    "valueField": "display"
+                },
+                "allowFreeInput": false,
+                "multiple": false,
+                "jsCalculate": ""
+            },
+            "group": "Operator Details",
+            "order": 8,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "comment",
+            "label": "Additional Information",
+            "description": "Additional information on the entry",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Operator Details",
+            "order": 9,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "contact_phone",
+            "label": "Contact Phone",
+            "description": "Contact telephone number",
+            "validators": [
+                {
+                    "type": "string"
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Operator Contact",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "contact_email",
+            "label": "Contact Email",
+            "description": "Contact email address",
+            "validators": [
+                {
+                    "type": "string"
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Operator Contact",
+            "order": 1,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "website",
+            "label": "Website",
+            "description": "Online resource, e.g. address of website",
+            "validators": [
+                {
+                    "type": "string"
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Operator Contact",
+            "order": 2,
+            "formatter": null,
+            "searchable": true
+        }
+    ],
+    "subForms": [],
+    "supForms": [],
+    "createdAt": 1629139186,
+    "modifiedAt": 1643902299,
+    "generatedAt": 1643902305,
+    "filterDataModels": [],
+    "requiredFilters": []
+}

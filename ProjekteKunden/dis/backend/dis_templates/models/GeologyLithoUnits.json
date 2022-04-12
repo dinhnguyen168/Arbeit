@@ -1,0 +1,165 @@
+{
+    "module": "Geology",
+    "name": "LithoUnits",
+    "table": "geology_litho_units",
+    "importTable": null,
+    "parentModel": "ProjectExpedition",
+    "columns": {
+        "id": {
+            "name": "id",
+            "importSource": "",
+            "type": "integer",
+            "size": 11,
+            "required": false,
+            "primaryKey": true,
+            "autoInc": true,
+            "label": "ID",
+            "description": "",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "isLocked": null,
+            "searchable": true
+        },
+        "expedition_id": {
+            "name": "expedition_id",
+            "importSource": "",
+            "type": "integer",
+            "size": 11,
+            "required": true,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Expedition",
+            "description": "",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "isLocked": null,
+            "searchable": true
+        },
+        "lithological_unit": {
+            "name": "lithological_unit",
+            "importSource": "",
+            "type": "string",
+            "size": null,
+            "required": false,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Lithological Unit",
+            "description": "",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "isLocked": null,
+            "searchable": true
+        },
+        "lithological_unit_name": {
+            "name": "lithological_unit_name",
+            "importSource": "",
+            "type": "string",
+            "size": null,
+            "required": false,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Lithological Unit Name",
+            "description": "",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "isLocked": null,
+            "searchable": true
+        },
+        "description": {
+            "name": "description",
+            "importSource": "",
+            "type": "string",
+            "size": 3000,
+            "required": false,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Description",
+            "description": "",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "isLocked": null,
+            "searchable": true
+        },
+        "combined_id": {
+            "name": "combined_id",
+            "importSource": "",
+            "type": "string",
+            "size": null,
+            "required": false,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "System Combined ID",
+            "description": "only for internal usage (UM)",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "isLocked": null,
+            "searchable": true
+        }
+    },
+    "indices": {
+        "pk_id": {
+            "name": "pk_id",
+            "type": "PRIMARY",
+            "columns": [
+                "id"
+            ],
+            "isLocked": null
+        },
+        "expedition_id": {
+            "name": "expedition_id",
+            "type": "KEY",
+            "columns": [
+                "expedition_id"
+            ],
+            "isLocked": null
+        }
+    },
+    "foreignkeys": {
+        "geology_litho_units__project_expedition__parent": {
+            "name": "geology_litho_units__project_expedition__parent",
+            "foreignTable": "project_expedition",
+            "localColumns": [
+                "expedition_id"
+            ],
+            "foreignColumns": [
+                "id"
+            ],
+            "isLocked": null
+        }
+    },
+    "behaviors": [],
+    "createdAt": 1629971215,
+    "modifiedAt": 1636701236,
+    "generatedAt": 1636701241,
+    "fullName": "GeologyLithoUnits"
+}

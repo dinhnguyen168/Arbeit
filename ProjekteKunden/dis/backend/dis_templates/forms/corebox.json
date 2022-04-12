@@ -1,0 +1,201 @@
+{
+    "name": "corebox",
+    "dataModel": "CurationCorebox",
+    "fields": [
+        {
+            "name": "corebox",
+            "label": "Corebox",
+            "description": "",
+            "validators": [
+                {
+                    "type": "required"
+                },
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "-Primary",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "corebox_combined_id",
+            "label": "Corebox Combined ID",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "-Primary",
+            "order": 1,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "contained_section_splits",
+            "label": "Contained Section Splits",
+            "description": "",
+            "validators": [],
+            "formInput": {
+                "type": "select",
+                "disabled": true,
+                "calculate": "",
+                "selectSource": {
+                    "type": "api",
+                    "listName": "",
+                    "textField": "combined_id",
+                    "valueField": "combined_id",
+                    "model": "CurationSectionSplit"
+                },
+                "allowFreeInput": false,
+                "multiple": true,
+                "jsCalculate": ""
+            },
+            "group": "-Primary",
+            "order": 2,
+            "formatter": "this.$value.toString()",
+            "searchable": false
+        },
+        {
+            "name": "storage_id",
+            "label": "Storage ID",
+            "description": "",
+            "validators": [
+                {
+                    "type": "number",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "api",
+                    "listName": "",
+                    "textField": "combined_id",
+                    "valueField": "id",
+                    "model": "CurationStorage"
+                },
+                "allowFreeInput": false,
+                "multiple": false,
+                "jsCalculate": ""
+            },
+            "group": "Storage",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "storage_combined_id",
+            "label": "Storage",
+            "description": "",
+            "validators": [],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Storage",
+            "order": 1,
+            "formatter": null,
+            "searchable": false
+        },
+        {
+            "name": "comment",
+            "label": "Additional Information",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string"
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Storage",
+            "order": 2,
+            "formatter": null,
+            "searchable": true
+        }
+    ],
+    "subForms": [],
+    "supForms": {
+        "hole": {
+            "buttonLabel": "hole",
+            "url": "/forms/hole-form",
+            "parentIdField": "hole_id",
+            "filter": [
+                {
+                    "unit": "expedition",
+                    "fromField": "expedition_id"
+                },
+                {
+                    "unit": "site",
+                    "fromField": "site_id"
+                }
+            ]
+        }
+    },
+    "createdAt": 1614684440,
+    "modifiedAt": 1638524782,
+    "generatedAt": 1638524787,
+    "filterDataModels": {
+        "expedition": {
+            "model": "ProjectExpedition",
+            "value": "id",
+            "text": "exp_acronym",
+            "ref": "expedition_id"
+        },
+        "site": {
+            "model": "ProjectSite",
+            "value": "id",
+            "text": "site",
+            "ref": "site_id",
+            "require": {
+                "value": "expedition",
+                "as": "expedition_id"
+            }
+        },
+        "hole": {
+            "model": "ProjectHole",
+            "value": "id",
+            "text": "hole",
+            "ref": "hole_id",
+            "require": {
+                "value": "site",
+                "as": "site_id"
+            }
+        }
+    },
+    "requiredFilters": [
+        {
+            "value": "hole",
+            "as": "hole_id",
+            "skipOnEmpty": false
+        }
+    ]
+}

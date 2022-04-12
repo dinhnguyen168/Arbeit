@@ -1,0 +1,98 @@
+@import '../../../node_modules/vuetify/src/stylus/bootstrap.styl'
+@import '../../../node_modules/vuetify/src/stylus/theme.styl'
+
+/** Colors based on theme **/
+dis-data-table($material)
+  &__btn
+    color: $shades.white
+  table th
+    background-color: $material.bg-color
+
+theme(v-datatable, "v-datatable")
+
+v-datatable($material)
+  .v-datatable__actions
+    color: $material.fg-color !important
+    &__pagination
+      margin-right 0
+
+theme(dis-data-table, 'c-dis-data-table')
+
+
+/* Colors for the active row in dark and light theme */
+.theme--dark.c-dis-data-table
+  .v-table
+    tbody
+      tr[active]
+        background #568c9c
+        &:hover
+          background #6c8c9c
+.theme--light.c-dis-data-table
+  .v-table
+    tbody
+      tr[active]
+        background #a6dae8;
+        &:hover
+          background #9acae8
+
+
+// Should not be here!
+aside.v-navigation-drawer
+  z-index: 1010
+
+/*
+div.sticky-th > div
+  overflow: auto
+  scroll-snap-type: both mandatory
+  // can display 25+ rows well
+  min-height: 29rem
+  height: 5rem
+
+
+div.sticky-th > div > div,
+div.v-table__overflow
+  overflow: unset
+*/
+
+.c-dis-data-table
+  &__select-columns
+    position relative
+    top -3.5em
+    left 9em
+  &__table
+    margin-top -3.5em
+
+    .v-table__overflow
+      min-height 20rem
+
+    table.v-table
+      thead
+        position: relative
+        // on top of tbody
+        z-index: 2
+        th
+          background-clip padding-box
+          top: 0
+          position sticky
+          text-align left
+          &.active
+            font-weight: bold
+
+      tbody
+        position: relative
+        // z=1 for staying _under_ the "Export" Tabmenu
+        z-index 1
+        td
+          background-clip padding-box
+
+    &_compact
+      table.v-table
+        thead
+          th
+            white-space normal
+            padding-left 0.5rem !important
+            padding-right 0.5rem !important
+        tbody
+          td
+            height auto
+            padding 0.5rem !important

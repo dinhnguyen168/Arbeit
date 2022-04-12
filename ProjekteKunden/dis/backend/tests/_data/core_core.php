@@ -1,0 +1,50 @@
+<?php
+
+return [
+    [
+        // "id"=>1,
+        "hole_id"=>1,
+        "core"=>1,
+        "combined_id"=>"5065_1_A_1",
+        "core_ondeck"=>"2020-11-02 10:09:00",
+        "core_type"=>"R",
+        "drillers_top_depth"=>3.5,
+        "drilled_length"=>20,
+        "core_recovery"=>20,
+        "continuity"=>"",
+        "section_count"=>2,
+        "core_diameter"=>2.5,
+        "core_oriented"=>1,
+        "core_loss_reason"=>"",
+        "rqd"=>"",
+        "comment"=>"",
+        "igsn"=>"ICDP5065EC10001",
+        "fluid_type"=>"",
+        "barrel_length"=>"",
+        "comment_identifier"=>"",
+        "comment_depth"=>""
+    ],
+    [
+        // "id"=>2,
+        "hole_id"=>1,
+        "core"=>2,
+        "combined_id"=>"5065_1_A_2",
+        "core_ondeck"=>"2020-11-03 10:09:00",
+        "core_type"=>"R",
+        "drillers_top_depth"=>23.6,
+        "drilled_length"=>20,
+        "core_recovery"=>15,
+        "continuity"=>"",
+        "section_count"=>2,
+        "core_diameter"=>NULL,
+        "core_oriented"=>0,
+        "core_loss_reason"=>"",
+        "rqd"=>"",
+        "comment"=>"",
+        "igsn"=>"ICDP5065EC10002",
+        "fluid_type"=>"",
+        "barrel_length"=>"",
+        "comment_identifier"=>"",
+        "comment_depth"=>""
+    ]
+];

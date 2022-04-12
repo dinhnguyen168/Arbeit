@@ -1,0 +1,167 @@
+{
+    "module": "AuxiliaryTables",
+    "name": "SurveyTools",
+    "table": "auxiliary_tables_survey_tools",
+    "importTable": null,
+    "parentModel": "",
+    "columns": {
+        "id": {
+            "name": "id",
+            "importSource": "",
+            "type": "integer",
+            "size": 11,
+            "required": false,
+            "primaryKey": true,
+            "autoInc": true,
+            "label": "ID",
+            "description": "ID, auto incremented",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "displayColumn": "",
+            "isLocked": null,
+            "oppositionRelation": false,
+            "relatedTable": "",
+            "searchable": true
+        },
+        "method_short": {
+            "name": "method_short",
+            "importSource": "",
+            "type": "string",
+            "size": null,
+            "required": false,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Method",
+            "description": "Short name for method as used by the tool's owner",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "displayColumn": "",
+            "isLocked": null,
+            "oppositionRelation": false,
+            "relatedTable": "",
+            "searchable": true
+        },
+        "tool_name": {
+            "name": "tool_name",
+            "importSource": "",
+            "type": "string",
+            "size": null,
+            "required": false,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Name of Tool",
+            "description": "Name of the tool as used by the tool's owner",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "displayColumn": "",
+            "isLocked": null,
+            "oppositionRelation": false,
+            "relatedTable": "",
+            "searchable": true
+        },
+        "owner_contact_organisation_id": {
+            "name": "owner_contact_organisation_id",
+            "importSource": "",
+            "type": "one_to_many",
+            "size": null,
+            "required": false,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Owner",
+            "description": "Name of the organisation that owns/operates the tool",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "displayColumn": "organisation_name",
+            "isLocked": null,
+            "oppositionRelation": false,
+            "relatedTable": "contact_organisation",
+            "searchable": true
+        },
+        "comment": {
+            "name": "comment",
+            "importSource": "",
+            "type": "string",
+            "size": null,
+            "required": false,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Additional Information",
+            "description": "Additional information on the method/tool",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "displayColumn": "",
+            "isLocked": null,
+            "oppositionRelation": false,
+            "relatedTable": "",
+            "searchable": true
+        }
+    },
+    "indices": {
+        "pk_id": {
+            "name": "pk_id",
+            "type": "PRIMARY",
+            "columns": [
+                "id"
+            ],
+            "isLocked": null
+        },
+        "owner_contact_organisation_id": {
+            "name": "owner_contact_organisation_id",
+            "type": "KEY",
+            "columns": [
+                "owner_contact_organisation_id"
+            ],
+            "isLocked": true
+        }
+    },
+    "relations": {
+        "auxiliary_tables_survey_tools__contact_organisation__owner_contact_organisation_id__1n": {
+            "name": "auxiliary_tables_survey_tools__contact_organisation__owner_contact_organisation_id__1n",
+            "relationType": "1n",
+            "relatedTable": null,
+            "foreignTable": "contact_organisation",
+            "localColumns": [
+                "owner_contact_organisation_id"
+            ],
+            "foreignColumns": [
+                "id"
+            ],
+            "displayColumns": [
+                "organisation_name"
+            ],
+            "isLocked": null,
+            "oppositionRelation": false,
+            "oppositeColumnName": ""
+        }
+    },
+    "behaviors": [],
+    "createdAt": 1639124281,
+    "modifiedAt": 1644411095,
+    "generatedAt": 1644411096,
+    "fullName": "AuxiliaryTablesSurveyTools"
+}

@@ -1,0 +1,608 @@
+{
+    "name": "cuttings",
+    "dataModel": "CurationCuttings",
+    "fields": [
+        {
+            "name": "igsn",
+            "label": "IGSN",
+            "description": "International GeoSample Number",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Identifier",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "combined_id",
+            "label": "Combined ID",
+            "description": "Combined ID of the cuttings",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Identifier",
+            "order": 1,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "curator_contact_person_id",
+            "label": "Curator",
+            "description": "The analyst/curator who created the data record",
+            "validators": [],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "one_relation",
+                    "listName": "",
+                    "textField": "person_acronym",
+                    "valueField": "id",
+                    "model": "ContactPerson"
+                },
+                "allowFreeInput": false,
+                "multiple": false,
+                "jsCalculate": ""
+            },
+            "group": "Identifier",
+            "order": 2,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "sample_date",
+            "label": "Sample Date",
+            "description": "Date and time when the cuttings sample was taken",
+            "validators": [
+                {
+                    "type": "required"
+                }
+            ],
+            "formInput": {
+                "type": "datetime",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Drillers Information",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "drillers_sieve",
+            "label": "Drillers' Sieve [mm]",
+            "description": "Mesh width of the sieve used for mud sampling",
+            "validators": [
+                {
+                    "type": "number",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Drillers Information",
+            "order": 1,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "comment_drillers",
+            "label": "Additional Information",
+            "description": "Additional informaton from the drillers",
+            "validators": [
+                {
+                    "type": "string"
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Drillers Information",
+            "order": 2,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "drillers_top_depth",
+            "label": "Drillers' Top Depth [m]",
+            "description": "Top depth below drillers' depth reference of the interval from which the cuttings were sampled",
+            "validators": [
+                {
+                    "type": "number"
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Depth Information",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "drillers_bottom_depth",
+            "label": "Drillers' Bottom Depth [m]",
+            "description": "Bottom depth below drillers' depth reference of the interval from which the cuttings were sampled",
+            "validators": [
+                {
+                    "type": "number"
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Depth Information",
+            "order": 1,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "top_depth",
+            "label": "Top Depth [m]",
+            "description": "Top depth below surface/sea floor of sample intervall",
+            "validators": [
+                {
+                    "type": "number",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Depth Information",
+            "order": 2,
+            "formatter": null,
+            "searchable": false
+        },
+        {
+            "name": "average_depth",
+            "label": "Average Depth [m]",
+            "description": "Average depth depth below surface/sea floor of sample intervall",
+            "validators": [
+                {
+                    "type": "number",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Depth Information",
+            "order": 3,
+            "formatter": null,
+            "searchable": false
+        },
+        {
+            "name": "bottom_depth",
+            "label": "Bottom Depth [m]",
+            "description": "Bottom depth below surface/sea floor of sample intervall",
+            "validators": [
+                {
+                    "type": "number",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Depth Information",
+            "order": 4,
+            "formatter": null,
+            "searchable": false
+        },
+        {
+            "name": "sample_weight",
+            "label": "Sample Weight [g]",
+            "description": "Weight of the curated sample",
+            "validators": [
+                {
+                    "type": "required"
+                },
+                {
+                    "type": "number",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Unwashed Samples",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "composition",
+            "label": "Composition",
+            "description": "Composition of the cuttings",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "list",
+                    "listName": "CUTTINGS_COMPOSITION",
+                    "textField": "remark",
+                    "valueField": "display"
+                },
+                "allowFreeInput": false,
+                "multiple": true,
+                "jsCalculate": ""
+            },
+            "group": "Unwashed Samples",
+            "order": 1,
+            "formatter": "",
+            "searchable": true
+        },
+        {
+            "name": "sorting",
+            "label": "Sorting of the Material",
+            "description": "The grain size distribution in the sample (unconsolidated and soft rock only)",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "list",
+                    "listName": "CUTTINGS_SORTING",
+                    "textField": "remark",
+                    "valueField": "display"
+                },
+                "allowFreeInput": false,
+                "multiple": true,
+                "jsCalculate": ""
+            },
+            "group": "Unwashed Samples",
+            "order": 2,
+            "formatter": "this.$value.toString()",
+            "searchable": true
+        },
+        {
+            "name": "max_diameter_rock_cuttings",
+            "label": "Maximum Diameter of Cuttings [mm]",
+            "description": "The size of the largest cuttings",
+            "validators": [
+                {
+                    "type": "number",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Unwashed Samples",
+            "order": 3,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "ratio_rock_cuttings",
+            "label": "Percentage of Rock Cuttings [%]",
+            "description": "Percentage of rock cuttings (fragments) in finer material",
+            "validators": [
+                {
+                    "type": "number",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Unwashed Samples",
+            "order": 4,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "lithology",
+            "label": "Lithology of cuttings",
+            "description": "Lithology of the cuttings",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "list",
+                    "listName": "LITHOLOGY",
+                    "textField": "remark",
+                    "valueField": "display"
+                },
+                "allowFreeInput": false,
+                "multiple": true,
+                "jsCalculate": ""
+            },
+            "group": "Cuttings Description",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "color_munsell",
+            "label": "Munsell Color of Cuttings",
+            "description": "Color of the cuttings according to Munsell Rock Color Chart",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "list",
+                    "listName": "COLOR_MUNSELL_GEOL",
+                    "textField": "remark",
+                    "valueField": "display"
+                },
+                "allowFreeInput": false,
+                "multiple": true,
+                "jsCalculate": ""
+            },
+            "group": "Cuttings Description",
+            "order": 1,
+            "formatter": "this.$value.toString()",
+            "searchable": true
+        },
+        {
+            "name": "shape_cuttings",
+            "label": "Shape of Cuttings",
+            "description": "Shape of the individual cutting pieces",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "list",
+                    "listName": "CUTTINGS_SHAPE",
+                    "textField": "remark",
+                    "valueField": "display"
+                },
+                "allowFreeInput": false,
+                "multiple": true,
+                "jsCalculate": ""
+            },
+            "group": "Cuttings Description",
+            "order": 2,
+            "formatter": "this.$value.toString()",
+            "searchable": true
+        },
+        {
+            "name": "minerals",
+            "label": "Major Mineral Composition",
+            "description": "Minerals identified in the cuttings",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "list",
+                    "listName": "MINERALS",
+                    "textField": "remark",
+                    "valueField": "display"
+                },
+                "allowFreeInput": false,
+                "multiple": true,
+                "jsCalculate": ""
+            },
+            "group": "Cuttings Description",
+            "order": 3,
+            "formatter": "this.$value.toString()",
+            "searchable": true
+        },
+        {
+            "name": "fossils",
+            "label": "Macro Fossils",
+            "description": "Fossils identified in the cuttings",
+            "validators": [],
+            "formInput": {
+                "type": "switch",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Cuttings Description",
+            "order": 4,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "comment_fossils",
+            "label": "Description of Fossils",
+            "description": "Description and additional information on the fossils",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Cuttings Description",
+            "order": 5,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "comment",
+            "label": "Additional Information",
+            "description": "Further description or additional information on the sample",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "textarea",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Cuttings Description",
+            "order": 6,
+            "formatter": null,
+            "searchable": true
+        }
+    ],
+    "subForms": [],
+    "supForms": {
+        "hole": {
+            "buttonLabel": "hole",
+            "url": "/forms/hole-form",
+            "parentIdField": "hole_id",
+            "filter": [
+                {
+                    "unit": "expedition",
+                    "fromField": "expedition_id"
+                },
+                {
+                    "unit": "site",
+                    "fromField": "site_id"
+                }
+            ]
+        }
+    },
+    "createdAt": 1623316357,
+    "modifiedAt": 1645019078,
+    "generatedAt": 1645019082,
+    "filterDataModels": {
+        "expedition": {
+            "model": "ProjectExpedition",
+            "value": "id",
+            "text": "exp_acronym",
+            "ref": "expedition_id"
+        },
+        "site": {
+            "model": "ProjectSite",
+            "value": "id",
+            "text": "site",
+            "ref": "site_id",
+            "require": {
+                "value": "expedition",
+                "as": "expedition_id"
+            }
+        },
+        "hole": {
+            "model": "ProjectHole",
+            "value": "id",
+            "text": "hole",
+            "ref": "hole_id",
+            "require": {
+                "value": "site",
+                "as": "site_id"
+            }
+        }
+    },
+    "requiredFilters": [
+        {
+            "value": "hole",
+            "as": "hole_id",
+            "skipOnEmpty": false
+        }
+    ]
+}

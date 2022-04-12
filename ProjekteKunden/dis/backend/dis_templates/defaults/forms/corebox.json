@@ -1,0 +1,178 @@
+{
+    "name": "corebox",
+    "dataModel": "CurationCorebox",
+    "fields": [
+        {
+            "name": "corebox",
+            "label": "Core Box",
+            "description": "Designation (name, number, internal identifier) of the core box",
+            "validators": [
+                {
+                    "type": "required"
+                },
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "-Primary",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "combined_id",
+            "label": "System Combined ID",
+            "description": "Combined ID of the core box",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "-Primary",
+            "order": 1,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "contained_section_splits",
+            "label": "Contained Section Splits",
+            "description": "Section splits that are stored in this core box",
+            "validators": [],
+            "formInput": {
+                "type": "select",
+                "disabled": true,
+                "calculate": "",
+                "selectSource": {
+                    "type": "api",
+                    "listName": "",
+                    "textField": "combined_id",
+                    "valueField": "combined_id",
+                    "model": "CurationSectionSplit"
+                },
+                "allowFreeInput": false,
+                "multiple": true,
+                "jsCalculate": ""
+            },
+            "group": "-Primary",
+            "order": 2,
+            "formatter": "this.$value.toString()",
+            "searchable": false
+        },
+        {
+            "name": "storage_curation_storage_id",
+            "label": "Storage Combined ID",
+            "description": "Combined ID of the storage",
+            "validators": [
+                {
+                    "type": "number",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Storage",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "comment",
+            "label": "Additional Information",
+            "description": "Additional information on the core box",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Storage",
+            "order": 1,
+            "formatter": null,
+            "searchable": true
+        }
+    ],
+    "subForms": [],
+    "supForms": {
+        "hole": {
+            "buttonLabel": "hole",
+            "url": "/forms/hole-form",
+            "parentIdField": "hole_id",
+            "filter": [
+                {
+                    "unit": "expedition",
+                    "fromField": "expedition_id"
+                },
+                {
+                    "unit": "site",
+                    "fromField": "site_id"
+                }
+            ]
+        }
+    },
+    "createdAt": 1614684440,
+    "modifiedAt": 1645021877,
+    "generatedAt": 1645021878,
+    "filterDataModels": {
+        "expedition": {
+            "model": "ProjectExpedition",
+            "value": "id",
+            "text": "exp_acronym",
+            "ref": "expedition_id"
+        },
+        "site": {
+            "model": "ProjectSite",
+            "value": "id",
+            "text": "site",
+            "ref": "site_id",
+            "require": {
+                "value": "expedition",
+                "as": "expedition_id"
+            }
+        },
+        "hole": {
+            "model": "ProjectHole",
+            "value": "id",
+            "text": "hole",
+            "ref": "hole_id",
+            "require": {
+                "value": "site",
+                "as": "site_id"
+            }
+        }
+    },
+    "requiredFilters": [
+        {
+            "value": "hole",
+            "as": "hole_id",
+            "skipOnEmpty": false
+        }
+    ]
+}

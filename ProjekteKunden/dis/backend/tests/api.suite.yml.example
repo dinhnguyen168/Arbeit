@@ -1,0 +1,15 @@
+actor: ApiTester
+modules:
+    enabled:
+        - Asserts
+        - Filesystem
+        - Yii2
+        - REST
+        - Db:
+           dsn: 'mysql:host=db;dbname=dis_test'
+           user: 'dis_db_user'
+           password: 'dis_db_password'
+    config:
+        REST:
+            depends: PhpBrowser
+            url: http://localhost/index-test.php

@@ -1,0 +1,87 @@
+<template>
+    <v-container fluid>
+        <v-flex align-start>
+            <h2>Survey-tools</h2>
+            <dis-form ref="disForm" formName="survey-tools" dataModel="AuxiliaryTablesSurveyTools" :fields="simpleFields" :requiredFilters="requiredFilters" :filterDataModels="filterDataModels" :calculatedFields="calculatedFields">
+                <template v-slot:form-fields="{fields, hasNumberValidator, getInputComponent, formScenario, selectedItem, formModel, serverValidationErrors}">
+                        <v-layout wrap mb-3>
+                            <v-flex v-if="!'Survey Overview'.startsWith('-')" xs12 pl-2 pt-2 class="title">
+                                Survey Overview
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['method_short'] !== formModel['method_short']}"
+                                        :disabled="false"
+                                        :validators="validators['method_short']"
+                                        name="method_short"
+                                        label="Method"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="Short Name of Method and Organisation"
+                                        v-model="formModel['method_short']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['tool_name'] !== formModel['tool_name']}"
+                                        :disabled="false"
+                                        :validators="validators['tool_name']"
+                                        name="tool_name"
+                                        label="Name of Tool"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['tool_name']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisSelectInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['organisaton_name_abbreviation'] !== formModel['organisaton_name_abbreviation']}"
+                                        :disabled="false"
+                                        :validators="validators['organisaton_name_abbreviation']"
+                                        name="organisaton_name_abbreviation"
+                                        label="Abbreviation of Organisaton"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        :selectSource="selectSources['organisaton_name_abbreviation']"
+                                        v-model="formModel['organisaton_name_abbreviation']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['comment'] !== formModel['comment']}"
+                                        :disabled="false"
+                                        :validators="validators['comment']"
+                                        name="comment"
+                                        label="Additional Information"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['comment']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                        </v-layout>
+                </template>
+            </dis-form>
+        </v-flex>
+    </v-container>
+</template>
+
+<script>
+export default {
+  name: 'SurveyToolsForm',
+  created () {
+    this.validators = {}
+    this.validators['method_short'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['tool_name'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['organisaton_name_abbreviation'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['comment'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.selectSources = {}
+    this.selectSources['organisaton_name_abbreviation'] = JSON.parse('{"type":"api","listName":"","textField":"organisation_name_abbreviation","valueField":"organisation_name_abbreviation","model":"ContactOrganisation"}')
+    this.calculatedFields = {}
+    this.simpleFields = JSON.parse('[{"name":"method_short","label":"Method","description":"Short Name of Method and Organisation","group":"Survey Overview","order":0,"inputType":"text","searchable":true},{"name":"tool_name","label":"Name of Tool","description":"","group":"Survey Overview","order":1,"inputType":"text","searchable":true},{"name":"organisaton_name_abbreviation","label":"Abbreviation of Organisaton","description":"","group":"Survey Overview","order":2,"inputType":"select","searchable":true},{"name":"comment","label":"Additional Information","description":"","group":"Survey Overview","order":3,"inputType":"text","searchable":true}]')
+    this.requiredFilters = JSON.parse('[]')
+    this.subForms = JSON.parse('[]')
+    this.supForms = JSON.parse('[]')
+    this.filterDataModels = JSON.parse('{}')
+  }
+}
+</script>
+
+<style scoped>
+
+</style>

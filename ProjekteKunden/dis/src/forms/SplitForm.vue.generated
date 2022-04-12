@@ -1,0 +1,324 @@
+<template>
+    <v-container fluid>
+        <v-flex align-start>
+            <h2>Split</h2>
+            <dis-form ref="disForm" formName="split" dataModel="CurationSectionSplit" :fields="simpleFields" :requiredFilters="requiredFilters" :filterDataModels="filterDataModels" :calculatedFields="calculatedFields">
+                <template v-slot:form-fields="{fields, hasNumberValidator, getInputComponent, formScenario, selectedItem, formModel, serverValidationErrors}">
+                        <v-layout wrap mb-3>
+                            <v-flex v-if="!'Split Section Information'.startsWith('-')" xs12 pl-2 pt-2 class="title">
+                                Split Section Information
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisSelectInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['type'] !== formModel['type']}"
+                                        :disabled="false"
+                                        :validators="validators['type']"
+                                        name="type"
+                                        label="Split Type"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        :selectSource="selectSources['type']"
+                                        hint="Whole, Archive, Work, ... "
+                                        v-model="formModel['type']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['percent'] !== formModel['percent']}"
+                                        :disabled="true"
+                                        :validators="validators['percent']"
+                                        name="percent"
+                                        label="Percent of Wholeround [%]"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model.number="formModel['percent']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisSwitchInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['still_exists'] !== formModel['still_exists']}"
+                                        :disabled="true"
+                                        :validators="validators['still_exists']"
+                                        name="still_exists"
+                                        label="Does Split still exist?"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['still_exists']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['origin_split_combined_id'] !== formModel['origin_split_combined_id']}"
+                                        :disabled="true"
+                                        :validators="validators['origin_split_combined_id']"
+                                        name="origin_split_combined_id"
+                                        label="Origin Split Combined ID"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['origin_split_combined_id']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisSwitchInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['sampleable'] !== formModel['sampleable']}"
+                                        :disabled="false"
+                                        :validators="validators['sampleable']"
+                                        name="sampleable"
+                                        label="Sampling allowed?"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['sampleable']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['curated_length'] !== formModel['curated_length']}"
+                                        :disabled="true"
+                                        :validators="validators['curated_length']"
+                                        name="curated_length"
+                                        label="Curated Length [cm]"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model.number="formModel['curated_length']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisSelectInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['curator'] !== formModel['curator']}"
+                                        :disabled="false"
+                                        :validators="validators['curator']"
+                                        name="curator"
+                                        label="Curator"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        :selectSource="selectSources['curator']"
+                                        v-model="formModel['curator']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['comment'] !== formModel['comment']}"
+                                        :disabled="false"
+                                        :validators="validators['comment']"
+                                        name="comment"
+                                        label="Additional Information"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['comment']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                        </v-layout>
+                        <v-layout wrap mb-3>
+                            <v-flex v-if="!'Identifier'.startsWith('-')" xs12 pl-2 pt-2 class="title">
+                                Identifier
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['combined_id'] !== formModel['combined_id']}"
+                                        :disabled="true"
+                                        :validators="validators['combined_id']"
+                                        name="combined_id"
+                                        label="Combined ID"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['combined_id']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['igsn'] !== formModel['igsn']}"
+                                        :disabled="true"
+                                        :validators="validators['igsn']"
+                                        name="igsn"
+                                        label="IGSN"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['igsn']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['comment_identifier'] !== formModel['comment_identifier']}"
+                                        :disabled="false"
+                                        :validators="validators['comment_identifier']"
+                                        name="comment_identifier"
+                                        label="Additional Information"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['comment_identifier']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                        </v-layout>
+                        <v-layout wrap mb-3>
+                            <v-flex v-if="!'Corrected Depth Information'.startsWith('-')" xs12 pl-2 pt-2 class="title">
+                                Corrected Depth Information
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['mcd_top_depth'] !== formModel['mcd_top_depth']}"
+                                        :disabled="true"
+                                        :validators="validators['mcd_top_depth']"
+                                        name="mcd_top_depth"
+                                        label="MCD Top Depth [mbs]"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="Corrected Top Depth of Section below surface/seafloor"
+                                        v-model.number="formModel['mcd_top_depth']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['mcd_bottom_depth'] !== formModel['mcd_bottom_depth']}"
+                                        :disabled="true"
+                                        :validators="validators['mcd_bottom_depth']"
+                                        name="mcd_bottom_depth"
+                                        label="MCD Bottom Depth [cm]"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="Corrected Top Depth of Section below surface/seafloor"
+                                        v-model="formModel['mcd_bottom_depth']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                        </v-layout>
+                        <v-layout wrap mb-3>
+                            <v-flex v-if="!'Storage Information'.startsWith('-')" xs12 pl-2 pt-2 class="title">
+                                Storage Information
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['corebox_slot'] !== formModel['corebox_slot']}"
+                                        :disabled="false"
+                                        :validators="validators['corebox_slot']"
+                                        name="corebox_slot"
+                                        label="Slot"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="Slot in the core box"
+                                        v-model.number="formModel['corebox_slot']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisSelectInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['corebox_position'] !== formModel['corebox_position']}"
+                                        :disabled="false"
+                                        :validators="validators['corebox_position']"
+                                        name="corebox_position"
+                                        label="Position"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        :selectSource="selectSources['corebox_position']"
+                                        hint="Position in the core box"
+                                        v-model="formModel['corebox_position']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['storage_combined_id'] !== formModel['storage_combined_id']}"
+                                        :disabled="true"
+                                        :validators="validators['storage_combined_id']"
+                                        name="storage_combined_id"
+                                        label="Storage Combined ID"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['storage_combined_id']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['comment_storage'] !== formModel['comment_storage']}"
+                                        :disabled="false"
+                                        :validators="validators['comment_storage']"
+                                        name="comment_storage"
+                                        label="Comment Storage"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['comment_storage']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                        </v-layout>
+                        <v-layout wrap mb-3>
+                            <v-flex v-if="!'Transport Information'.startsWith('-')" xs12 pl-2 pt-2 class="title">
+                                Transport Information
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['crate_name'] !== formModel['crate_name']}"
+                                        :disabled="false"
+                                        :validators="validators['crate_name']"
+                                        name="crate_name"
+                                        label="Crate Name"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['crate_name']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['weight'] !== formModel['weight']}"
+                                        :disabled="false"
+                                        :validators="validators['weight']"
+                                        name="weight"
+                                        label="Weight [kg]"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model.number="formModel['weight']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                        </v-layout>
+                        <v-layout wrap mb-3>
+                            <v-flex v-if="!'Measurements'.startsWith('-')" xs12 pl-2 pt-2 class="title">
+                                Measurements
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisSwitchInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['measurement_exists'] !== formModel['measurement_exists']}"
+                                        :disabled="false"
+                                        :validators="validators['measurement_exists']"
+                                        name="measurement_exists"
+                                        label="Measurement Exists"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="e.g. MSCL, XRD, Scan, Photo"
+                                        v-model="formModel['measurement_exists']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                        </v-layout>
+                </template>
+                <template v-slot:extra-form-actions="{ selectedItem, onSubFormClick, onSupFormClick }">
+                    <v-btn round class="c-dis-form__btn-sub-form" @click="onSubFormClick('lithology', subForms['lithology'])" color="indigo darken-4" dark :disabled="!selectedItem">
+                        lithology <v-icon>arrow_downward</v-icon>
+                    </v-btn>
+                    <v-btn round class="c-dis-form__btn-sub-form" @click="onSubFormClick('sample', subForms['sample'])" color="indigo darken-4" dark :disabled="!selectedItem">
+                        sample <v-icon>arrow_downward</v-icon>
+                    </v-btn>
+                    <v-btn round class="c-dis-form__btn-sup-form" @click="onSupFormClick('section', supForms['section'])" color="indigo darken-1" dark :disabled="!selectedItem">
+                        section <v-icon>arrow_upward</v-icon>
+                    </v-btn>
+                </template>
+            </dis-form>
+        </v-flex>
+    </v-container>
+</template>
+
+<script>
+export default {
+  name: 'SplitForm',
+  created () {
+    this.validators = {}
+    this.validators['type'] = JSON.parse('[{"type":"required"},{"type":"string","min":null,"max":null}]')
+    this.validators['percent'] = JSON.parse('[{"type":"required"},{"type":"number","min":null,"max":null}]')
+    this.validators['still_exists'] = JSON.parse('[]')
+    this.validators['origin_split_combined_id'] = JSON.parse('[]')
+    this.validators['sampleable'] = JSON.parse('[]')
+    this.validators['curated_length'] = JSON.parse('[{"type":"number","min":null,"max":null}]')
+    this.validators['curator'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['comment'] = JSON.parse('[{"type":"string"}]')
+    this.validators['combined_id'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['igsn'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['comment_identifier'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['mcd_top_depth'] = JSON.parse('[{"type":"number","min":null,"max":null}]')
+    this.validators['mcd_bottom_depth'] = JSON.parse('[]')
+    this.validators['corebox_slot'] = JSON.parse('[{"type":"number","min":null,"max":null}]')
+    this.validators['corebox_position'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['storage_combined_id'] = JSON.parse('[]')
+    this.validators['comment_storage'] = JSON.parse('[{"type":"string"}]')
+    this.validators['crate_name'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['weight'] = JSON.parse('[{"type":"number","min":null,"max":null}]')
+    this.validators['measurement_exists'] = JSON.parse('[]')
+    this.selectSources = {}
+    this.selectSources['type'] = JSON.parse('{"type":"list","listName":"SPLIT_TYPE","textField":"remark","valueField":"display"}')
+    this.selectSources['curator'] = JSON.parse('{"type":"api","listName":"ANALYST","textField":"full_name","valueField":"person_acronym","model":"ContactPerson"}')
+    this.selectSources['corebox_position'] = JSON.parse('{"type":"list","listName":"BOX_POSITION","textField":"remark","valueField":"display"}')
+    this.calculatedFields = {}
+    this.simpleFields = JSON.parse('[{"name":"type","label":"Split Type","description":"Whole, Archive, Work, ... ","group":"Split Section Information","order":0,"inputType":"select","searchable":true},{"name":"percent","label":"Percent of Wholeround [%]","description":"","group":"Split Section Information","order":1,"inputType":"text","searchable":true},{"name":"still_exists","label":"Does Split still exist?","description":"","group":"Split Section Information","order":2,"inputType":"switch","searchable":true},{"name":"origin_split_combined_id","label":"Origin Split Combined ID","description":"","group":"Split Section Information","order":3,"inputType":"text","searchable":false},{"name":"sampleable","label":"Sampling allowed?","description":"","group":"Split Section Information","order":4,"inputType":"switch","searchable":true},{"name":"curated_length","label":"Curated Length [cm]","description":"","group":"Split Section Information","order":5,"inputType":"text","searchable":false},{"name":"curator","label":"Curator","description":"","group":"Split Section Information","order":6,"inputType":"select","searchable":true},{"name":"comment","label":"Additional Information","description":"","group":"Split Section Information","order":7,"inputType":"text","searchable":true},{"name":"combined_id","label":"Combined ID","description":"","group":"Identifier","order":0,"inputType":"text","searchable":true},{"name":"igsn","label":"IGSN","description":"","group":"Identifier","order":1,"inputType":"text","searchable":true},{"name":"comment_identifier","label":"Additional Information","description":"","group":"Identifier","order":2,"inputType":"text","searchable":true},{"name":"mcd_top_depth","label":"MCD Top Depth [mbs]","description":"Corrected Top Depth of Section below surface\/seafloor","group":"Corrected Depth Information","order":0,"inputType":"text","searchable":true},{"name":"mcd_bottom_depth","label":"MCD Bottom Depth [cm]","description":"Corrected Top Depth of Section below surface\/seafloor","group":"Corrected Depth Information","order":1,"inputType":"text","searchable":false},{"name":"corebox_slot","label":"Slot","description":"Slot in the core box","group":"Storage Information","order":1,"inputType":"text","searchable":true},{"name":"corebox_position","label":"Position","description":"Position in the core box","group":"Storage Information","order":2,"inputType":"select","searchable":true},{"name":"storage_combined_id","label":"Storage Combined ID","description":"","group":"Storage Information","order":3,"inputType":"text","searchable":true},{"name":"comment_storage","label":"Comment Storage","description":"","group":"Storage Information","order":4,"inputType":"text","searchable":true},{"name":"crate_name","label":"Crate Name","description":"","group":"Transport Information","order":0,"inputType":"text","searchable":true},{"name":"weight","label":"Weight [kg]","description":"","group":"Transport Information","order":1,"inputType":"text","searchable":true},{"name":"measurement_exists","label":"Measurement Exists","description":"e.g. MSCL, XRD, Scan, Photo","group":"Measurements","order":0,"inputType":"switch","searchable":true}]')
+    this.requiredFilters = JSON.parse('[{"value":"section","as":"section_id","skipOnEmpty":false}]')
+    this.subForms = JSON.parse('{"lithology":{"buttonLabel":"lithology","url":"/forms/lithology-form","filter":[{"unit":"expedition","fromField":"expedition_id"},{"unit":"site","fromField":"site_id"},{"unit":"hole","fromField":"hole_id"},{"unit":"core","fromField":"core_id"},{"unit":"section","fromField":"section_id"},{"unit":"sectionSplit","fromField":"id"}]},"sample":{"buttonLabel":"sample","url":"/forms/sample-form","filter":[{"unit":"expedition","fromField":"expedition_id"},{"unit":"site","fromField":"site_id"},{"unit":"hole","fromField":"hole_id"},{"unit":"core","fromField":"core_id"},{"unit":"section","fromField":"section_id"},{"unit":"sectionSplit","fromField":"id"}]}}')
+    this.supForms = JSON.parse('{"section":{"buttonLabel":"section","url":"/forms/section-form","parentIdField":"section_id","filter":[{"unit":"expedition","fromField":"expedition_id"},{"unit":"site","fromField":"site_id"},{"unit":"hole","fromField":"hole_id"},{"unit":"core","fromField":"core_id"}]}}')
+    this.filterDataModels = JSON.parse('{"expedition":{"model":"ProjectExpedition","value":"id","text":"exp_acronym","ref":"expedition_id"},"site":{"model":"ProjectSite","value":"id","text":"site","ref":"site_id","require":{"value":"expedition","as":"expedition_id"}},"hole":{"model":"ProjectHole","value":"id","text":"hole","ref":"hole_id","require":{"value":"site","as":"site_id"}},"core":{"model":"CoreCore","value":"id","text":"core","ref":"core_id","require":{"value":"hole","as":"hole_id"}},"section":{"model":"CoreSection","value":"id","text":"section","ref":"section_id","require":{"value":"core","as":"core_id"}}}')
+  }
+}
+</script>
+
+<style scoped>
+
+</style>

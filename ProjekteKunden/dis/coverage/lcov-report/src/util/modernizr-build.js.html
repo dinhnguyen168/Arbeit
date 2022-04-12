@@ -1,0 +1,91 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Code coverage report for src/util/modernizr-build.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="..\..\index.html">All files</a> / <a href="index.html">src/util</a> modernizr-build.js</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>0/42</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>0/49</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>0/11</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>0/1</span>
+            </div>
+        
+            
+        </div>
+        <p class="quiet">
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+        </p>
+    </div>
+    <div class='status-line low'></div>
+    <pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a>
+<a name='L3'></a><a href='#L3'>3</a>
+<a name='L4'></a><a href='#L4'>4</a>
+<a name='L5'></a><a href='#L5'>5</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*
+ * ! modernizr 3.6.0 (Custom Build) | MIT *
+ * https://modernizr.com/download/?-inputtypes-setclasses !
+ */
+<span class="cstat-no" title="statement not covered" >!<span class="fstat-no" title="function not covered" >fu</span>nction(e,t,n){function <span class="fstat-no" title="function not covered" >a(</span>e,t){<span class="cstat-no" title="statement not covered" >return typeof e===t}</span>function <span class="fstat-no" title="function not covered" >s(</span>){var e,t,n,s,i,o,c;<span class="cstat-no" title="statement not covered" >for(var u in r)<span class="cstat-no" title="statement not covered" >if(r.hasOwnProperty(u)){<span class="cstat-no" title="statement not covered" >if(e=[],t=r[u],t.name&amp;&amp;(e.push(t.name.toLowerCase()),t.options&amp;&amp;t.options.aliases&amp;&amp;t.options.aliases.length))<span class="cstat-no" title="statement not covered" >for(n=0;n&lt;t.options.aliases.length;n++)<span class="cstat-no" title="statement not covered" >e.push(t.options.aliases[n].toLowerCase());<span class="cstat-no" title="statement not covered" >f</span></span></span>or(s=a(t.fn,"function")?t.fn():t.fn,i=0;i&lt;e.length;i++)<span class="cstat-no" title="statement not covered" >o=e[i],c=o.split("."),1===c.length?Modernizr[c[0]]=s:(!Modernizr[c[0]]||Modernizr[c[0]]instanceof Boolean||(Modernizr[c[0]]=new Boolean(Modernizr[c[0]])),Modernizr[c[0]][c[1]]=s),l.push((s?"":"no-")+c.join("-"))}</span></span>}</span></span>function <span class="fstat-no" title="function not covered" >i(</span>e){var t=<span class="cstat-no" title="statement not covered" >u.className,</span>n=<span class="cstat-no" title="statement not covered" >Modernizr._config.classPrefix||"";<span class="cstat-no" title="statement not covered" ></span>if(f&amp;&amp;(t=t.baseVal),Modernizr._config.enableJSClass){var a=<span class="cstat-no" title="statement not covered" >new RegExp("(^|\\s)"+n+"no-js(\\s|$)");<span class="cstat-no" title="statement not covered" ></span>t=t.replace(a,"$1"+n+"js$2")}<span class="cstat-no" title="statement not covered" ></span>M</span>odernizr._config.enableClasses&amp;&amp;(t+=" "+n+e.join(" "+n),f?u.className.baseVal=t:u.className=t)}</span>function <span class="fstat-no" title="function not covered" >o(</span>){<span class="cstat-no" title="statement not covered" >return"function"!=typeof t.createElement?t.createElement(arguments[0]):f?t.createElementNS.call(t,"http://www.w3.org/2000/svg",arguments[0]):t.createElement.apply(t,arguments)}</span>var l=<span class="cstat-no" title="statement not covered" >[],</span>r=<span class="cstat-no" title="statement not covered" >[],</span>c=<span class="cstat-no" title="statement not covered" >{_version:"3.6.0",_config:{classPrefix:"",enableClasses:!0,enableJSClass:!0,usePrefixes:!0},_q:[],on:<span class="fstat-no" title="function not covered" >fu</span>nction(e,t){var n=<span class="cstat-no" title="statement not covered" >this;<span class="cstat-no" title="statement not covered" ></span>setTimeout(<span class="fstat-no" title="function not covered" >fu</span>nction(){<span class="cstat-no" title="statement not covered" >t(n[e])}</span>,0)}</span>,addTest:<span class="fstat-no" title="function not covered" >fu</span>nction(e,t,n){<span class="cstat-no" title="statement not covered" >r.push({name:e,fn:t,options:n})}</span>,addAsyncTest:<span class="fstat-no" title="function not covered" >fu</span>nction(e){<span class="cstat-no" title="statement not covered" >r.push({name:null,fn:e})}</span>},</span>Modernizr=<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >fu</span>nction(){};<span class="cstat-no" title="statement not covered" ></span>Modernizr.prototype=c,Modernizr=new Modernizr;v</span>ar u=<span class="cstat-no" title="statement not covered" >t.documentElement,</span>f=<span class="cstat-no" title="statement not covered" >"svg"===u.nodeName.toLowerCase(),</span>p=<span class="cstat-no" title="statement not covered" >o("input"),</span>d=<span class="cstat-no" title="statement not covered" >"search tel url email datetime date month week time datetime-local number range color".split(" "),</span>m=<span class="cstat-no" title="statement not covered" >{};<span class="cstat-no" title="statement not covered" ></span>Modernizr.inputtypes=<span class="fstat-no" title="function not covered" >fu</span>nction(e){<span class="cstat-no" title="statement not covered" >for(var a,s,i,o=<span class="cstat-no" title="statement not covered" >e.length,</span>l=<span class="cstat-no" title="statement not covered" >"1)",</span>r=<span class="cstat-no" title="statement not covered" >0;</span>o&gt;r;r++)<span class="cstat-no" title="statement not covered" >p.setAttribute("type",a=e[r]),i="text"!==p.type&amp;&amp;"style"in p,i&amp;&amp;(p.value=l,p.style.cssText="position:absolute;visibility:hidden;",/^range$/.test(a)&amp;&amp;p.style.WebkitAppearance!==n?(u.appendChild(p),s=t.defaultView,i=s.getComputedStyle&amp;&amp;"textfield"!==s.getComputedStyle(p,null).WebkitAppearance&amp;&amp;0!==p.offsetHeight,u.removeChild(p)):/^(search|tel)$/.test(a)||(i=/^(url|email)$/.test(a)?p.checkValidity&amp;&amp;p.checkValidity()===!1:p.value!=l)),m[e[r]]=!!i;<span class="cstat-no" title="statement not covered" >r</span></span>eturn m}</span>(d),s(),i(l),delete c.addTest,delete c.addAsyncTest;<span class="cstat-no" title="statement not covered" >f</span>or(var h=<span class="cstat-no" title="statement not covered" >0;</span>h&lt;Modernizr._q.length;h++)<span class="cstat-no" title="statement not covered" >Modernizr._q[h]();<span class="cstat-no" title="statement not covered" >e</span></span>.Modernizr=Modernizr}</span>(window,document);</span></pre></td></tr></table></pre>
+
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
+                at Tue Feb 01 2022 15:14:46 GMT+0100 (Mitteleuropäische Normalzeit)
+            </div>
+        </div>
+        <script src="..\..\prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="..\..\sorter.js"></script>
+        <script src="..\..\block-navigation.js"></script>
+    </body>
+</html>
+    

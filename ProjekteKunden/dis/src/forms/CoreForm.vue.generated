@@ -1,0 +1,409 @@
+<template>
+    <v-container fluid>
+        <v-flex align-start>
+            <h2>Core</h2>
+            <dis-form ref="disForm" formName="core" dataModel="CoreCore" :fields="simpleFields" :requiredFilters="requiredFilters" :filterDataModels="filterDataModels" :calculatedFields="calculatedFields">
+                <template v-slot:form-fields="{fields, hasNumberValidator, getInputComponent, formScenario, selectedItem, formModel, serverValidationErrors}">
+                        <v-layout wrap mb-3>
+                            <v-flex v-if="!'Core Details'.startsWith('-')" xs12 pl-2 pt-2 class="title">
+                                Core Details
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['core'] !== formModel['core']}"
+                                        :disabled="false"
+                                        :validators="validators['core']"
+                                        name="core"
+                                        label="Core Number"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model.number="formModel['core']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['combined_id'] !== formModel['combined_id']}"
+                                        :disabled="true"
+                                        :validators="validators['combined_id']"
+                                        name="combined_id"
+                                        label="Combined Id"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="(Only for viewing; automatically filled when saved)"
+                                        v-model="formModel['combined_id']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisDateTimeInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['core_ondeck'] !== formModel['core_ondeck']}"
+                                        :disabled="false"
+                                        :validators="validators['core_ondeck']"
+                                        name="core_ondeck"
+                                        label="Core on Deck (CoD)"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['core_ondeck']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisSelectInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['curator'] !== formModel['curator']}"
+                                        :disabled="false"
+                                        :validators="validators['curator']"
+                                        name="curator"
+                                        label="Curator"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        :selectSource="selectSources['curator']"
+                                        v-model="formModel['curator']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['drillers_top_depth'] !== formModel['drillers_top_depth']}"
+                                        :disabled="false"
+                                        :validators="validators['drillers_top_depth']"
+                                        name="drillers_top_depth"
+                                        label="Drillers Top Depth [mbrf]"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="Depth below Drillers Reference Point [mbrf]"
+                                        v-model.number="formModel['drillers_top_depth']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['drilled_length'] !== formModel['drilled_length']}"
+                                        :disabled="false"
+                                        :validators="validators['drilled_length']"
+                                        name="drilled_length"
+                                        label="Drilled Length [m]"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="Drilled Length as reported by Drillers"
+                                        v-model.number="formModel['drilled_length']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['drillers_bottom_depth'] !== formModel['drillers_bottom_depth']}"
+                                        :disabled="true"
+                                        :validators="validators['drillers_bottom_depth']"
+                                        name="drillers_bottom_depth"
+                                        label="Drillers Bottom Depth [mbrf]"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="Depth below Drillers Reference Point [mbrf]"
+                                        v-model="formModel['drillers_bottom_depth']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['section_count'] !== formModel['section_count']}"
+                                        :disabled="false"
+                                        :validators="validators['section_count']"
+                                        name="section_count"
+                                        label="Number of Core Sections "
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="Including Core Catcher (cc)"
+                                        v-model.number="formModel['section_count']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['core_recovery'] !== formModel['core_recovery']}"
+                                        :disabled="false"
+                                        :validators="validators['core_recovery']"
+                                        name="core_recovery"
+                                        label="Core Recovery [m]"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="Measured Core length [m]"
+                                        v-model.number="formModel['core_recovery']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['core_recovery_pc'] !== formModel['core_recovery_pc']}"
+                                        :disabled="true"
+                                        :validators="validators['core_recovery_pc']"
+                                        name="core_recovery_pc"
+                                        label="Core Recovery [%]"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['core_recovery_pc']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['core_loss_reason'] !== formModel['core_loss_reason']}"
+                                        :disabled="false"
+                                        :validators="validators['core_loss_reason']"
+                                        name="core_loss_reason"
+                                        label="Core Loss Reason"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['core_loss_reason']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisSelectInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['continuity'] !== formModel['continuity']}"
+                                        :disabled="false"
+                                        :validators="validators['continuity']"
+                                        name="continuity"
+                                        label="Continuity of Cores"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        :selectSource="selectSources['continuity']"
+                                        v-model="formModel['continuity']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['comment'] !== formModel['comment']}"
+                                        :disabled="false"
+                                        :validators="validators['comment']"
+                                        name="comment"
+                                        label="Additional Information"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['comment']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                        </v-layout>
+                        <v-layout wrap mb-3>
+                            <v-flex v-if="!'Additional Core Information'.startsWith('-')" xs12 pl-2 pt-2 class="title">
+                                Additional Core Information
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['section_split_exist'] !== formModel['section_split_exist']}"
+                                        :disabled="true"
+                                        :validators="validators['section_split_exist']"
+                                        name="section_split_exist"
+                                        label="Do splits exist?"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['section_split_exist']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisSelectInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['core_type'] !== formModel['core_type']}"
+                                        :disabled="false"
+                                        :validators="validators['core_type']"
+                                        name="core_type"
+                                        label="Type of Coring Tool"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        :selectSource="selectSources['core_type']"
+                                        v-model="formModel['core_type']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['core_diameter'] !== formModel['core_diameter']}"
+                                        :disabled="false"
+                                        :validators="validators['core_diameter']"
+                                        name="core_diameter"
+                                        label="Core Diameter [mm]"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="Generic or Measured"
+                                        v-model.number="formModel['core_diameter']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisSwitchInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['core_oriented'] !== formModel['core_oriented']}"
+                                        :disabled="false"
+                                        :validators="validators['core_oriented']"
+                                        name="core_oriented"
+                                        label="Core Oriented ?"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['core_oriented']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisSelectInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['rqd'] !== formModel['rqd']}"
+                                        :disabled="false"
+                                        :validators="validators['rqd']"
+                                        name="rqd"
+                                        label="Rock Quality Designation (RQD)"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        :selectSource="selectSources['rqd']"
+                                        v-model="formModel['rqd']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                        </v-layout>
+                        <v-layout wrap mb-3>
+                            <v-flex v-if="!'Depth Information'.startsWith('-')" xs12 pl-2 pt-2 class="title">
+                                Depth Information
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['core_top_depth'] !== formModel['core_top_depth']}"
+                                        :disabled="true"
+                                        :validators="validators['core_top_depth']"
+                                        name="core_top_depth"
+                                        label="Core Top Depth [mbs] or [mbsf]"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="Top Depth below surface or seafloor"
+                                        v-model="formModel['core_top_depth']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['core_bottom_depth'] !== formModel['core_bottom_depth']}"
+                                        :disabled="true"
+                                        :validators="validators['core_bottom_depth']"
+                                        name="core_bottom_depth"
+                                        label="Core Bottom Depth [mbs] or [mbsf]"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="Bottom Depth below surface or seafloor"
+                                        v-model="formModel['core_bottom_depth']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['comment_depth'] !== formModel['comment_depth']}"
+                                        :disabled="false"
+                                        :validators="validators['comment_depth']"
+                                        name="comment_depth"
+                                        label="Addtional Information"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['comment_depth']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                        </v-layout>
+                        <v-layout wrap mb-3>
+                            <v-flex v-if="!'Identifiers'.startsWith('-')" xs12 pl-2 pt-2 class="title">
+                                Identifiers
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['igsn'] !== formModel['igsn']}"
+                                        :disabled="true"
+                                        :validators="validators['igsn']"
+                                        name="igsn"
+                                        label="IGSN"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="(Only for viewing; automatically filled when saved)"
+                                        v-model="formModel['igsn']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['comment_identifier'] !== formModel['comment_identifier']}"
+                                        :disabled="false"
+                                        :validators="validators['comment_identifier']"
+                                        name="comment_identifier"
+                                        label="Additional Information "
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="e.g. Alternative Identifier"
+                                        v-model="formModel['comment_identifier']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                        </v-layout>
+                        <v-layout wrap mb-3>
+                            <v-flex v-if="!'Additional Driller's Information'.startsWith('-')" xs12 pl-2 pt-2 class="title">
+                                Additional Driller's Information
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['barrel_length'] !== formModel['barrel_length']}"
+                                        :disabled="false"
+                                        :validators="validators['barrel_length']"
+                                        name="barrel_length"
+                                        label="Barrel Length [m]"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model.number="formModel['barrel_length']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisSelectInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['bit_size'] !== formModel['bit_size']}"
+                                        :disabled="false"
+                                        :validators="validators['bit_size']"
+                                        name="bit_size"
+                                        label="Bit Size"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        :selectSource="selectSources['bit_size']"
+                                        v-model="formModel['bit_size']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['fluid_type'] !== formModel['fluid_type']}"
+                                        :disabled="false"
+                                        :validators="validators['fluid_type']"
+                                        name="fluid_type"
+                                        label="Drilling Fluid Type"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['fluid_type']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['comment_drilling'] !== formModel['comment_drilling']}"
+                                        :disabled="false"
+                                        :validators="validators['comment_drilling']"
+                                        name="comment_drilling"
+                                        label="Additional Information"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['comment_drilling']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                        </v-layout>
+                </template>
+                <template v-slot:extra-form-actions="{ selectedItem, onSubFormClick, onSupFormClick }">
+                    <v-btn round class="c-dis-form__btn-sub-form" @click="onSubFormClick('section', subForms['section'])" color="indigo darken-4" dark :disabled="!selectedItem">
+                        section <v-icon>arrow_downward</v-icon>
+                    </v-btn>
+                    <v-btn round class="c-dis-form__btn-sup-form" @click="onSupFormClick('hole', supForms['hole'])" color="indigo darken-1" dark :disabled="!selectedItem">
+                        hole <v-icon>arrow_upward</v-icon>
+                    </v-btn>
+                </template>
+            </dis-form>
+        </v-flex>
+    </v-container>
+</template>
+
+<script>
+export default {
+  name: 'CoreForm',
+  created () {
+    this.validators = {}
+    this.validators['core'] = JSON.parse('[{"type":"number","min":null,"max":null}]')
+    this.validators['combined_id'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['core_ondeck'] = JSON.parse('[{"type":"required"}]')
+    this.validators['curator'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['drillers_top_depth'] = JSON.parse('[{"type":"number","min":null,"max":null}]')
+    this.validators['drilled_length'] = JSON.parse('[{"type":"required"},{"type":"number","min":null,"max":null}]')
+    this.validators['drillers_bottom_depth'] = JSON.parse('[]')
+    this.validators['section_count'] = JSON.parse('[{"type":"number","min":null,"max":null}]')
+    this.validators['core_recovery'] = JSON.parse('[{"type":"number","min":null,"max":null}]')
+    this.validators['core_recovery_pc'] = JSON.parse('[]')
+    this.validators['core_loss_reason'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['continuity'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['comment'] = JSON.parse('[{"type":"string"}]')
+    this.validators['section_split_exist'] = JSON.parse('[]')
+    this.validators['core_type'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['core_diameter'] = JSON.parse('[{"type":"number","min":null,"max":null}]')
+    this.validators['core_oriented'] = JSON.parse('[]')
+    this.validators['rqd'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['core_top_depth'] = JSON.parse('[]')
+    this.validators['core_bottom_depth'] = JSON.parse('[]')
+    this.validators['comment_depth'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['igsn'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['comment_identifier'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['barrel_length'] = JSON.parse('[{"type":"number","min":null,"max":null}]')
+    this.validators['bit_size'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['fluid_type'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['comment_drilling'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.selectSources = {}
+    this.selectSources['curator'] = JSON.parse('{"type":"api","listName":"ANALYST","valueField":"person_acronym","model":"ContactPerson","textField":"full_name"}')
+    this.selectSources['continuity'] = JSON.parse('{"type":"list","listName":"CORE_CONTINUITY","textField":"remark","valueField":"display"}')
+    this.selectSources['core_type'] = JSON.parse('{"type":"list","listName":"CORE_TYPE","textField":"remark","valueField":"display"}')
+    this.selectSources['rqd'] = JSON.parse('{"type":"list","listName":"RQD_ABUNDANCE","textField":"remark","valueField":"display"}')
+    this.selectSources['bit_size'] = JSON.parse('{"type":"list","listName":"BIT_SIZE","textField":"remark","valueField":"display"}')
+    this.calculatedFields = {}
+    this.simpleFields = JSON.parse('[{"name":"core","label":"Core Number","description":"","group":"Core Details","order":0,"inputType":"text","searchable":true},{"name":"combined_id","label":"Combined Id","description":"(Only for viewing; automatically filled when saved)","group":"Core Details","order":1,"inputType":"text","searchable":true},{"name":"core_ondeck","label":"Core on Deck (CoD)","description":"","group":"Core Details","order":2,"inputType":"datetime","searchable":true},{"name":"curator","label":"Curator","description":"","group":"Core Details","order":3,"inputType":"select","searchable":true},{"name":"drillers_top_depth","label":"Drillers Top Depth [mbrf]","description":"Depth below Drillers Reference Point [mbrf]","group":"Core Details","order":4,"inputType":"text","searchable":true},{"name":"drilled_length","label":"Drilled Length [m]","description":"Drilled Length as reported by Drillers","group":"Core Details","order":5,"inputType":"text","searchable":true},{"name":"drillers_bottom_depth","label":"Drillers Bottom Depth [mbrf]","description":"Depth below Drillers Reference Point [mbrf]","group":"Core Details","order":6,"inputType":"text","searchable":false},{"name":"section_count","label":"Number of Core Sections ","description":"Including Core Catcher (cc)","group":"Core Details","order":7,"inputType":"text","searchable":true},{"name":"core_recovery","label":"Core Recovery [m]","description":"Measured Core length [m]","group":"Core Details","order":8,"inputType":"text","searchable":true},{"name":"core_recovery_pc","label":"Core Recovery [%]","description":"","group":"Core Details","order":9,"inputType":"text","searchable":false},{"name":"core_loss_reason","label":"Core Loss Reason","description":"","group":"Core Details","order":10,"inputType":"text","searchable":true},{"name":"continuity","label":"Continuity of Cores","description":"","group":"Core Details","order":11,"inputType":"select","searchable":true},{"name":"comment","label":"Additional Information","description":"","group":"Core Details","order":12,"inputType":"text","searchable":true},{"name":"section_split_exist","label":"Do splits exist?","description":"","group":"Additional Core Information","order":0,"inputType":"text","searchable":false},{"name":"core_type","label":"Type of Coring Tool","description":"","group":"Additional Core Information","order":1,"inputType":"select","searchable":true},{"name":"core_diameter","label":"Core Diameter [mm]","description":"Generic or Measured","group":"Additional Core Information","order":2,"inputType":"text","searchable":true},{"name":"core_oriented","label":"Core Oriented ?","description":"","group":"Additional Core Information","order":3,"inputType":"switch","searchable":true},{"name":"rqd","label":"Rock Quality Designation (RQD)","description":"","group":"Additional Core Information","order":4,"inputType":"select","searchable":true},{"name":"core_top_depth","label":"Core Top Depth [mbs] or [mbsf]","description":"Top Depth below surface or seafloor","group":"Depth Information","order":0,"inputType":"text","searchable":false},{"name":"core_bottom_depth","label":"Core Bottom Depth [mbs] or [mbsf]","description":"Bottom Depth below surface or seafloor","group":"Depth Information","order":1,"inputType":"text","searchable":false},{"name":"comment_depth","label":"Addtional Information","description":"","group":"Depth Information","order":2,"inputType":"text","searchable":true},{"name":"igsn","label":"IGSN","description":"(Only for viewing; automatically filled when saved)","group":"Identifiers","order":0,"inputType":"text","searchable":true},{"name":"comment_identifier","label":"Additional Information ","description":"e.g. Alternative Identifier","group":"Identifiers","order":1,"inputType":"text","searchable":true},{"name":"barrel_length","label":"Barrel Length [m]","description":"","group":"Additional Driller's Information","order":0,"inputType":"text","searchable":true},{"name":"bit_size","label":"Bit Size","description":"","group":"Additional Driller's Information","order":1,"inputType":"select","searchable":true},{"name":"fluid_type","label":"Drilling Fluid Type","description":"","group":"Additional Driller's Information","order":2,"inputType":"text","searchable":true},{"name":"comment_drilling","label":"Additional Information","description":"","group":"Additional Driller's Information","order":3,"inputType":"text","searchable":true}]')
+    this.requiredFilters = JSON.parse('[{"value":"hole","as":"hole_id","skipOnEmpty":false}]')
+    this.subForms = JSON.parse('{"section":{"buttonLabel":"section","url":"/forms/section-form","filter":[{"unit":"expedition","fromField":"expedition_id"},{"unit":"site","fromField":"site_id"},{"unit":"hole","fromField":"hole_id"},{"unit":"core","fromField":"id"}]}}')
+    this.supForms = JSON.parse('{"hole":{"buttonLabel":"hole","url":"/forms/hole-form","parentIdField":"hole_id","filter":[{"unit":"expedition","fromField":"expedition_id"},{"unit":"site","fromField":"site_id"}]}}')
+    this.filterDataModels = JSON.parse('{"expedition":{"model":"ProjectExpedition","value":"id","text":"exp_acronym","ref":"expedition_id"},"site":{"model":"ProjectSite","value":"id","text":"site","ref":"site_id","require":{"value":"expedition","as":"expedition_id"}},"hole":{"model":"ProjectHole","value":"id","text":"hole","ref":"hole_id","require":{"value":"site","as":"site_id"}}}')
+  }
+}
+</script>
+
+<style scoped>
+
+</style>

@@ -1,0 +1,436 @@
+{
+    "name": "section",
+    "dataModel": "CoreSection",
+    "fields": [
+        {
+            "name": "section",
+            "label": "Section Number",
+            "description": "",
+            "validators": [
+                {
+                    "type": "number",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Section Information",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "curator",
+            "label": "Curator",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "api",
+                    "listName": "",
+                    "textField": "full_name",
+                    "valueField": "person_acronym",
+                    "model": "ContactPerson"
+                },
+                "allowFreeInput": false,
+                "multiple": false,
+                "jsCalculate": ""
+            },
+            "group": "Section Information",
+            "order": 1,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "top_depth",
+            "label": "Section Top Depth [mbs] or [mbsf]",
+            "description": "",
+            "validators": [
+                {
+                    "type": "required"
+                },
+                {
+                    "type": "number",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Section Information",
+            "order": 2,
+            "formatter": null,
+            "searchable": false
+        },
+        {
+            "name": "section_length",
+            "label": "Section Length [m]",
+            "description": "",
+            "validators": [
+                {
+                    "type": "required"
+                },
+                {
+                    "type": "number",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Section Information",
+            "order": 3,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "curated_length",
+            "label": "Curated Length [m]",
+            "description": "can be differing from section length (e.g. due to degassing)",
+            "validators": [
+                {
+                    "type": "number",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Section Information",
+            "order": 4,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "bottom_depth",
+            "label": "Section Bottom Depth [mbs] or [mbsf]",
+            "description": "",
+            "validators": [
+                {
+                    "type": "number",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "=(ABS([top_depth] + [section_length]))",
+                "jsCalculate": "(Math.abs(this.formModel['top_depth'] + this.formModel['section_length']))"
+            },
+            "group": "Section Information",
+            "order": 5,
+            "formatter": null,
+            "searchable": false
+        },
+        {
+            "name": "core_catcher",
+            "label": "Core Catcher",
+            "description": "Is this section a core catcher?",
+            "validators": [],
+            "formInput": {
+                "type": "switch",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Section Information",
+            "order": 6,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "section_condition",
+            "label": "Section Condition",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "list",
+                    "listName": "SECTION_CONDITION",
+                    "textField": "remark",
+                    "valueField": "display"
+                },
+                "allowFreeInput": false,
+                "multiple": false,
+                "jsCalculate": ""
+            },
+            "group": "Section Information",
+            "order": 7,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "section_split_exist",
+            "label": "Do section split exist?",
+            "description": "",
+            "validators": [],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Section Information",
+            "order": 8,
+            "formatter": null,
+            "searchable": false
+        },
+        {
+            "name": "comment",
+            "label": "Additional Information",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Section Information",
+            "order": 9,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "combined_id",
+            "label": "Combined Id",
+            "description": "(automatically filled when saved)",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Identifiers",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "mcd_offset",
+            "label": "MCD Offset [m]",
+            "description": "Distance from sea floor/surface to target within recovered core using a scale of adjusted depths ",
+            "validators": [
+                {
+                    "type": "number",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Depth Correction",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "mcd_top_depth",
+            "label": "MCD Top Depth [mcd]",
+            "description": "Corrected Top Depth of Section below surface/seafloor",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Depth Correction",
+            "order": 1,
+            "formatter": null,
+            "searchable": false
+        },
+        {
+            "name": "mcd_bottom_depth",
+            "label": "MCD Bottom Depth [mcd]",
+            "description": "Corrected Top Depth of Section below surface/seafloor",
+            "validators": [],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Depth Correction",
+            "order": 2,
+            "formatter": null,
+            "searchable": false
+        },
+        {
+            "name": "comment_depth",
+            "label": "Additional Information",
+            "description": "",
+            "validators": [
+                {
+                    "type": "number"
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Depth Correction",
+            "order": 3,
+            "formatter": null,
+            "searchable": true
+        }
+    ],
+    "subForms": {
+        "split": {
+            "buttonLabel": "split",
+            "url": "/forms/split-form",
+            "filter": [
+                {
+                    "unit": "expedition",
+                    "fromField": "expedition_id"
+                },
+                {
+                    "unit": "site",
+                    "fromField": "site_id"
+                },
+                {
+                    "unit": "hole",
+                    "fromField": "hole_id"
+                },
+                {
+                    "unit": "core",
+                    "fromField": "core_id"
+                },
+                {
+                    "unit": "section",
+                    "fromField": "id"
+                }
+            ]
+        }
+    },
+    "supForms": {
+        "core": {
+            "buttonLabel": "core",
+            "url": "/forms/core-form",
+            "parentIdField": "core_id",
+            "filter": [
+                {
+                    "unit": "expedition",
+                    "fromField": "expedition_id"
+                },
+                {
+                    "unit": "site",
+                    "fromField": "site_id"
+                },
+                {
+                    "unit": "hole",
+                    "fromField": "hole_id"
+                }
+            ]
+        }
+    },
+    "createdAt": 1607026854,
+    "modifiedAt": 1639045875,
+    "generatedAt": 1639045878,
+    "filterDataModels": {
+        "expedition": {
+            "model": "ProjectExpedition",
+            "value": "id",
+            "text": "exp_acronym",
+            "ref": "expedition_id"
+        },
+        "site": {
+            "model": "ProjectSite",
+            "value": "id",
+            "text": "site",
+            "ref": "site_id",
+            "require": {
+                "value": "expedition",
+                "as": "expedition_id"
+            }
+        },
+        "hole": {
+            "model": "ProjectHole",
+            "value": "id",
+            "text": "hole",
+            "ref": "hole_id",
+            "require": {
+                "value": "site",
+                "as": "site_id"
+            }
+        },
+        "core": {
+            "model": "CoreCore",
+            "value": "id",
+            "text": "core",
+            "ref": "core_id",
+            "require": {
+                "value": "hole",
+                "as": "hole_id"
+            }
+        }
+    },
+    "requiredFilters": [
+        {
+            "value": "core",
+            "as": "core_id",
+            "skipOnEmpty": false
+        }
+    ]
+}

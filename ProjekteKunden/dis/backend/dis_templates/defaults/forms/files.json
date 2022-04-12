@@ -1,0 +1,274 @@
+{
+    "name": "files",
+    "dataModel": "ArchiveFile",
+    "fields": [
+        {
+            "name": "parent_combined_id",
+            "label": "Parent ID",
+            "description": "CombinedKey of parent: expedition, site, hole, core, section",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "-group1",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "type",
+            "label": "File Type",
+            "description": "File type",
+            "validators": [
+                {
+                    "type": "required"
+                },
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "-group1",
+            "order": 1,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "filename",
+            "label": "File Name",
+            "description": "Name of the renamed file",
+            "validators": [
+                {
+                    "type": "required"
+                },
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "-group1",
+            "order": 2,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "original_filename",
+            "label": "Original File Name",
+            "description": "Name of the originally uploaded file",
+            "validators": [
+                {
+                    "type": "required"
+                },
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "-group1",
+            "order": 3,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "upload_date",
+            "label": "Upload Date",
+            "description": "Date of file upload",
+            "validators": [
+                {
+                    "type": "required"
+                }
+            ],
+            "formInput": {
+                "type": "datetime",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "-group1",
+            "order": 4,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "curator_contact_person_id",
+            "label": "Curator",
+            "description": "The analyst/curator who created the data record",
+            "validators": [],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "one_relation",
+                    "listName": "",
+                    "textField": "person_acronym",
+                    "valueField": "id",
+                    "model": "ContactPerson"
+                },
+                "allowFreeInput": false,
+                "multiple": false,
+                "jsCalculate": ""
+            },
+            "group": "Section Information",
+            "order": 1,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "comment",
+            "label": "Additional Informaton",
+            "description": "Additional information on the uploaded file",
+            "validators": [],
+            "formInput": {
+                "type": "textarea",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "-group1",
+            "order": 6,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "filesize",
+            "label": "File Size",
+            "description": "File size",
+            "validators": [
+                {
+                    "type": "number"
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "-group1",
+            "order": 7,
+            "formatter": null,
+            "searchable": true
+        }
+    ],
+    "subForms": [],
+    "supForms": [],
+    "createdAt": 1610018925,
+    "modifiedAt": 1610538255,
+    "generatedAt": 1610725386,
+    "filterDataModels": {
+        "expedition": {
+            "model": "ProjectExpedition",
+            "value": "id",
+            "text": "acr",
+            "ref": "expedition_id"
+        },
+        "site": {
+            "model": "ProjectSite",
+            "value": "id",
+            "text": "site",
+            "ref": "site_id",
+            "require": {
+                "value": "expedition",
+                "as": "expedition_id"
+            }
+        },
+        "hole": {
+            "model": "ProjectHole",
+            "value": "id",
+            "text": "hole",
+            "ref": "hole_id",
+            "require": {
+                "value": "site",
+                "as": "site_id"
+            }
+        },
+        "core": {
+            "model": "CoreCore",
+            "value": "id",
+            "text": "core",
+            "ref": "core_id",
+            "require": {
+                "value": "hole",
+                "as": "hole_id"
+            }
+        },
+        "section": {
+            "model": "CoreSection",
+            "value": "id",
+            "text": "section",
+            "ref": "section_id",
+            "require": {
+                "value": "core",
+                "as": "core_id"
+            }
+        },
+        "sectionSplit": {
+            "model": "CurationSectionSplit",
+            "value": "id",
+            "text": "type",
+            "ref": "section_split_id",
+            "require": {
+                "value": "section",
+                "as": "section_id"
+            }
+        },
+        "sample": {
+            "model": "CurationSample",
+            "value": "id",
+            "text": "request_no",
+            "ref": "sample_id",
+            "require": {
+                "value": "sectionSplit",
+                "as": "section_split_id"
+            }
+        },
+        "request": {
+            "model": "SampleRequest",
+            "value": "id",
+            "text": "request_complete",
+            "ref": "request_id",
+            "require": {
+                "value": "expedition",
+                "as": "expedition_id"
+            }
+        }
+    },
+    "requiredFilters": [
+        {
+            "value": "request",
+            "as": "request_id",
+            "skipOnEmpty": false
+        }
+    ]
+}

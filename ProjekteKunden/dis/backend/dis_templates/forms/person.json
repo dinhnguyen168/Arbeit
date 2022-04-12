@@ -1,0 +1,332 @@
+{
+    "name": "person",
+    "dataModel": "ContactPerson",
+    "fields": [
+        {
+            "name": "role",
+            "label": "Role in mDIS",
+            "description": "Role(s) of the person in mDIS, e.g. curator, scientist",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "list",
+                    "listName": "JOB_FUNCTION",
+                    "textField": "remark",
+                    "valueField": "display"
+                },
+                "allowFreeInput": false,
+                "multiple": true,
+                "jsCalculate": ""
+            },
+            "group": "Person",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "first_name",
+            "label": "First Name",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Person",
+            "order": 1,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "last_name",
+            "label": "Last Name",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Person",
+            "order": 2,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "full_name",
+            "label": "Full Name",
+            "description": "",
+            "validators": [],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Person",
+            "order": 3,
+            "formatter": null,
+            "searchable": false
+        },
+        {
+            "name": "title",
+            "label": "Title",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "list",
+                    "listName": "DEGREE",
+                    "textField": "remark",
+                    "valueField": "display"
+                },
+                "allowFreeInput": false,
+                "multiple": false,
+                "jsCalculate": ""
+            },
+            "group": "Person",
+            "order": 4,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "gender",
+            "label": "Gender",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "list",
+                    "listName": "GENDER",
+                    "textField": "remark",
+                    "valueField": "display"
+                },
+                "allowFreeInput": false,
+                "multiple": false,
+                "jsCalculate": ""
+            },
+            "group": "Person",
+            "order": 5,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "orcid",
+            "label": "Orcid",
+            "description": "www.orcid.org",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Person",
+            "order": 6,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "comment",
+            "label": "Additional Information",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Person",
+            "order": 7,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "person_acronym",
+            "label": "Person Acronym",
+            "description": "(2 first letters of first & last name)",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Person",
+            "order": 8,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "phone",
+            "label": "Phone",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Contact",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "mobile",
+            "label": "Mobile",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Contact",
+            "order": 1,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "email",
+            "label": "Email",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Contact",
+            "order": 2,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "affiliation",
+            "label": "Affiliation",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "api",
+                    "listName": "",
+                    "valueField": "organisation_name",
+                    "model": "ContactOrganisation",
+                    "textField": "department"
+                },
+                "allowFreeInput": false,
+                "multiple": true,
+                "jsCalculate": ""
+            },
+            "group": "Affiliation",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        }
+    ],
+    "subForms": {
+        "organisation": {
+            "buttonLabel": "organisation",
+            "url": "/forms/organisation-form",
+            "filter": []
+        }
+    },
+    "supForms": [],
+    "createdAt": 1629138444,
+    "modifiedAt": 1636702546,
+    "generatedAt": 1636702551,
+    "filterDataModels": [],
+    "requiredFilters": []
+}

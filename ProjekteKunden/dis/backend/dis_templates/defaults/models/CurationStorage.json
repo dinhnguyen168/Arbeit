@@ -1,0 +1,238 @@
+{
+    "module": "Curation",
+    "name": "Storage",
+    "table": "curation_storage",
+    "importTable": null,
+    "parentModel": "CurationStorage",
+    "columns": {
+        "id": {
+            "name": "id",
+            "importSource": "",
+            "type": "integer",
+            "size": 11,
+            "required": false,
+            "primaryKey": true,
+            "autoInc": true,
+            "label": "ID",
+            "description": "auto incremented ID",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "displayColumn": "",
+            "isLocked": null,
+            "oppositionRelation": false,
+            "relatedTable": "",
+            "searchable": true
+        },
+        "storage": {
+            "name": "storage",
+            "importSource": "",
+            "type": "string",
+            "size": 100,
+            "required": true,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Storage",
+            "description": "Name of the storage (information)",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "displayColumn": "",
+            "isLocked": null,
+            "oppositionRelation": false,
+            "relatedTable": "",
+            "searchable": true
+        },
+        "combined_id": {
+            "name": "combined_id",
+            "importSource": "",
+            "type": "string",
+            "size": 255,
+            "required": false,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Combined ID",
+            "description": "Combined ID of the storage (information)",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "displayColumn": "",
+            "isLocked": null,
+            "oppositionRelation": false,
+            "relatedTable": "",
+            "searchable": true
+        },
+        "type": {
+            "name": "type",
+            "importSource": "",
+            "type": "string",
+            "size": null,
+            "required": true,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Type of storage",
+            "description": "Type of storage",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "displayColumn": "",
+            "isLocked": null,
+            "oppositionRelation": false,
+            "relatedTable": "",
+            "searchable": true
+        },
+        "parent_id": {
+            "name": "parent_id",
+            "importSource": "",
+            "type": "integer",
+            "size": 11,
+            "required": false,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Parent ID",
+            "description": "Parent ID for storage chain",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "displayColumn": "",
+            "isLocked": null,
+            "oppositionRelation": false,
+            "relatedTable": "",
+            "searchable": true
+        },
+        "exp_acronym_project_expedition_id": {
+            "name": "exp_acronym_project_expedition_id",
+            "importSource": "",
+            "type": "one_to_many",
+            "size": null,
+            "required": false,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Expedition Acronym",
+            "description": "Acronym of the expedition from which the stored item is derived",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "displayColumn": "exp_acronym",
+            "isLocked": null,
+            "oppositionRelation": false,
+            "relatedTable": "project_expedition",
+            "searchable": true
+        },
+        "comment": {
+            "name": "comment",
+            "oldName": "remarks",
+            "importSource": "",
+            "type": "string",
+            "size": null,
+            "required": false,
+            "primaryKey": false,
+            "autoInc": false,
+            "label": "Additional Information",
+            "description": "Additional information on the storage entry",
+            "validator": "",
+            "validatorMessage": "",
+            "unit": "",
+            "selectListName": "",
+            "calculate": "",
+            "defaultValue": "",
+            "pseudoCalc": "",
+            "displayColumn": "",
+            "isLocked": null,
+            "oppositionRelation": false,
+            "relatedTable": "",
+            "searchable": true
+        }
+    },
+    "indices": {
+        "pk_id": {
+            "name": "pk_id",
+            "type": "PRIMARY",
+            "columns": [
+                "id"
+            ],
+            "isLocked": null
+        },
+        "ux_combined_id": {
+            "name": "ux_combined_id",
+            "type": "UNIQUE",
+            "columns": [
+                "combined_id"
+            ],
+            "isLocked": null
+        },
+        "exp_acronym_project_expedition_id": {
+            "name": "exp_acronym_project_expedition_id",
+            "type": "KEY",
+            "columns": [
+                "exp_acronym_project_expedition_id"
+            ],
+            "isLocked": true
+        }
+    },
+    "relations": {
+        "curation_storage__self__parent": {
+            "name": "curation_storage__self__parent",
+            "relationType": null,
+            "relatedTable": null,
+            "foreignTable": "curation_storage",
+            "localColumns": [
+                "parent_id"
+            ],
+            "foreignColumns": [
+                "id"
+            ],
+            "displayColumns": [],
+            "isLocked": null,
+            "oppositionRelation": false,
+            "oppositeColumnName": ""
+        },
+        "curation_storage__project_expedition__exp_acronym_project_expedition_id__1n": {
+            "name": "curation_storage__project_expedition__exp_acronym_project_expedition_id__1n",
+            "relationType": "1n",
+            "relatedTable": null,
+            "foreignTable": "project_expedition",
+            "localColumns": [
+                "exp_acronym_project_expedition_id"
+            ],
+            "foreignColumns": [
+                "id"
+            ],
+            "displayColumns": [
+                "exp_acronym"
+            ],
+            "isLocked": null,
+            "oppositionRelation": false,
+            "oppositeColumnName": ""
+        }
+    },
+    "behaviors": [],
+    "createdAt": 1607953893,
+    "modifiedAt": 1645022346,
+    "generatedAt": 1645022350,
+    "fullName": "CurationStorage"
+}

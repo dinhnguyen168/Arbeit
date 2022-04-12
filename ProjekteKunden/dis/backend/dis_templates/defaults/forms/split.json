@@ -1,0 +1,598 @@
+{
+    "name": "split",
+    "dataModel": "CurationSectionSplit",
+    "fields": [
+        {
+            "name": "type",
+            "label": "Split Type",
+            "description": "The type of the split section",
+            "validators": [
+                {
+                    "type": "required"
+                },
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "list",
+                    "listName": "SPLIT_TYPE",
+                    "textField": "remark",
+                    "valueField": "display"
+                },
+                "allowFreeInput": false,
+                "multiple": false,
+                "jsCalculate": ""
+            },
+            "group": "Split Section Information",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "percent",
+            "label": "Percent of Wholeround [%]",
+            "description": "Cross-sectional area in percent of whole round",
+            "validators": [
+                {
+                    "type": "required"
+                },
+                {
+                    "type": "number",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Split Section Information",
+            "order": 1,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "still_exists",
+            "label": "Does Split still exist?",
+            "description": "Does the split still exist?",
+            "validators": [],
+            "formInput": {
+                "type": "switch",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Split Section Information",
+            "order": 2,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "origin_split_combined_id",
+            "label": "Origin Split Combined ID",
+            "description": "Combined ID of the section from which the split was derived",
+            "validators": [],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Split Section Information",
+            "order": 3,
+            "formatter": null,
+            "searchable": false
+        },
+        {
+            "name": "sampleable",
+            "label": "Sampling allowed?",
+            "description": "Is sampling from this section split allowed?",
+            "validators": [],
+            "formInput": {
+                "type": "switch",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Split Section Information",
+            "order": 4,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "curated_length",
+            "label": "Curated Length [cm]",
+            "description": "Curated length in centimetres",
+            "validators": [
+                {
+                    "type": "number",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Split Section Information",
+            "order": 5,
+            "formatter": null,
+            "searchable": false
+        },
+        {
+            "name": "curator_contact_person_id",
+            "label": "Curator",
+            "description": "The analyst/curator who created the data record",
+            "validators": [],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "one_relation",
+                    "listName": "",
+                    "textField": "person_acronym",
+                    "valueField": "id",
+                    "model": "ContactPerson"
+                },
+                "allowFreeInput": false,
+                "multiple": false,
+                "jsCalculate": ""
+            },
+            "group": "Split Section Information",
+            "order": 6,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "comment",
+            "label": "Additional Information",
+            "description": "Comment on the section split",
+            "validators": [
+                {
+                    "type": "string"
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Split Section Information",
+            "order": 7,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "combined_id",
+            "label": "Combined ID",
+            "description": "Combined ID of the section split",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Identifier",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "igsn",
+            "label": "IGSN",
+            "description": "International GeoSample Number",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Identifier",
+            "order": 1,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "comment_identifier",
+            "label": "Additional Information",
+            "description": " e.g. alternative identifiers for labelling",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Identifier",
+            "order": 2,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "mcd_top_depth",
+            "label": "MCD Top Depth [m]",
+            "description": "Corrected top depth of section below surface/seafloor",
+            "validators": [
+                {
+                    "type": "number",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Corrected Depth Information",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "mcd_bottom_depth",
+            "label": "MCD Bottom Depth [m]",
+            "description": "Corrected bottom depth of section below surface/seafloor",
+            "validators": [],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Corrected Depth Information",
+            "order": 1,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "corebox",
+            "label": "Core Box",
+            "description": "Designation (name, number, internal identifier) of the core box",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Storage Information",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "corebox_slot",
+            "label": "Slot in corebox",
+            "description": "Slot number in the core box",
+            "validators": [
+                {
+                    "type": "number",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Storage Information",
+            "order": 1,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "corebox_position",
+            "label": "Position in Core Box",
+            "description": "Position in the core box",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "list",
+                    "listName": "BOX_POSITION",
+                    "textField": "remark",
+                    "valueField": "display"
+                },
+                "allowFreeInput": false,
+                "multiple": false,
+                "jsCalculate": ""
+            },
+            "group": "Storage Information",
+            "order": 2,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "storage_combined_id",
+            "label": "Storage Combined ID",
+            "description": "The combined ID of the corebox storage location",
+            "validators": [],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Storage Information",
+            "order": 3,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "comment_storage",
+            "label": "Additional Information",
+            "description": "Additional information on the storage of the section split",
+            "validators": [
+                {
+                    "type": "string"
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Storage Information",
+            "order": 4,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "weight",
+            "label": "Weight [kg]",
+            "description": "Weight of the section split",
+            "validators": [
+                {
+                    "type": "number",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Transport Information",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "crate_name",
+            "label": "Crate Name",
+            "description": "The name or number of the transport crate/pallet",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Transport Information",
+            "order": 1,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "measurement_exists",
+            "label": "Measurement Exists",
+            "description": "Example field -> e.g. one field each for MSCL, XRD, Scan, Photo",
+            "validators": [],
+            "formInput": {
+                "type": "switch",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Measurements",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        }
+    ],
+    "subForms": {
+        "lithology": {
+            "buttonLabel": "lithology",
+            "url": "/forms/lithology-form",
+            "filter": [
+                {
+                    "unit": "expedition",
+                    "fromField": "expedition_id"
+                },
+                {
+                    "unit": "site",
+                    "fromField": "site_id"
+                },
+                {
+                    "unit": "hole",
+                    "fromField": "hole_id"
+                },
+                {
+                    "unit": "core",
+                    "fromField": "core_id"
+                },
+                {
+                    "unit": "section",
+                    "fromField": "section_id"
+                },
+                {
+                    "unit": "sectionSplit",
+                    "fromField": "id"
+                }
+            ]
+        },
+        "sample": {
+            "buttonLabel": "sample",
+            "url": "/forms/sample-form",
+            "filter": [
+                {
+                    "unit": "expedition",
+                    "fromField": "expedition_id"
+                },
+                {
+                    "unit": "site",
+                    "fromField": "site_id"
+                },
+                {
+                    "unit": "hole",
+                    "fromField": "hole_id"
+                },
+                {
+                    "unit": "core",
+                    "fromField": "core_id"
+                },
+                {
+                    "unit": "section",
+                    "fromField": "section_id"
+                },
+                {
+                    "unit": "sectionSplit",
+                    "fromField": "id"
+                }
+            ]
+        }
+    },
+    "supForms": {
+        "section": {
+            "buttonLabel": "section",
+            "url": "/forms/section-form",
+            "parentIdField": "section_id",
+            "filter": [
+                {
+                    "unit": "expedition",
+                    "fromField": "expedition_id"
+                },
+                {
+                    "unit": "site",
+                    "fromField": "site_id"
+                },
+                {
+                    "unit": "hole",
+                    "fromField": "hole_id"
+                },
+                {
+                    "unit": "core",
+                    "fromField": "core_id"
+                }
+            ]
+        }
+    },
+    "createdAt": 1588161313,
+    "modifiedAt": 1644493571,
+    "generatedAt": 1644493574,
+    "filterDataModels": {
+        "expedition": {
+            "model": "ProjectExpedition",
+            "value": "id",
+            "text": "exp_acronym",
+            "ref": "expedition_id"
+        },
+        "site": {
+            "model": "ProjectSite",
+            "value": "id",
+            "text": "site",
+            "ref": "site_id",
+            "require": {
+                "value": "expedition",
+                "as": "expedition_id"
+            }
+        },
+        "hole": {
+            "model": "ProjectHole",
+            "value": "id",
+            "text": "hole",
+            "ref": "hole_id",
+            "require": {
+                "value": "site",
+                "as": "site_id"
+            }
+        },
+        "core": {
+            "model": "CoreCore",
+            "value": "id",
+            "text": "core",
+            "ref": "core_id",
+            "require": {
+                "value": "hole",
+                "as": "hole_id"
+            }
+        },
+        "section": {
+            "model": "CoreSection",
+            "value": "id",
+            "text": "section",
+            "ref": "section_id",
+            "require": {
+                "value": "core",
+                "as": "core_id"
+            }
+        }
+    },
+    "requiredFilters": [
+        {
+            "value": "section",
+            "as": "section_id",
+            "skipOnEmpty": false
+        }
+    ]
+}

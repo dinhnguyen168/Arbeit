@@ -1,0 +1,95 @@
+
+
+    
+{
+    "name": "lithological-unit",
+    "dataModel": "GeologyLithologicalUnits",
+    "fields": [
+        {
+            "name": "lithological_unit_code",
+            "label": "Lithological Unit Code",
+            "description": "Code or abbreviation for the lithological unit",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Lithological Unit",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "lithological_unit_name",
+            "label": "Full Lithological Unit Name",
+            "description": "Name of the lithological unit",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Lithological Unit",
+            "order": 1,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "description",
+            "label": "Description",
+            "description": "Description of the lithological unit",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "textarea",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Lithological Unit",
+            "order": 2,
+            "formatter": null,
+            "searchable": true
+        }
+    ],
+    "subForms": [],
+    "supForms": [],
+    "createdAt": 1629971509,
+    "modifiedAt": 1644412850,
+    "generatedAt": 1644412856,
+    "filterDataModels": {
+        "expedition": {
+            "model": "ProjectExpedition",
+            "value": "id",
+            "text": "exp_acronym",
+            "ref": "expedition_id"
+        }
+    },
+    "requiredFilters": [
+        {
+            "value": "expedition",
+            "as": "expedition_id",
+            "skipOnEmpty": false
+        }
+    ]
+}

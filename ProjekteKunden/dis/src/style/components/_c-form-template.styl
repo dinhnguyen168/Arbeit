@@ -1,0 +1,56 @@
+@import '../../../node_modules/vuetify/src/stylus/bootstrap.styl'
+@import '../../../node_modules/vuetify/src/stylus/theme.styl'
+
+form-template($material)
+  &__left-col-head
+    border: solid $material.fg-color
+    border-width: 1px 1px 0 1px
+  &__group, &__fields-to-select-bag
+    border: solid 1px $material.fg-color
+  &__group-label
+    border-bottom: solid 1px $material.fg-color
+
+.c-form-template
+  display initial
+  &__left-col
+    &-head
+      display flex
+      align-items center
+      padding 10px
+    &-content
+      resize vertical
+      overflow-y auto
+  &__selected-fields
+    ul
+      min-height 20px
+      margin 0
+      padding 0
+      list-style none
+      li
+        margin-bottom 10px
+  &__fields-to-select-bag
+    padding 5px 5px 20px 5px
+    min-height 20px
+    margin 0
+    list-style none
+    li
+      margin-bottom 10px
+  &__group-label
+    display flex
+    align-items center
+  &__group-fields
+    padding 5px
+  &__preview-table
+    width: 100%
+    th
+      text-align: left
+  .list-complete-item
+    transition: all .3s
+
+  .list-complete-enter,
+  .list-complete-leave-active
+    opacity: 0
+  .drag-handle
+    cursor grab
+
+theme(form-template, 'c-form-template')

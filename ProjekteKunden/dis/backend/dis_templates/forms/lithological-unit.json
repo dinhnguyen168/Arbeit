@@ -1,0 +1,92 @@
+{
+    "name": "lithological-unit",
+    "dataModel": "GeologyLithoUnits",
+    "fields": [
+        {
+            "name": "lithological_unit",
+            "label": "Lithological Unit",
+            "description": "Code/Abbreviation of Lithological Unit",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Lithological Unit",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "lithological_unit_name",
+            "label": "Full Lithological Unit Name",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Lithological Unit",
+            "order": 1,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "description",
+            "label": "Description",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "textarea",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Lithological Unit",
+            "order": 2,
+            "formatter": null,
+            "searchable": true
+        }
+    ],
+    "subForms": [],
+    "supForms": [],
+    "createdAt": 1629971509,
+    "modifiedAt": 1636701249,
+    "generatedAt": 1636701251,
+    "filterDataModels": {
+        "expedition": {
+            "model": "ProjectExpedition",
+            "value": "id",
+            "text": "exp_acronym",
+            "ref": "expedition_id"
+        }
+    },
+    "requiredFilters": [
+        {
+            "value": "expedition",
+            "as": "expedition_id",
+            "skipOnEmpty": false
+        }
+    ]
+}

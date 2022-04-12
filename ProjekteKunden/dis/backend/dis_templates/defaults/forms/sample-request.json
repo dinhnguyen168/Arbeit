@@ -1,0 +1,548 @@
+{
+    "name": "sample-request",
+    "dataModel": "CurationSampleRequest",
+    "fields": [
+        {
+            "name": "exp_acronym",
+            "label": "Expedition Acronym",
+            "description": "Acronym of the expedition",
+            "validators": [],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Sample Request ID",
+            "order": 0,
+            "formatter": null,
+            "searchable": false
+        },
+        {
+            "name": "request_no",
+            "label": "Request Number",
+            "description": "Number (incremental) of requests within an expedition/project",
+            "validators": [
+                {
+                    "type": "number",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Sample Request ID",
+            "order": 1,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "request_part",
+            "label": "Request Part",
+            "description": "Additional element for request ID (e.g., A, B, C or Initials of Scientist)",
+            "validators": [
+                {
+                    "type": "required"
+                },
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Sample Request ID",
+            "order": 2,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "combined_id",
+            "label": "Combined ID",
+            "description": "Combined ID of the sample request",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Sample Request ID",
+            "order": 3,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "sample_material",
+            "label": "Sample Material Requested",
+            "description": "The material type of the requested sample",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "list",
+                    "listName": "SAMPLE_MATERIAL",
+                    "textField": "remark",
+                    "valueField": "display"
+                },
+                "allowFreeInput": false,
+                "multiple": false,
+                "jsCalculate": ""
+            },
+            "group": "Details Sample Request",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "hole_combined_id_project_holes",
+            "label": "Boreholes to be Sampled",
+            "description": "The combined IDs of the boreholes concerned by this request",
+            "validators": [],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "many_relation",
+                    "listName": "",
+                    "textField": "combined_id",
+                    "valueField": "id",
+                    "model": "ProjectHole"
+                },
+                "allowFreeInput": false,
+                "multiple": true,
+                "jsCalculate": ""
+            },
+            "group": "Details Sample Request",
+            "order": 1,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "number_samples",
+            "label": "Number of Samples",
+            "description": "Number of samples requested",
+            "validators": [
+                {
+                    "type": "required"
+                },
+                {
+                    "type": "number",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Details Sample Request",
+            "order": 2,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "sample_size",
+            "label": "Sample Size [unit]",
+            "description": "The size of the requested sample(s) in specified unit",
+            "validators": [
+                {
+                    "type": "required"
+                },
+                {
+                    "type": "number",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Details Sample Request",
+            "order": 3,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "sample_size_unit",
+            "label": "Sample Size Unit",
+            "description": "The unit that is used for Sample size",
+            "validators": [
+                {
+                    "type": "required"
+                },
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "list",
+                    "listName": "UNITS",
+                    "textField": "remark",
+                    "valueField": "display"
+                },
+                "allowFreeInput": false,
+                "multiple": false,
+                "jsCalculate": ""
+            },
+            "group": "Details Sample Request",
+            "order": 4,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "split_fraction_requested",
+            "label": "Fraction of Section Split [%]",
+            "description": "Fraction of section split's cross-sectional area (rough estimate)",
+            "validators": [
+                {
+                    "type": "number",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Details Sample Request",
+            "order": 5,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "purpose",
+            "label": "Purpose/Usage",
+            "description": "Purpose of sampling/usage of the samples",
+            "validators": [
+                {
+                    "type": "required"
+                },
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "list",
+                    "listName": "SAMPLE_PURPOSE",
+                    "textField": "remark",
+                    "valueField": "display"
+                },
+                "allowFreeInput": false,
+                "multiple": true,
+                "jsCalculate": ""
+            },
+            "group": "Details Sample Request",
+            "order": 6,
+            "formatter": "",
+            "searchable": true
+        },
+        {
+            "name": "destructive",
+            "label": "Destructive Usage?",
+            "description": "Will the sample(s) be subjected to destructive processes?",
+            "validators": [
+                {
+                    "type": "required"
+                }
+            ],
+            "formInput": {
+                "type": "switch",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Details Sample Request",
+            "order": 7,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "project_phase",
+            "label": "Project Phase",
+            "description": "The phase in the project life cycle",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "list",
+                    "listName": "PROJECT_PHASE",
+                    "textField": "remark",
+                    "valueField": "display"
+                },
+                "allowFreeInput": false,
+                "multiple": false,
+                "jsCalculate": ""
+            },
+            "group": "Details Sample Request",
+            "order": 8,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "scientist_contact_persons",
+            "label": "Requesting Scientist",
+            "description": "The scientists who requested the samples",
+            "validators": [
+                {
+                    "type": "required"
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "many_relation",
+                    "listName": "",
+                    "textField": "full_name",
+                    "valueField": "id",
+                    "model": "ContactPerson"
+                },
+                "allowFreeInput": false,
+                "multiple": true,
+                "jsCalculate": ""
+            },
+            "group": "Details Sample Request",
+            "order": 9,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "comment",
+            "label": "Additional Information",
+            "description": "Additional information on the sample request",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Details Sample Request",
+            "order": 10,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "request_name",
+            "label": "Request Name",
+            "description": "Name for human use",
+            "validators": [],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Request Administration",
+            "order": 0,
+            "formatter": null,
+            "searchable": false
+        },
+        {
+            "name": "date_submission",
+            "label": "Date of Submission",
+            "description": "The date when the sample request was registered",
+            "validators": [],
+            "formInput": {
+                "type": "date",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Request Administration",
+            "order": 1,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "curator_contact_person_id",
+            "label": "Curator",
+            "description": "The curator who has handled the sample request",
+            "validators": [],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "one_relation",
+                    "listName": "",
+                    "textField": "person_acronym",
+                    "valueField": "id",
+                    "model": "ContactPerson"
+                },
+                "allowFreeInput": false,
+                "multiple": false,
+                "jsCalculate": ""
+            },
+            "group": "Request Administration",
+            "order": 2,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "date_approval",
+            "label": "Date of Approval",
+            "description": "The date when the sample request was approved",
+            "validators": [],
+            "formInput": {
+                "type": "date",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Request Administration",
+            "order": 3,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "approved_by_contact_person_id",
+            "label": "Approved By",
+            "description": "Person who has approved the sample request",
+            "validators": [],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "one_relation",
+                    "listName": "",
+                    "textField": "full_name",
+                    "valueField": "id",
+                    "model": "ContactPerson"
+                },
+                "allowFreeInput": false,
+                "multiple": false,
+                "jsCalculate": ""
+            },
+            "group": "Request Administration",
+            "order": 4,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "date_completion",
+            "label": "Date of completion",
+            "description": "The date when sampling for this request was finished",
+            "validators": [],
+            "formInput": {
+                "type": "date",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Request Administration",
+            "order": 5,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "comment_administration",
+            "label": "Additional Information",
+            "description": "Additional information on administrative issues",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Request Administration",
+            "order": 6,
+            "formatter": null,
+            "searchable": true
+        }
+    ],
+    "subForms": [],
+    "supForms": {
+        "expedition": {
+            "buttonLabel": "expedition",
+            "url": "/forms/expedition-form",
+            "parentIdField": "expedition_id",
+            "filter": []
+        }
+    },
+    "createdAt": 1613741232,
+    "modifiedAt": 1644402942,
+    "generatedAt": 1644402945,
+    "filterDataModels": {
+        "expedition": {
+            "model": "ProjectExpedition",
+            "value": "id",
+            "text": "exp_acronym",
+            "ref": "expedition_id"
+        }
+    },
+    "requiredFilters": [
+        {
+            "value": "expedition",
+            "as": "expedition_id",
+            "skipOnEmpty": false
+        }
+    ]
+}

@@ -1,0 +1,560 @@
+<template>
+    <v-container fluid>
+        <v-flex align-start>
+            <h2>Hole</h2>
+            <dis-form ref="disForm" formName="hole" dataModel="ProjectHole" :fields="simpleFields" :requiredFilters="requiredFilters" :filterDataModels="filterDataModels" :calculatedFields="calculatedFields">
+                <template v-slot:form-fields="{fields, hasNumberValidator, getInputComponent, formScenario, selectedItem, formModel, serverValidationErrors}">
+                        <v-layout wrap mb-3>
+                            <v-flex v-if="!'Wellhole Details'.startsWith('-')" xs12 pl-2 pt-2 class="title">
+                                Wellhole Details
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['hole'] !== formModel['hole']}"
+                                        :disabled="true"
+                                        :validators="validators['hole']"
+                                        name="hole"
+                                        label="Hole Identifier"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="(ICDP: one character A - Z)"
+                                        v-model="formModel['hole']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['combined_id'] !== formModel['combined_id']}"
+                                        :disabled="true"
+                                        :validators="validators['combined_id']"
+                                        name="combined_id"
+                                        label="Combined ID "
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="Combined ID for Borehole"
+                                        v-model="formModel['combined_id']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['hole_name'] !== formModel['hole_name']}"
+                                        :disabled="false"
+                                        :validators="validators['hole_name']"
+                                        name="hole_name"
+                                        label="Name of Hole "
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="If any Additional Name was Given"
+                                        v-model="formModel['hole_name']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['elevation'] !== formModel['elevation']}"
+                                        :disabled="false"
+                                        :validators="validators['elevation']"
+                                        name="elevation"
+                                        label="Elevation of Permanent Depth Reference [m]"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="Height above Sea Level "
+                                        v-model.number="formModel['elevation']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['comment_elevation'] !== formModel['comment_elevation']}"
+                                        :disabled="false"
+                                        :validators="validators['comment_elevation']"
+                                        name="comment_elevation"
+                                        label="Description of Permanent Depth Reference"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['comment_elevation']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['drillers_reference_height'] !== formModel['drillers_reference_height']}"
+                                        :disabled="false"
+                                        :validators="validators['drillers_reference_height']"
+                                        name="drillers_reference_height"
+                                        label="Height of Driller\'s Reference Point [m]"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="Height above Ground/Seafloor"
+                                        v-model.number="formModel['drillers_reference_height']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['comment_drillers_reference'] !== formModel['comment_drillers_reference']}"
+                                        :disabled="false"
+                                        :validators="validators['comment_drillers_reference']"
+                                        name="comment_drillers_reference"
+                                        label="Description of Driller\'s Depth Reference Point"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['comment_drillers_reference']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['depth_water'] !== formModel['depth_water']}"
+                                        :disabled="false"
+                                        :validators="validators['depth_water']"
+                                        name="depth_water"
+                                        label="Water Depth [m]"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="Water Depth at Borehole Location"
+                                        v-model.number="formModel['depth_water']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisDateInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['start_date'] !== formModel['start_date']}"
+                                        :disabled="false"
+                                        :validators="validators['start_date']"
+                                        name="start_date"
+                                        label="Start Date"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="Start of Drilling Operations"
+                                        v-model="formModel['start_date']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisDateInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['end_date'] !== formModel['end_date']}"
+                                        :disabled="false"
+                                        :validators="validators['end_date']"
+                                        name="end_date"
+                                        label="End Date"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="End of Drilling Operations"
+                                        v-model="formModel['end_date']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['comment'] !== formModel['comment']}"
+                                        :disabled="false"
+                                        :validators="validators['comment']"
+                                        name="comment"
+                                        label="Additional Information"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['comment']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                        </v-layout>
+                        <v-layout wrap mb-3>
+                            <v-flex v-if="!'Spatial Reference System/Coordinates'.startsWith('-')" xs12 pl-2 pt-2 class="title">
+                                Spatial Reference System/Coordinates
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['longitude'] !== formModel['longitude']}"
+                                        :disabled="false"
+                                        :validators="validators['longitude']"
+                                        name="longitude"
+                                        label="Decimal Longitude [WGS84]"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model.number="formModel['longitude']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['latitude'] !== formModel['latitude']}"
+                                        :disabled="false"
+                                        :validators="validators['latitude']"
+                                        name="latitude"
+                                        label="Decimal Latitude [WGS84]"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model.number="formModel['latitude']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['coordinate_x'] !== formModel['coordinate_x']}"
+                                        :disabled="false"
+                                        :validators="validators['coordinate_x']"
+                                        name="coordinate_x"
+                                        label="Coordinate X"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="X-value According to Specified SRS"
+                                        v-model.number="formModel['coordinate_x']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['coordinate_y'] !== formModel['coordinate_y']}"
+                                        :disabled="false"
+                                        :validators="validators['coordinate_y']"
+                                        name="coordinate_y"
+                                        label="Coordinate Y"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="Y-value According to Specified SRS"
+                                        v-model.number="formModel['coordinate_y']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['spatial_reference_system'] !== formModel['spatial_reference_system']}"
+                                        :disabled="false"
+                                        :validators="validators['spatial_reference_system']"
+                                        name="spatial_reference_system"
+                                        label="Spatial Reference System (SRS)"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="If Possible use EPSG Code of SRS "
+                                        v-model="formModel['spatial_reference_system']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['comment_spatial_reference'] !== formModel['comment_spatial_reference']}"
+                                        :disabled="false"
+                                        :validators="validators['comment_spatial_reference']"
+                                        name="comment_spatial_reference"
+                                        label="Additional Information SRS"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['comment_spatial_reference']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                        </v-layout>
+                        <v-layout wrap mb-3>
+                            <v-flex v-if="!'Further Borehole Information'.startsWith('-')" xs12 pl-2 pt-2 class="title">
+                                Further Borehole Information
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisSelectInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['drilling_method'] !== formModel['drilling_method']}"
+                                        :disabled="false"
+                                        :validators="validators['drilling_method']"
+                                        name="drilling_method"
+                                        label="Applied Drilling Method"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        :selectSource="selectSources['drilling_method']"
+                                        multiple="true"
+                                        v-model="formModel['drilling_method']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['depth_drilled'] !== formModel['depth_drilled']}"
+                                        :disabled="true"
+                                        :validators="validators['depth_drilled']"
+                                        name="depth_drilled"
+                                        label="Total Drilled Depth Below Surface [mbs]"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="Sea/Lake Operations: Below Sea/Lake Floor [mbsf, mblf]"
+                                        v-model.number="formModel['depth_drilled']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['total_cored_length'] !== formModel['total_cored_length']}"
+                                        :disabled="true"
+                                        :validators="validators['total_cored_length']"
+                                        name="total_cored_length"
+                                        label="Total Cored Length [m]"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="Total Length of Drilled Core"
+                                        v-model="formModel['total_cored_length']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['total_core_recovery'] !== formModel['total_core_recovery']}"
+                                        :disabled="true"
+                                        :validators="validators['total_core_recovery']"
+                                        name="total_core_recovery"
+                                        label="Total Core Recovery [%]"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['total_core_recovery']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisSelectInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['direction'] !== formModel['direction']}"
+                                        :disabled="false"
+                                        :validators="validators['direction']"
+                                        name="direction"
+                                        label="Compass Direction of Inclination"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        :selectSource="selectSources['direction']"
+                                        hint="Inclination: Intended or deviated "
+                                        v-model="formModel['direction']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['inclination'] !== formModel['inclination']}"
+                                        :disabled="false"
+                                        :validators="validators['inclination']"
+                                        name="inclination"
+                                        label="Inclination [°]"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="Degree of Borehole Inclination"
+                                        v-model="formModel['inclination']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                        </v-layout>
+                        <v-layout wrap mb-3>
+                            <v-flex v-if="!'Identifiers'.startsWith('-')" xs12 pl-2 pt-2 class="title">
+                                Identifiers
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['igsn'] !== formModel['igsn']}"
+                                        :disabled="true"
+                                        :validators="validators['igsn']"
+                                        name="igsn"
+                                        label="IGSN"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="(Only for viewing; automatically filled when saved)"
+                                        v-model="formModel['igsn']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['comment_identifier'] !== formModel['comment_identifier']}"
+                                        :disabled="false"
+                                        :validators="validators['comment_identifier']"
+                                        name="comment_identifier"
+                                        label="Additional Information"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="e.g. Alternative Identifiers used for Labeling "
+                                        v-model="formModel['comment_identifier']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                        </v-layout>
+                        <v-layout wrap mb-3>
+                            <v-flex v-if="!'Measurements in Borehole'.startsWith('-')" xs12 pl-2 pt-2 class="title">
+                                Measurements in Borehole
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisSelectInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['methods_in_hole'] !== formModel['methods_in_hole']}"
+                                        :disabled="false"
+                                        :validators="validators['methods_in_hole']"
+                                        name="methods_in_hole"
+                                        label="Measurements and Tests in Borehole"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        :selectSource="selectSources['methods_in_hole']"
+                                        :allowFreeInput="true"
+                                        hint="Measurements, Tests, Monitoring performed in the borehole"
+                                        multiple="true"
+                                        v-model="formModel['methods_in_hole']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                        </v-layout>
+                        <v-layout wrap mb-3>
+                            <v-flex v-if="!'Gear/Equipment that was deployed at the location (Event)'.startsWith('-')" xs12 pl-2 pt-2 class="title">
+                                Gear/Equipment that was deployed at the location (Event)
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisSelectInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['gear'] !== formModel['gear']}"
+                                        :disabled="false"
+                                        :validators="validators['gear']"
+                                        name="gear"
+                                        label="Equipment  - other than Drilling"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        :selectSource="selectSources['gear']"
+                                        :allowFreeInput="true"
+                                        hint="Gear/Equipment deployed at the location"
+                                        multiple="true"
+                                        v-model="formModel['gear']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                        </v-layout>
+                        <v-layout wrap mb-3>
+                            <v-flex v-if="!'Platform'.startsWith('-')" xs12 pl-2 pt-2 class="title">
+                                Platform
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisSelectInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['platform_type'] !== formModel['platform_type']}"
+                                        :disabled="false"
+                                        :validators="validators['platform_type']"
+                                        name="platform_type"
+                                        label="Platform Type"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        :selectSource="selectSources['platform_type']"
+                                        :allowFreeInput="true"
+                                        hint="according to ICDP/IODP naming convention"
+                                        v-model="formModel['platform_type']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['platform_operator'] !== formModel['platform_operator']}"
+                                        :disabled="false"
+                                        :validators="validators['platform_operator']"
+                                        name="platform_operator"
+                                        label="Platform Operator"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['platform_operator']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['platform_name'] !== formModel['platform_name']}"
+                                        :disabled="false"
+                                        :validators="validators['platform_name']"
+                                        name="platform_name"
+                                        label="Name of Platform"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="Name of drill Platform/Research Vessel"
+                                        v-model="formModel['platform_name']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['platform_manager'] !== formModel['platform_manager']}"
+                                        :disabled="false"
+                                        :validators="validators['platform_manager']"
+                                        name="platform_manager"
+                                        label="Platform Manager"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['platform_manager']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['platform_description'] !== formModel['platform_description']}"
+                                        :disabled="false"
+                                        :validators="validators['platform_description']"
+                                        name="platform_description"
+                                        label="Description of Platform"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['platform_description']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                        </v-layout>
+                        <v-layout wrap mb-3>
+                            <v-flex v-if="!'Repository'.startsWith('-')" xs12 pl-2 pt-2 class="title">
+                                Repository
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisSelectInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['repository_name'] !== formModel['repository_name']}"
+                                        :disabled="false"
+                                        :validators="validators['repository_name']"
+                                        name="repository_name"
+                                        label="Name of Repository / Repositories"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        :selectSource="selectSources['repository_name']"
+                                        :allowFreeInput="true"
+                                        multiple="true"
+                                        v-model="formModel['repository_name']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['comment_repository'] !== formModel['comment_repository']}"
+                                        :disabled="false"
+                                        :validators="validators['comment_repository']"
+                                        name="comment_repository"
+                                        label="Additional Information"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['comment_repository']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                        </v-layout>
+                        <v-layout wrap mb-3>
+                            <v-flex v-if="!'Moratorium'.startsWith('-')" xs12 pl-2 pt-2 class="title">
+                                Moratorium
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisDateInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['moratorium_start'] !== formModel['moratorium_start']}"
+                                        :disabled="false"
+                                        :validators="validators['moratorium_start']"
+                                        name="moratorium_start"
+                                        label="Start Date of Moratorium"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['moratorium_start']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisDateInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['moratorium_end'] !== formModel['moratorium_end']}"
+                                        :disabled="false"
+                                        :validators="validators['moratorium_end']"
+                                        name="moratorium_end"
+                                        label="End Date of Moratorium "
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['moratorium_end']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                        </v-layout>
+                </template>
+                <template v-slot:extra-form-actions="{ selectedItem, onSubFormClick, onSupFormClick }">
+                    <v-btn round class="c-dis-form__btn-sub-form" @click="onSubFormClick('core', subForms['core'])" color="indigo darken-4" dark :disabled="!selectedItem">
+                        core <v-icon>arrow_downward</v-icon>
+                    </v-btn>
+                    <v-btn round class="c-dis-form__btn-sub-form" @click="onSubFormClick('cuttings', subForms['cuttings'])" color="indigo darken-4" dark :disabled="!selectedItem">
+                        cuttings <v-icon>arrow_downward</v-icon>
+                    </v-btn>
+                    <v-btn round class="c-dis-form__btn-sup-form" @click="onSupFormClick('site', supForms['site'])" color="indigo darken-1" dark :disabled="!selectedItem">
+                        site <v-icon>arrow_upward</v-icon>
+                    </v-btn>
+                </template>
+            </dis-form>
+        </v-flex>
+    </v-container>
+</template>
+
+<script>
+export default {
+  name: 'HoleForm',
+  created () {
+    this.validators = {}
+    this.validators['hole'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['combined_id'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['hole_name'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['elevation'] = JSON.parse('[{"type":"number","min":null,"max":null}]')
+    this.validators['comment_elevation'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['drillers_reference_height'] = JSON.parse('[{"type":"required"},{"type":"number","min":null,"max":null}]')
+    this.validators['comment_drillers_reference'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['depth_water'] = JSON.parse('[{"type":"number","min":null,"max":null}]')
+    this.validators['start_date'] = JSON.parse('[{"type":"required"}]')
+    this.validators['end_date'] = JSON.parse('[]')
+    this.validators['comment'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['longitude'] = JSON.parse('[{"type":"number","min":null,"max":null}]')
+    this.validators['latitude'] = JSON.parse('[{"type":"number","min":null,"max":null}]')
+    this.validators['coordinate_x'] = JSON.parse('[{"type":"number","min":null,"max":null}]')
+    this.validators['coordinate_y'] = JSON.parse('[{"type":"number","min":null,"max":null}]')
+    this.validators['spatial_reference_system'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['comment_spatial_reference'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['drilling_method'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['depth_drilled'] = JSON.parse('[{"type":"number","min":null,"max":null}]')
+    this.validators['total_cored_length'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['total_core_recovery'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['direction'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['inclination'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['igsn'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['comment_identifier'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['methods_in_hole'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['gear'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['platform_type'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['platform_operator'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['platform_name'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['platform_manager'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['platform_description'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['repository_name'] = JSON.parse('[{"type":"required"},{"type":"string","min":null,"max":null}]')
+    this.validators['comment_repository'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['moratorium_start'] = JSON.parse('[]')
+    this.validators['moratorium_end'] = JSON.parse('[]')
+    this.selectSources = {}
+    this.selectSources['drilling_method'] = JSON.parse('{"type":"list","listName":"DRILLING_METHOD","textField":"remark","valueField":"display"}')
+    this.selectSources['direction'] = JSON.parse('{"type":"list","listName":"DIRECTION_INCLINATION","textField":"remark","valueField":"display"}')
+    this.selectSources['methods_in_hole'] = JSON.parse('{"type":"api","listName":"HOLE_MEASUREMENTS","textField":"method_short","valueField":"method_short","model":"AuxiliaryTablesSurveyTools"}')
+    this.selectSources['gear'] = JSON.parse('{"type":"list","listName":"GEAR_EVENT","textField":"remark","valueField":"display"}')
+    this.selectSources['platform_type'] = JSON.parse('{"type":"list","listName":"PLATFORM_TYPE","textField":"remark","valueField":"display"}')
+    this.selectSources['repository_name'] = JSON.parse('{"type":"api","listName":"RE","textField":"contact_person","valueField":"repository_name_abbreviation","model":"ContactRepository"}')
+    this.calculatedFields = {}
+    this.simpleFields = JSON.parse('[{"name":"hole","label":"Hole Identifier","description":"(ICDP: one character A - Z)","group":"Wellhole Details","order":0,"inputType":"text","searchable":true},{"name":"combined_id","label":"Combined ID ","description":"Combined ID for Borehole","group":"Wellhole Details","order":1,"inputType":"text","searchable":true},{"name":"hole_name","label":"Name of Hole ","description":"If any Additional Name was Given","group":"Wellhole Details","order":2,"inputType":"text","searchable":true},{"name":"elevation","label":"Elevation of Permanent Depth Reference [m]","description":"Height above Sea Level ","group":"Wellhole Details","order":3,"inputType":"text","searchable":true},{"name":"comment_elevation","label":"Description of Permanent Depth Reference","description":"","group":"Wellhole Details","order":4,"inputType":"text","searchable":true},{"name":"drillers_reference_height","label":"Height of Driller's Reference Point [m]","description":"Height above Ground\/Seafloor","group":"Wellhole Details","order":5,"inputType":"text","searchable":true},{"name":"comment_drillers_reference","label":"Description of Driller's Depth Reference Point","description":"","group":"Wellhole Details","order":6,"inputType":"text","searchable":true},{"name":"depth_water","label":"Water Depth [m]","description":"Water Depth at Borehole Location","group":"Wellhole Details","order":7,"inputType":"text","searchable":true},{"name":"start_date","label":"Start Date","description":"Start of Drilling Operations","group":"Wellhole Details","order":8,"inputType":"date","searchable":true},{"name":"end_date","label":"End Date","description":"End of Drilling Operations","group":"Wellhole Details","order":9,"inputType":"date","searchable":true},{"name":"comment","label":"Additional Information","description":"","group":"Wellhole Details","order":10,"inputType":"text","searchable":true},{"name":"longitude","label":"Decimal Longitude [WGS84]","description":"","group":"Spatial Reference System\/Coordinates","order":0,"inputType":"text","searchable":true},{"name":"latitude","label":"Decimal Latitude [WGS84]","description":"","group":"Spatial Reference System\/Coordinates","order":1,"inputType":"text","searchable":true},{"name":"coordinate_x","label":"Coordinate X","description":"X-value According to Specified SRS","group":"Spatial Reference System\/Coordinates","order":2,"inputType":"text","searchable":true},{"name":"coordinate_y","label":"Coordinate Y","description":"Y-value According to Specified SRS","group":"Spatial Reference System\/Coordinates","order":3,"inputType":"text","searchable":true},{"name":"spatial_reference_system","label":"Spatial Reference System (SRS)","description":"If Possible use EPSG Code of SRS ","group":"Spatial Reference System\/Coordinates","order":4,"inputType":"text","searchable":true},{"name":"comment_spatial_reference","label":"Additional Information SRS","description":"","group":"Spatial Reference System\/Coordinates","order":5,"inputType":"text","searchable":true},{"name":"drilling_method","label":"Applied Drilling Method","description":"","group":"Further Borehole Information","order":0,"inputType":"select","searchable":true},{"name":"depth_drilled","label":"Total Drilled Depth Below Surface [mbs]","description":"Sea\/Lake Operations: Below Sea\/Lake Floor [mbsf, mblf]","group":"Further Borehole Information","order":1,"inputType":"text","searchable":false},{"name":"total_cored_length","label":"Total Cored Length [m]","description":"Total Length of Drilled Core","group":"Further Borehole Information","order":2,"inputType":"text","searchable":false},{"name":"total_core_recovery","label":"Total Core Recovery [%]","description":"","group":"Further Borehole Information","order":3,"inputType":"text","searchable":false},{"name":"direction","label":"Compass Direction of Inclination","description":"Inclination: Intended or deviated ","group":"Further Borehole Information","order":4,"inputType":"select","searchable":true},{"name":"inclination","label":"Inclination [°]","description":"Degree of Borehole Inclination","group":"Further Borehole Information","order":5,"inputType":"text","searchable":true},{"name":"igsn","label":"IGSN","description":"(Only for viewing; automatically filled when saved)","group":"Identifiers","order":0,"inputType":"text","searchable":true},{"name":"comment_identifier","label":"Additional Information","description":"e.g. Alternative Identifiers used for Labeling ","group":"Identifiers","order":1,"inputType":"text","searchable":true},{"name":"methods_in_hole","label":"Measurements and Tests in Borehole","description":"Measurements, Tests, Monitoring performed in the borehole","group":"Measurements in Borehole","order":0,"inputType":"select","searchable":true},{"name":"gear","label":"Equipment  - other than Drilling","description":"Gear\/Equipment deployed at the location","group":"Gear\/Equipment that was deployed at the location (Event)","order":0,"inputType":"select","searchable":true},{"name":"platform_type","label":"Platform Type","description":"according to ICDP\/IODP naming convention","group":"Platform","order":0,"inputType":"select","searchable":true},{"name":"platform_operator","label":"Platform Operator","description":"","group":"Platform","order":1,"inputType":"text","searchable":true},{"name":"platform_name","label":"Name of Platform","description":"Name of drill Platform\/Research Vessel","group":"Platform","order":2,"inputType":"text","searchable":true},{"name":"platform_manager","label":"Platform Manager","description":"","group":"Platform","order":3,"inputType":"text","searchable":true},{"name":"platform_description","label":"Description of Platform","description":"","group":"Platform","order":4,"inputType":"text","searchable":true},{"name":"repository_name","label":"Name of Repository \/ Repositories","description":"","group":"Repository","order":0,"inputType":"select","searchable":true},{"name":"comment_repository","label":"Additional Information","description":"","group":"Repository","order":1,"inputType":"text","searchable":true},{"name":"moratorium_start","label":"Start Date of Moratorium","description":"","group":"Moratorium","order":0,"inputType":"date","searchable":true},{"name":"moratorium_end","label":"End Date of Moratorium ","description":"","group":"Moratorium","order":1,"inputType":"date","searchable":true}]')
+    this.requiredFilters = JSON.parse('[{"value":"site","as":"site_id","skipOnEmpty":false}]')
+    this.subForms = JSON.parse('{"core":{"buttonLabel":"core","url":"/forms/core-form","filter":[{"unit":"expedition","fromField":"expedition_id"},{"unit":"site","fromField":"site_id"},{"unit":"hole","fromField":"id"}]},"cuttings":{"buttonLabel":"cuttings","url":"/forms/cuttings-form","filter":[{"unit":"expedition","fromField":"expedition_id"},{"unit":"site","fromField":"site_id"},{"unit":"hole","fromField":"id"}]}}')
+    this.supForms = JSON.parse('{"site":{"buttonLabel":"site","url":"/forms/site-form","parentIdField":"site_id","filter":[{"unit":"expedition","fromField":"expedition_id"}]}}')
+    this.filterDataModels = JSON.parse('{"expedition":{"model":"ProjectExpedition","value":"id","text":"exp_acronym","ref":"expedition_id"},"site":{"model":"ProjectSite","value":"id","text":"site","ref":"site_id","require":{"value":"expedition","as":"expedition_id"}}}')
+  }
+}
+</script>
+
+<style scoped>
+
+</style>

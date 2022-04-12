@@ -1,0 +1,263 @@
+<template>
+    <v-container fluid>
+        <v-flex align-start>
+            <h2>Expedition</h2>
+            <dis-form ref="disForm" formName="expedition" dataModel="ProjectExpedition" :fields="simpleFields" :requiredFilters="requiredFilters" :filterDataModels="filterDataModels" :calculatedFields="calculatedFields">
+                <template v-slot:form-fields="{fields, hasNumberValidator, getInputComponent, formScenario, selectedItem, formModel, serverValidationErrors}">
+                        <v-layout wrap mb-3>
+                            <v-flex v-if="!'Expedition Details'.startsWith('-')" xs12 pl-2 pt-2 class="title">
+                                Expedition Details
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['expedition'] !== formModel['expedition']}"
+                                        :disabled="false"
+                                        :validators="validators['expedition']"
+                                        name="expedition"
+                                        label="Expedition Code"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="Used in Combined ID; for ICDP Projects: 4 digits"
+                                        v-model="formModel['expedition']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['exp_acronym'] !== formModel['exp_acronym']}"
+                                        :disabled="false"
+                                        :validators="validators['exp_acronym']"
+                                        name="exp_acronym"
+                                        label="Expedition Acronym"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['exp_acronym']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['exp_name'] !== formModel['exp_name']}"
+                                        :disabled="false"
+                                        :validators="validators['exp_name']"
+                                        name="exp_name"
+                                        label="Full Expedition/Project Name"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['exp_name']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['exp_name_alt'] !== formModel['exp_name_alt']}"
+                                        :disabled="false"
+                                        :validators="validators['exp_name_alt']"
+                                        name="exp_name_alt"
+                                        label="Alternative Name of Expedition"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['exp_name_alt']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisDateInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['start_date'] !== formModel['start_date']}"
+                                        :disabled="false"
+                                        :validators="validators['start_date']"
+                                        name="start_date"
+                                        label="Start of Expedition"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['start_date']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisDateInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['end_date'] !== formModel['end_date']}"
+                                        :disabled="false"
+                                        :validators="validators['end_date']"
+                                        name="end_date"
+                                        label="End of Expedition"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['end_date']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisSelectInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['chief_scientists'] !== formModel['chief_scientists']}"
+                                        :disabled="false"
+                                        :validators="validators['chief_scientists']"
+                                        name="chief_scientists"
+                                        label="List of Chief Scientists"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        :selectSource="selectSources['chief_scientists']"
+                                        hint="PIs of Project/Expedition (maximum 4)"
+                                        multiple="true"
+                                        v-model="formModel['chief_scientists']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisSelectInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['contact'] !== formModel['contact']}"
+                                        :disabled="false"
+                                        :validators="validators['contact']"
+                                        name="contact"
+                                        label="Contact Person\'s Email"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        :selectSource="selectSources['contact']"
+                                        hint="Email of Contact "
+                                        v-model="formModel['contact']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisSelectInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['funding_agency'] !== formModel['funding_agency']}"
+                                        :disabled="false"
+                                        :validators="validators['funding_agency']"
+                                        name="funding_agency"
+                                        label="Funding Agencies"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        :selectSource="selectSources['funding_agency']"
+                                        hint="List of Funding Organizations"
+                                        multiple="true"
+                                        v-model="formModel['funding_agency']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['comment'] !== formModel['comment']}"
+                                        :disabled="false"
+                                        :validators="validators['comment']"
+                                        name="comment"
+                                        label="Additional Information"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        v-model="formModel['comment']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                        </v-layout>
+                        <v-layout wrap mb-3>
+                            <v-flex v-if="!'Expedition Location'.startsWith('-')" xs12 pl-2 pt-2 class="title">
+                                Expedition Location
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisSelectInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['country'] !== formModel['country']}"
+                                        :disabled="false"
+                                        :validators="validators['country']"
+                                        name="country"
+                                        label="Country"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        :selectSource="selectSources['country']"
+                                        hint="Country/Countries where Drill Sites are Located"
+                                        multiple="true"
+                                        v-model="formModel['country']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                        </v-layout>
+                        <v-layout wrap mb-3>
+                            <v-flex v-if="!'Scientific Information'.startsWith('-')" xs12 pl-2 pt-2 class="title">
+                                Scientific Information
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisSelectInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['geological_age'] !== formModel['geological_age']}"
+                                        :disabled="false"
+                                        :validators="validators['geological_age']"
+                                        name="geological_age"
+                                        label="Geological Age"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        :selectSource="selectSources['geological_age']"
+                                        hint="Geological Eon/Era/Period of Drilled Rocks/Sediments"
+                                        multiple="true"
+                                        v-model="formModel['geological_age']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisSelectInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['rock_classification'] !== formModel['rock_classification']}"
+                                        :disabled="false"
+                                        :validators="validators['rock_classification']"
+                                        name="rock_classification"
+                                        label="Rock Classification"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        :selectSource="selectSources['rock_classification']"
+                                        hint="Classification following SESAR vocabulary"
+                                        multiple="true"
+                                        v-model="formModel['rock_classification']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisTextareaInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['objectives'] !== formModel['objectives']}"
+                                        :disabled="false"
+                                        :validators="validators['objectives']"
+                                        name="objectives"
+                                        label="Objectives of the Expedition/Project"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        hint="E.g., Objectives Listed in Proposal"
+                                        v-model="formModel['objectives']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                            <v-flex lg2 md3 sm6 xs12 pr-2 pl-2>
+                                <DisSelectInput
+                                        :class="{'c-dis-form__input': true, 'c-dis-form__input--modified': formScenario === 'edit' && selectedItem['keywords'] !== formModel['keywords']}"
+                                        :disabled="false"
+                                        :validators="validators['keywords']"
+                                        name="keywords"
+                                        label="Keywords"
+                                        :serverValidationErrors="serverValidationErrors"
+                                        :selectSource="selectSources['keywords']"
+                                        hint="Keywords other than Geological Age"
+                                        multiple="true"
+                                        v-model="formModel['keywords']"
+                                        :readonly="formScenario === 'view'"/>
+                            </v-flex>
+                        </v-layout>
+                </template>
+                <template v-slot:extra-form-actions="{ selectedItem, onSubFormClick, onSupFormClick }">
+                    <v-btn round class="c-dis-form__btn-sub-form" @click="onSubFormClick('site', subForms['site'])" color="indigo darken-4" dark :disabled="!selectedItem">
+                        site <v-icon>arrow_downward</v-icon>
+                    </v-btn>
+                    <v-btn round class="c-dis-form__btn-sup-form" @click="onSupFormClick('program', supForms['program'])" color="indigo darken-1" dark :disabled="!selectedItem">
+                        program <v-icon>arrow_upward</v-icon>
+                    </v-btn>
+                </template>
+            </dis-form>
+        </v-flex>
+    </v-container>
+</template>
+
+<script>
+export default {
+  name: 'ExpeditionForm',
+  created () {
+    this.validators = {}
+    this.validators['expedition'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['exp_acronym'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['exp_name'] = JSON.parse('[{"type":"required"},{"type":"string","min":null,"max":null}]')
+    this.validators['exp_name_alt'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['start_date'] = JSON.parse('[{"type":"required"}]')
+    this.validators['end_date'] = JSON.parse('[]')
+    this.validators['chief_scientists'] = JSON.parse('[{"type":"required"},{"type":"string","min":null,"max":null}]')
+    this.validators['contact'] = JSON.parse('[{"type":"required"},{"type":"string","min":null,"max":null}]')
+    this.validators['funding_agency'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['comment'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['country'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['geological_age'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['rock_classification'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.validators['objectives'] = JSON.parse('[]')
+    this.validators['keywords'] = JSON.parse('[{"type":"string","min":null,"max":null}]')
+    this.selectSources = {}
+    this.selectSources['chief_scientists'] = JSON.parse('{"type":"api","listName":"","textField":"first_name","valueField":"last_name","model":"ContactPerson"}')
+    this.selectSources['contact'] = JSON.parse('{"type":"api","listName":"","textField":"last_name","valueField":"email","model":"ContactPerson"}')
+    this.selectSources['funding_agency'] = JSON.parse('{"type":"list","listName":"FUNDING_AGENCIES","textField":"remark","valueField":"display"}')
+    this.selectSources['country'] = JSON.parse('{"type":"list","listName":"COUNTRIES","textField":"remark","valueField":"display"}')
+    this.selectSources['geological_age'] = JSON.parse('{"type":"list","listName":"GEOLOGICAL_AGE","textField":"remark","valueField":"display"}')
+    this.selectSources['rock_classification'] = JSON.parse('{"type":"list","listName":"ROCK_CLASS_OVERVIEW","textField":"remark","valueField":"display"}')
+    this.selectSources['keywords'] = JSON.parse('{"type":"list","listName":"KEYWORDS","textField":"remark","valueField":"display"}')
+    this.calculatedFields = {}
+    this.simpleFields = JSON.parse('[{"name":"expedition","label":"Expedition Code","description":"Used in Combined ID; for ICDP Projects: 4 digits","group":"Expedition Details","order":0,"inputType":"text","searchable":true},{"name":"exp_acronym","label":"Expedition Acronym","description":"","group":"Expedition Details","order":1,"inputType":"text","searchable":true},{"name":"exp_name","label":"Full Expedition\/Project Name","description":"","group":"Expedition Details","order":2,"inputType":"text","searchable":true},{"name":"exp_name_alt","label":"Alternative Name of Expedition","description":"","group":"Expedition Details","order":3,"inputType":"text","searchable":true},{"name":"start_date","label":"Start of Expedition","description":"","group":"Expedition Details","order":4,"inputType":"date","searchable":true},{"name":"end_date","label":"End of Expedition","description":"","group":"Expedition Details","order":5,"inputType":"date","searchable":true},{"name":"chief_scientists","label":"List of Chief Scientists","description":"PIs of Project\/Expedition (maximum 4)","group":"Expedition Details","order":6,"inputType":"select","searchable":true},{"name":"contact","label":"Contact Person's Email","description":"Email of Contact ","group":"Expedition Details","order":7,"inputType":"select","searchable":true},{"name":"funding_agency","label":"Funding Agencies","description":"List of Funding Organizations","group":"Expedition Details","order":8,"inputType":"select","searchable":true},{"name":"comment","label":"Additional Information","description":"","group":"Expedition Details","order":9,"inputType":"text","searchable":true},{"name":"country","label":"Country","description":"Country\/Countries where Drill Sites are Located","group":"Expedition Location","order":0,"inputType":"select","searchable":true},{"name":"geological_age","label":"Geological Age","description":"Geological Eon\/Era\/Period of Drilled Rocks\/Sediments","group":"Scientific Information","order":0,"inputType":"select","searchable":true},{"name":"rock_classification","label":"Rock Classification","description":"Classification following SESAR vocabulary","group":"Scientific Information","order":1,"inputType":"select","searchable":true},{"name":"objectives","label":"Objectives of the Expedition\/Project","description":"E.g., Objectives Listed in Proposal","group":"Scientific Information","order":2,"inputType":"textarea","searchable":true},{"name":"keywords","label":"Keywords","description":"Keywords other than Geological Age","group":"Scientific Information","order":3,"inputType":"select","searchable":true}]')
+    this.requiredFilters = JSON.parse('[{"value":"program","as":"program_id","skipOnEmpty":false}]')
+    this.subForms = JSON.parse('{"site":{"buttonLabel":"site","url":"/forms/site-form","filter":[{"unit":"expedition","fromField":"id"}]}}')
+    this.supForms = JSON.parse('{"program":{"buttonLabel":"program","url":"/forms/program-form","parentIdField":"program_id","filter":[]}}')
+    this.filterDataModels = JSON.parse('{"program":{"model":"ProjectProgram","value":"id","text":"program_name","ref":"program_id"}}')
+  }
+}
+</script>
+
+<style scoped>
+
+</style>

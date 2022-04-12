@@ -1,0 +1,177 @@
+{
+    "name": "storage",
+    "dataModel": "CurationStorage",
+    "fields": [
+        {
+            "name": "storage",
+            "label": "Storage",
+            "description": "",
+            "validators": [
+                {
+                    "type": "required"
+                },
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Storage Information",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "parent_id",
+            "label": "parent",
+            "description": "",
+            "validators": [
+                {
+                    "type": "number",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "api",
+                    "listName": "",
+                    "textField": "combined_id",
+                    "valueField": "id",
+                    "model": "CurationStorage"
+                },
+                "allowFreeInput": false,
+                "multiple": false,
+                "jsCalculate": ""
+            },
+            "group": "Storage Information",
+            "order": 1,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "combined_id",
+            "label": "Combined Id",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Storage Information",
+            "order": 2,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "type",
+            "label": "Type",
+            "description": "",
+            "validators": [
+                {
+                    "type": "required"
+                },
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "list",
+                    "listName": "STORAGE_TYPE",
+                    "textField": "remark",
+                    "valueField": "display"
+                },
+                "allowFreeInput": false,
+                "multiple": false,
+                "jsCalculate": ""
+            },
+            "group": "Storage Information",
+            "order": 3,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "comment",
+            "label": "Additional Information",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string"
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Storage Information",
+            "order": 4,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "exp_acronym",
+            "label": "Expedition Acronym",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string"
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Storage Information",
+            "order": 5,
+            "formatter": null,
+            "searchable": true
+        }
+    ],
+    "subForms": [],
+    "supForms": [],
+    "createdAt": 1608028857,
+    "modifiedAt": 1638524642,
+    "generatedAt": 1638524647,
+    "filterDataModels": {
+        "parent": {
+            "model": "CurationStorage",
+            "value": "id",
+            "text": "storage",
+            "ref": "parent_id"
+        }
+    },
+    "requiredFilters": [
+        {
+            "value": "parent",
+            "as": "parent_id",
+            "skipOnEmpty": true
+        }
+    ]
+}

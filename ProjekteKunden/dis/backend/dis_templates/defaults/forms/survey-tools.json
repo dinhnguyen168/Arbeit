@@ -1,0 +1,104 @@
+{
+    "name": "survey-tools",
+    "dataModel": "AuxiliaryTablesSurveyTools",
+    "fields": [
+        {
+            "name": "method_short",
+            "label": "Method",
+            "description": "Short name for method as used by the tool's owner",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Survey Overview",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "tool_name",
+            "label": "Name of Tool",
+            "description": "Name of the tool as used by the tool's owner",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Survey Overview",
+            "order": 1,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "owner_contact_organisation_id",
+            "label": "Owner",
+            "description": "Name of the organisation that owns/operates the tool",
+            "validators": [],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "one_relation",
+                    "listName": "",
+                    "textField": "organisation_name",
+                    "valueField": "id",
+                    "model": "ContactOrganisation"
+                },
+                "allowFreeInput": false,
+                "multiple": false,
+                "jsCalculate": ""
+            },
+            "group": "Survey Overview",
+            "order": 2,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "comment",
+            "label": "Additional Information",
+            "description": "Additional information on the tool/method",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Survey Overview",
+            "order": 3,
+            "formatter": null,
+            "searchable": true
+        }
+    ],
+    "subForms": [],
+    "supForms": [],
+    "createdAt": 1639124376,
+    "modifiedAt": 1644411062,
+    "generatedAt": 1644411065,
+    "filterDataModels": [],
+    "requiredFilters": []
+}

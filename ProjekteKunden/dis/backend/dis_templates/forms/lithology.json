@@ -1,0 +1,450 @@
+{
+    "name": "lithology",
+    "dataModel": "GeologyLithology",
+    "fields": [
+        {
+            "name": "split_combined_id",
+            "label": "Split Combined ID",
+            "description": "(filled automatically when saved; viewing only)",
+            "validators": [],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "General Information",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "section_length",
+            "label": "Length of Section [m]",
+            "description": "(viewing only)",
+            "validators": [
+                {
+                    "type": "number",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "General Information",
+            "order": 1,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "litho_unit",
+            "label": "Lithological Unit ",
+            "description": "Code/Abbreviation of Lithological Unit",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "api",
+                    "listName": "",
+                    "textField": "lithological_unit_name",
+                    "valueField": "lithological_unit",
+                    "model": "GeologyLithoUnits"
+                },
+                "allowFreeInput": false,
+                "multiple": false,
+                "jsCalculate": ""
+            },
+            "group": "General Information",
+            "order": 2,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "top_depth",
+            "label": "Unit Top Depth [cm]",
+            "description": "Distance from Section Top",
+            "validators": [
+                {
+                    "type": "number",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "General Information",
+            "order": 3,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "unit_length",
+            "label": "Unit Length [cm]",
+            "description": "Length of Lithological Unit",
+            "validators": [
+                {
+                    "type": "number",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "General Information",
+            "order": 4,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "bottom_depth",
+            "label": "Unit Bottom Depth [cm]",
+            "description": "Distance from Section Top; calculated",
+            "validators": [
+                {
+                    "type": "number",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "= [top_depth] + [unit_length]",
+                "jsCalculate": " this.formModel['top_depth'] + this.formModel['unit_length']"
+            },
+            "group": "General Information",
+            "order": 5,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "curator",
+            "label": "Curator",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "api",
+                    "listName": "",
+                    "textField": "last_name",
+                    "valueField": "person_acronym",
+                    "model": "ContactPerson"
+                },
+                "allowFreeInput": false,
+                "multiple": true,
+                "jsCalculate": ""
+            },
+            "group": "General Information",
+            "order": 6,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "rock_class",
+            "label": "Rock Class",
+            "description": "",
+            "validators": [
+                {
+                    "type": "required"
+                },
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "list",
+                    "listName": "ROCK_CLASS_CTRL",
+                    "textField": "remark",
+                    "valueField": "display"
+                },
+                "allowFreeInput": false,
+                "multiple": false,
+                "jsCalculate": ""
+            },
+            "group": "General Lithology",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "rock_type",
+            "label": "Type of Lithology",
+            "description": "http://resource.geosciml.org/classifier/cgi/lithology",
+            "validators": [
+                {
+                    "type": "required"
+                },
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "list",
+                    "listName": "ROCK_TYPE",
+                    "textField": "remark",
+                    "valueField": "display"
+                },
+                "allowFreeInput": false,
+                "multiple": true,
+                "jsCalculate": ""
+            },
+            "group": "General Lithology",
+            "order": 1,
+            "formatter": "this.$value.toString()",
+            "searchable": true
+        },
+        {
+            "name": "color",
+            "label": "Primary Color",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "list",
+                    "listName": "COLOR_MUNSELL_GEOL",
+                    "textField": "remark",
+                    "valueField": "display"
+                },
+                "allowFreeInput": false,
+                "multiple": true,
+                "jsCalculate": ""
+            },
+            "group": "General Lithology",
+            "order": 2,
+            "formatter": "this.$value.toString()",
+            "searchable": true
+        },
+        {
+            "name": "composition",
+            "label": "Composition",
+            "description": "http://resource.geosciml.org/classifier/cgi/compositioncategory",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "list",
+                    "listName": "COMPOSITION",
+                    "textField": "remark",
+                    "valueField": "display"
+                },
+                "allowFreeInput": false,
+                "multiple": true,
+                "jsCalculate": ""
+            },
+            "group": "General Lithology",
+            "order": 3,
+            "formatter": "this.$value.toString()",
+            "searchable": true
+        },
+        {
+            "name": "description",
+            "label": "Description",
+            "description": "Short Lithological Description",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "textarea",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "General Lithology",
+            "order": 4,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "mcd_bottom_depth_unit",
+            "label": "MCD Bottom Depth Unit [m]",
+            "description": "",
+            "validators": [],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "MCD Depth",
+            "order": 0,
+            "formatter": null,
+            "searchable": false
+        },
+        {
+            "name": "mcd_top_depth_unit",
+            "label": "MCD Top Depth Unit [m]",
+            "description": "",
+            "validators": [],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "MCD Depth",
+            "order": 1,
+            "formatter": null,
+            "searchable": false
+        }
+    ],
+    "subForms": [],
+    "supForms": {
+        "split": {
+            "buttonLabel": "split",
+            "url": "/forms/split-form",
+            "parentIdField": "sectionSplit_id",
+            "filter": [
+                {
+                    "unit": "expedition",
+                    "fromField": "expedition_id"
+                },
+                {
+                    "unit": "site",
+                    "fromField": "site_id"
+                },
+                {
+                    "unit": "hole",
+                    "fromField": "hole_id"
+                },
+                {
+                    "unit": "core",
+                    "fromField": "core_id"
+                },
+                {
+                    "unit": "section",
+                    "fromField": "section_id"
+                }
+            ]
+        }
+    },
+    "createdAt": 1589368153,
+    "modifiedAt": 1634891528,
+    "generatedAt": 1634891530,
+    "filterDataModels": {
+        "expedition": {
+            "model": "ProjectExpedition",
+            "value": "id",
+            "text": "acr",
+            "ref": "expedition_id"
+        },
+        "site": {
+            "model": "ProjectSite",
+            "value": "id",
+            "text": "site",
+            "ref": "site_id",
+            "require": {
+                "value": "expedition",
+                "as": "expedition_id"
+            }
+        },
+        "hole": {
+            "model": "ProjectHole",
+            "value": "id",
+            "text": "hole",
+            "ref": "hole_id",
+            "require": {
+                "value": "site",
+                "as": "site_id"
+            }
+        },
+        "core": {
+            "model": "CoreCore",
+            "value": "id",
+            "text": "core",
+            "ref": "core_id",
+            "require": {
+                "value": "hole",
+                "as": "hole_id"
+            }
+        },
+        "section": {
+            "model": "CoreSection",
+            "value": "id",
+            "text": "section",
+            "ref": "section_id",
+            "require": {
+                "value": "core",
+                "as": "core_id"
+            }
+        },
+        "sectionSplit": {
+            "model": "CurationSectionSplit",
+            "value": "id",
+            "text": "type",
+            "ref": "section_split_id",
+            "require": {
+                "value": "section",
+                "as": "section_id"
+            }
+        }
+    },
+    "requiredFilters": [
+        {
+            "value": "sectionSplit",
+            "as": "section_split_id",
+            "skipOnEmpty": false
+        }
+    ]
+}

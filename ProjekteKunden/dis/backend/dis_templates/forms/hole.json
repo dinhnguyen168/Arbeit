@@ -1,0 +1,913 @@
+{
+    "name": "hole",
+    "dataModel": "ProjectHole",
+    "fields": [
+        {
+            "name": "hole",
+            "label": "Hole Identifier",
+            "description": "(ICDP: one character A - Z)",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Wellhole Details",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "combined_id",
+            "label": "Combined ID ",
+            "description": "Combined ID for Borehole",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Wellhole Details",
+            "order": 1,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "hole_name",
+            "label": "Name of Hole ",
+            "description": "If any Additional Name was Given",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Wellhole Details",
+            "order": 2,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "elevation",
+            "label": "Elevation of Permanent Depth Reference [m]",
+            "description": "Height above Sea Level ",
+            "validators": [
+                {
+                    "type": "number",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Wellhole Details",
+            "order": 3,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "comment_elevation",
+            "label": "Description of Permanent Depth Reference",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Wellhole Details",
+            "order": 4,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "drillers_reference_height",
+            "label": "Height of Driller's Reference Point [m]",
+            "description": "Height above Ground/Seafloor",
+            "validators": [
+                {
+                    "type": "required"
+                },
+                {
+                    "type": "number",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Wellhole Details",
+            "order": 5,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "comment_drillers_reference",
+            "label": "Description of Driller's Depth Reference Point",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Wellhole Details",
+            "order": 6,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "depth_water",
+            "label": "Water Depth [m]",
+            "description": "Water Depth at Borehole Location",
+            "validators": [
+                {
+                    "type": "number",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Wellhole Details",
+            "order": 7,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "start_date",
+            "label": "Start Date",
+            "description": "Start of Drilling Operations",
+            "validators": [
+                {
+                    "type": "required"
+                }
+            ],
+            "formInput": {
+                "type": "date",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Wellhole Details",
+            "order": 8,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "end_date",
+            "label": "End Date",
+            "description": "End of Drilling Operations",
+            "validators": [],
+            "formInput": {
+                "type": "date",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Wellhole Details",
+            "order": 9,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "comment",
+            "label": "Additional Information",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Wellhole Details",
+            "order": 10,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "longitude",
+            "label": "Decimal Longitude [WGS84]",
+            "description": "",
+            "validators": [
+                {
+                    "type": "number",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Spatial Reference System/Coordinates",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "latitude",
+            "label": "Decimal Latitude [WGS84]",
+            "description": "",
+            "validators": [
+                {
+                    "type": "number",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Spatial Reference System/Coordinates",
+            "order": 1,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "coordinate_x",
+            "label": "Coordinate X",
+            "description": "X-value According to Specified SRS",
+            "validators": [
+                {
+                    "type": "number",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Spatial Reference System/Coordinates",
+            "order": 2,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "coordinate_y",
+            "label": "Coordinate Y",
+            "description": "Y-value According to Specified SRS",
+            "validators": [
+                {
+                    "type": "number",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Spatial Reference System/Coordinates",
+            "order": 3,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "spatial_reference_system",
+            "label": "Spatial Reference System (SRS)",
+            "description": "If Possible use EPSG Code of SRS ",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Spatial Reference System/Coordinates",
+            "order": 4,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "comment_spatial_reference",
+            "label": "Additional Information SRS",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Spatial Reference System/Coordinates",
+            "order": 5,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "drilling_method",
+            "label": "Applied Drilling Method",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "list",
+                    "listName": "DRILLING_METHOD",
+                    "textField": "remark",
+                    "valueField": "display"
+                },
+                "allowFreeInput": false,
+                "multiple": true,
+                "jsCalculate": ""
+            },
+            "group": "Further Borehole Information",
+            "order": 0,
+            "formatter": "this.$value.toString()",
+            "searchable": true
+        },
+        {
+            "name": "depth_drilled",
+            "label": "Total Drilled Depth Below Surface [mbs]",
+            "description": "Sea/Lake Operations: Below Sea/Lake Floor [mbsf, mblf]",
+            "validators": [
+                {
+                    "type": "number",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Further Borehole Information",
+            "order": 1,
+            "formatter": null,
+            "searchable": false
+        },
+        {
+            "name": "total_cored_length",
+            "label": "Total Cored Length [m]",
+            "description": "Total Length of Drilled Core",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Further Borehole Information",
+            "order": 2,
+            "formatter": null,
+            "searchable": false
+        },
+        {
+            "name": "total_core_recovery",
+            "label": "Total Core Recovery [%]",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Further Borehole Information",
+            "order": 3,
+            "formatter": null,
+            "searchable": false
+        },
+        {
+            "name": "direction",
+            "label": "Compass Direction of Inclination",
+            "description": "Inclination: Intended or deviated ",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "list",
+                    "listName": "DIRECTION_INCLINATION",
+                    "textField": "remark",
+                    "valueField": "display"
+                },
+                "allowFreeInput": false,
+                "multiple": false,
+                "jsCalculate": ""
+            },
+            "group": "Further Borehole Information",
+            "order": 4,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "inclination",
+            "label": "Inclination [\u00b0]",
+            "description": "Degree of Borehole Inclination",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Further Borehole Information",
+            "order": 5,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "igsn",
+            "label": "IGSN",
+            "description": "(Only for viewing; automatically filled when saved)",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": true,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Identifiers",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "comment_identifier",
+            "label": "Additional Information",
+            "description": "e.g. Alternative Identifiers used for Labeling ",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Identifiers",
+            "order": 1,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "methods_in_hole",
+            "label": "Measurements and Tests in Borehole",
+            "description": "Measurements, Tests, Monitoring performed in the borehole",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "api",
+                    "listName": "HOLE_MEASUREMENTS",
+                    "textField": "method_short",
+                    "valueField": "method_short",
+                    "model": "AuxiliaryTablesSurveyTools"
+                },
+                "allowFreeInput": true,
+                "multiple": true,
+                "jsCalculate": ""
+            },
+            "group": "Measurements in Borehole",
+            "order": 0,
+            "formatter": "this.$value.toString()",
+            "searchable": true
+        },
+        {
+            "name": "gear",
+            "label": "Equipment  - other than Drilling",
+            "description": "Gear/Equipment deployed at the location",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "list",
+                    "listName": "GEAR_EVENT",
+                    "textField": "remark",
+                    "valueField": "display"
+                },
+                "allowFreeInput": true,
+                "multiple": true,
+                "jsCalculate": ""
+            },
+            "group": "Gear/Equipment that was deployed at the location (Event)",
+            "order": 0,
+            "formatter": "this.$value.toString()",
+            "searchable": true
+        },
+        {
+            "name": "platform_type",
+            "label": "Platform Type",
+            "description": "according to ICDP/IODP naming convention",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "list",
+                    "listName": "PLATFORM_TYPE",
+                    "textField": "remark",
+                    "valueField": "display"
+                },
+                "allowFreeInput": true,
+                "multiple": false,
+                "jsCalculate": ""
+            },
+            "group": "Platform",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "platform_operator",
+            "label": "Platform Operator",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Platform",
+            "order": 1,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "platform_name",
+            "label": "Name of Platform",
+            "description": "Name of drill Platform/Research Vessel",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Platform",
+            "order": 2,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "platform_manager",
+            "label": "Platform Manager",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Platform",
+            "order": 3,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "platform_description",
+            "label": "Description of Platform",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Platform",
+            "order": 4,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "repository_name",
+            "label": "Name of Repository / Repositories",
+            "description": "",
+            "validators": [
+                {
+                    "type": "required"
+                },
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "select",
+                "disabled": false,
+                "calculate": "",
+                "selectSource": {
+                    "type": "api",
+                    "listName": "RE",
+                    "textField": "contact_person",
+                    "valueField": "repository_name_abbreviation",
+                    "model": "ContactRepository"
+                },
+                "allowFreeInput": true,
+                "multiple": true,
+                "jsCalculate": ""
+            },
+            "group": "Repository",
+            "order": 0,
+            "formatter": "",
+            "searchable": true
+        },
+        {
+            "name": "comment_repository",
+            "label": "Additional Information",
+            "description": "",
+            "validators": [
+                {
+                    "type": "string",
+                    "min": null,
+                    "max": null
+                }
+            ],
+            "formInput": {
+                "type": "text",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Repository",
+            "order": 1,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "moratorium_start",
+            "label": "Start Date of Moratorium",
+            "description": "",
+            "validators": [],
+            "formInput": {
+                "type": "date",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Moratorium",
+            "order": 0,
+            "formatter": null,
+            "searchable": true
+        },
+        {
+            "name": "moratorium_end",
+            "label": "End Date of Moratorium ",
+            "description": "",
+            "validators": [],
+            "formInput": {
+                "type": "date",
+                "disabled": false,
+                "calculate": "",
+                "jsCalculate": ""
+            },
+            "group": "Moratorium",
+            "order": 1,
+            "formatter": null,
+            "searchable": true
+        }
+    ],
+    "subForms": {
+        "core": {
+            "buttonLabel": "core",
+            "url": "/forms/core-form",
+            "filter": [
+                {
+                    "unit": "expedition",
+                    "fromField": "expedition_id"
+                },
+                {
+                    "unit": "site",
+                    "fromField": "site_id"
+                },
+                {
+                    "unit": "hole",
+                    "fromField": "id"
+                }
+            ]
+        },
+        "cuttings": {
+            "buttonLabel": "cuttings",
+            "url": "/forms/cuttings-form",
+            "filter": [
+                {
+                    "unit": "expedition",
+                    "fromField": "expedition_id"
+                },
+                {
+                    "unit": "site",
+                    "fromField": "site_id"
+                },
+                {
+                    "unit": "hole",
+                    "fromField": "id"
+                }
+            ]
+        }
+    },
+    "supForms": {
+        "site": {
+            "buttonLabel": "site",
+            "url": "/forms/site-form",
+            "parentIdField": "site_id",
+            "filter": [
+                {
+                    "unit": "expedition",
+                    "fromField": "expedition_id"
+                }
+            ]
+        }
+    },
+    "createdAt": 1641481940,
+    "modifiedAt": 1641481940,
+    "generatedAt": 1639125024,
+    "filterDataModels": {
+        "expedition": {
+            "model": "ProjectExpedition",
+            "value": "id",
+            "text": "exp_acronym",
+            "ref": "expedition_id"
+        },
+        "site": {
+            "model": "ProjectSite",
+            "value": "id",
+            "text": "site",
+            "ref": "site_id",
+            "require": {
+                "value": "expedition",
+                "as": "expedition_id"
+            }
+        }
+    },
+    "requiredFilters": [
+        {
+            "value": "site",
+            "as": "site_id",
+            "skipOnEmpty": false
+        }
+    ]
+}
