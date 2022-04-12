@@ -1,0 +1,188 @@
+@import 'font';
+@import 'mixin';
+$global-font-family: SpaceGrotesk;
+
+html,
+body {
+  background: rgb(240, 235, 230);
+  /* fontsize = 40px bei Fensterbreite 3508px */
+  font-size: 1.14vw;
+  margin: 0;
+}
+
+body,
+* {
+  box-sizing: border-box;
+  font-family: $global-font-family, sans-serif;
+  font-weight: 300;
+}
+b {
+  font-weight: 700;
+}
+h1, h2, h3 {
+  font-weight: 500;
+}
+
+#game-wrapper {
+  background: url(../assets/img/bg.jpg) no-repeat;
+  background-size: cover;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  margin: auto;
+  position: relative;
+  overflow: hidden;
+}
+
+#game-wrapper {
+  display: flex;
+
+}
+
+.key-img {
+  position: absolute;
+  z-index: 1;
+}
+
+#key-1 {
+  &.pos1 {
+    @include keyStyle(20rem, 31rem, 31.4rem);
+  }
+  &.pos2 {
+    @include keyStyle(9rem, 73rem, 31.4rem);
+  }
+}
+
+#key-11 {
+  @include keyStyle(20rem, 31rem, 30.3rem);
+}
+
+#key-12 {
+  @include keyStyle(9rem, 73rem, 30rem);
+}
+
+#key-13 {
+  @include keyStyle(28rem, 83rem, 28.3rem);
+}
+
+#key-2 {
+  @include keyStyle(0, 0, 30.35rem);
+  &.pos1 {
+    @include keyStyle(28rem, 18rem, 30.35rem);
+  }
+  &.pos2 {
+    @include keyStyle(4rem, 60rem, 30.35rem);
+  }
+}
+
+#key-21 {
+  z-index: 1;
+  @include keyStyle(28rem, 16rem, 30.8rem);
+}
+
+#key-22 {
+  @include keyStyle(4rem, 58rem, 29.3rem);
+}
+
+#key-23 {
+  @include keyStyle(30rem, 52rem, 28.55rem);
+}
+
+#key-3 {
+  @include keyStyle(0, 0, 27.9rem);
+  &.pos1 {
+    @include keyStyle(10rem, 40rem, 27.9rem);
+  }
+  &.pos2 {
+    @include keyStyle(10rem, 4rem, 27.9rem);
+  }
+}
+
+#key-31 {
+  @include keyStyle(10rem, 40rem, 27.55rem);
+}
+
+#key-32 {
+  @include keyStyle(10rem, 4rem, 27.4rem);
+}
+
+#key-33 {
+  @include keyStyle(1rem, 18rem, 27.5rem);
+}
+
+img {
+  height: inherit;
+  width: inherit;
+}
+
+.message {
+  background: rgba(black, 0.4);
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+}
+
+
+.popup {
+  background-color: #FFF;
+  box-shadow: 0 0 2em rgba($color: #000000, $alpha: 0.5);
+  color: rgb(151, 20, 42);
+  left: 50%;
+  padding: 1em;
+  pointer-events: none;
+  position: absolute;
+  top: 45%;
+  transform: translate(-50%, -50%);
+  user-select: none;
+  width: 52.5em;
+  z-index: 3;
+
+  &.small {
+    width: 38.5em;
+  }
+
+  &:after {
+    content: 'x';
+    display: block;
+    font-family: $global-font-family;
+    font-size: 3em;
+    font-weight: 700;
+    padding: 0 0.3em;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  h2, p {
+    font-size: 3em;
+    font-weight: 300;
+    margin: 0 0 0.25em;
+  }
+  h2, b {
+    font-weight: 700;
+  }
+}
+
+#game-wrapper {
+  width: 110em;
+  height: 60em;
+}
+
+@media (min-aspect-ratio: 1920/1200) {
+  html, body {
+    // 20px (fontsize) * 100 / 1200
+    font-size: 1.6666vh;
+  }
+  #game-wrapper {
+    height: 100vh;
+    width: calc((100vh / 1200) * 1920);
+  }
+}
+@media (max-aspect-ratio: 1920/1200) {
+  html, body {
+    // 20px (fontsize) * 100 / 1920
+    font-size: 1.0417vw;
+  }
+  #game-wrapper {
+    height: calc((100vw / 1920) * 1200);
+    width: 100vw;
+  }
+}

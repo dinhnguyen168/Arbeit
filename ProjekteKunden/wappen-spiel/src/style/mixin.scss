@@ -1,0 +1,95 @@
+@mixin relativePositionPerBG(
+  $finishTop, $finishLeft,
+  $startTop, $startLeft
+) {
+  &.start {
+    top: $startTop;
+    left: $startLeft;
+  }
+  &.finish {
+    top: $finishTop;
+    left: $finishLeft;
+  }
+  &.wappenVBeerwaldeBg{
+    top: 1rem;
+    left: 3rem;
+  }
+  &.wappenVSchleinitzBg {
+    top: 1rem;
+    left: 26.8rem;
+  }
+  &.wappenVSchoenbergBg {
+    top: 1rem;
+    left: 51.2rem;
+  }
+  &.wappenVSchindelBg {
+    top: 1rem;
+    left: 73.9rem;
+  }
+  &.wappenPflugBg {
+    top: 31.25rem;
+    left: 3rem;
+  }
+  &.wappenVitzthumVAppoldaTannrodaBg {
+    top: 31.25rem;
+    left: 26.8rem;
+  }
+  &.wappenVCarlowitzBg {
+    top: 31.25rem;
+    left: 51.2rem;
+  }
+  &.wappenMilckauBg {
+    top: 31.25rem;
+    left: 73.9rem;
+  }
+}
+
+@mixin relativePositionPerItem(
+  $width, $height,
+  $startTop, $startLeft,
+  $finishTop, $finishLeft,
+  $offsetTop, $offsetLeft,
+) {
+  width: $width;
+  height: $height;
+  &.start {
+    top: $startTop + $offsetTop;
+    left: $startLeft + $offsetLeft;
+  }
+  &.finish {
+    top: $finishTop + $offsetTop;
+    left: $finishLeft + $offsetLeft;
+  }
+  &.wappenVBeerwaldeFg{
+    top: 1rem + $offsetTop;
+    left: 3rem + $offsetLeft;
+  }
+  &.wappenVSchleinitzFg {
+    top: 1rem + $offsetTop;
+    left: 26.8rem + $offsetLeft;
+  }
+  &.wappenVSchoenbergFg {
+    top: 1rem + $offsetTop;
+    left: 51.2rem + $offsetLeft;
+  }
+  &.wappenVSchindelFg {
+    top: 1rem + $offsetTop;
+    left: 73.9rem + $offsetLeft;
+  }
+  &.wappenPflugFg {
+    top: 31.25rem + $offsetTop;
+    left: 3rem + $offsetLeft;
+  }
+  &.wappenVitzthumVAppoldaTannrodaFg {
+    top: 31.25rem + $offsetTop;
+    left: 26.8rem + $offsetLeft;
+  }
+  &.wappenVCarlowitzFg {
+    top: 31.25rem + $offsetTop;
+    left: 51.2rem + $offsetLeft;
+  }
+  &.wappenMilckauFg {
+    top: 31.25rem + $offsetTop;
+    left: 73.9rem + $offsetLeft;
+  }
+}

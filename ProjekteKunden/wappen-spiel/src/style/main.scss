@@ -1,0 +1,179 @@
+@import 'font';
+@import 'mixin';
+$global-font-family: SpaceGrotesk;
+
+html,
+body {
+  background: rgb(240, 235, 230);
+  /* fontsize = 20px bei Fensterbreite 1920px */
+  font-size: 1.14vw;
+  margin: 0;
+}
+
+body,
+* {
+  box-sizing: border-box;
+  font-family: $global-font-family, sans-serif;
+  font-weight: 300;
+  user-select: none;
+}
+
+h1, h2, h3 {
+  font-weight: 500;
+}
+
+img {
+  height: inherit;
+  width: inherit;
+}
+
+#game-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  margin: auto;
+  width: 110em;
+  height: 60em;
+  background: url(../assets/img/bg.jpg) no-repeat;
+  background-size: cover;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+
+  // 1
+  #Wappen_v_Beerwalde {
+    top: 1rem;
+    left: 3rem;
+  }
+  #Wappen_v_Beerwalde_BG {
+    @include relativePositionPerBG(1rem, 3rem, 31.25rem, 3rem);
+  }
+  #Wappen_v_Beerwalde_FG {
+    @include relativePositionPerItem(11.5rem, 21.15rem, 1rem, 26.8rem, 1rem, 3rem, 2rem, 3.2rem);
+  }
+
+  // 2
+  #Wappen_v_Schleinitz {
+    top: 1rem;
+    left: 26.8rem;
+  }
+  #Wappen_v_Schleinitz_BG {
+    @include relativePositionPerBG(1rem, 26.8rem, 1rem, 3rem);
+  }
+  #Wappen_v_Schleinitz_FG {
+    @include relativePositionPerItem(7.65rem, 7.1rem, 31.25rem, 73.9rem, 1rem, 26.8rem, 7.9rem, 1.8rem);
+  }
+
+  // 3
+  #Wappen_v_Schoenberg {
+    top: 1rem;
+    left: 51.2rem;
+  }
+  #Wappen_v_Schoenberg_BG {
+    @include relativePositionPerBG(1rem, 51.2rem, 31.25rem, 26.8rem);
+  }
+  #Wappen_v_Schoenberg_FG {
+    @include relativePositionPerItem(16.7rem, 20.3rem, 1rem, 3rem, 1rem, 51.2rem, 1.7rem, 1.8rem);
+  }
+
+  // 4
+  #Wappen_v_Schindel {
+    top: 1rem;
+    left: 73.9rem;
+  }
+  #Wappen_v_Schindel_BG {
+    @include relativePositionPerBG(1rem, 73.9rem, 1rem, 26.8rem);
+  }
+  #Wappen_v_Schindel_FG {
+    @include relativePositionPerItem(6.65rem, 10.6rem, 1rem, 3rem, 1rem, 73.9rem, 12.85rem, 3.1rem);
+  }
+
+  // 5
+  #Wappen_Pflug {
+    top: 31.25rem;
+    left: 3rem;
+  }
+  #Wappen_Pflug_BG {
+    @include relativePositionPerBG(31.25rem, 3rem, 31.25rem, 73.9rem);
+  }
+  #Wappen_Pflug_FG {
+    @include relativePositionPerItem(9.6rem, 19.5rem, 31.25rem, 51.2rem, 31.25rem, 3rem, 1.25rem, 3.45rem);
+  }
+
+  // 6
+  #Wappen_Vitzthum_v_Appolda_Tannroda {
+    top: 31.25rem;
+    left: 26.8rem;
+  }
+  #Wappen_Vitzthum_v_Appolda_Tannroda_BG {
+    @include relativePositionPerBG(31.25rem, 26.8rem, 31.25rem, 51.2rem);
+  }
+  #Wappen_Vitzthum_v_Appolda_Tannroda_FG {
+    @include relativePositionPerItem(7.8rem, 9.3rem, 1rem, 51.2rem, 31.25rem, 26.8rem, 11.55rem, 5.7rem);
+  }
+
+  // 7
+  #Wappen_v_Carlowitz {
+    top: 31.25rem;
+    left: 51.2rem;
+  }
+  #Wappen_v_Carlowitz_BG {
+    @include relativePositionPerBG(31.25rem, 51.2rem, 1rem, 51.2rem);
+  }
+  #Wappen_v_Carlowitz_FG {
+    @include relativePositionPerItem(8rem, 6.9rem, 31.25rem, 26.8rem, 31.25rem, 51.2rem, 14.75rem, 6.13rem);
+  }
+
+  // 8
+  #Wappen_Milckau {
+    top: 31.25rem;
+    left: 73.9rem;
+  }
+  #Wappen_Milckau_BG {
+    @include relativePositionPerBG(31.25rem, 73.9rem, 1rem, 73.9rem);
+  }
+  #Wappen_Milckau_FG {
+    @include relativePositionPerItem(5.15rem, 19.1rem, 1rem, 73.9rem, 31.25rem, 73.9rem, 2.65rem, 3rem);
+  }
+
+}
+
+.armorial_background {
+  position:absolute;
+  width: 20rem;
+  height: 28.15rem;
+  z-index: 0;
+}
+
+.armorial_foreground {
+  position:absolute;
+  z-index: 3;
+}
+
+.armorial_nameplate {
+  position:absolute;
+  pointer-events: none;
+  width: 20rem;
+  height: 28.15rem;
+  z-index: 2;
+}
+
+@media (min-aspect-ratio: 1920/1200) {
+  html, body {
+    // 20px (fontsize) * 100 / 1200
+    font-size: 1.6666vh;
+  }
+  #game-wrapper {
+    height: 100vh;
+    width: calc((100vh / 1200) * 1920);
+  }
+}
+@media (max-aspect-ratio: 1920/1200) {
+  html, body {
+    // 20px (fontsize) * 100 / 1920
+    font-size: 1.0417vw;
+  }
+  #game-wrapper {
+    height: calc((100vw / 1920) * 1200);
+    width: 100vw;
+  }
+}

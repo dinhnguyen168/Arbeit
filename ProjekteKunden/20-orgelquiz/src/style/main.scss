@@ -1,0 +1,195 @@
+@import 'font';
+$global-font-family: "Space Regular";
+
+html,
+body {
+  background: rgb(240, 235, 230);
+  /* fontsize = 20px bei fensterbreite 1920px */
+  font-size: 1.0417vw;
+  margin: 0;
+}
+
+body,
+* {
+  box-sizing: border-box;
+  font-family: $global-font-family, sans-serif;
+  font-weight: 500;
+}
+
+#game-wrapper {
+  background: url(../assets/background.jpg) no-repeat;
+  background-size: cover;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  display: flex;
+  margin: auto;
+  position: relative;
+  overflow: hidden;
+  &.start {
+    #object {
+      bottom: -13em;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40em;
+      p {
+        bottom: 4em;
+        right: 2em;
+      }
+    }
+    #title {
+      opacity: 1;
+    }
+    #question {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+}
+
+#question {
+  left: 7.5em;
+  opacity: 1;
+  pointer-events: all;
+  position: absolute;
+  transition: opacity 0.5s;
+  top: 4.25em;
+  user-select: none;
+  width: 81em;
+  z-index: 1;
+  h1 {
+    color: #FFF;
+    font-size: 100%;
+    margin-bottom: 3em;
+    span {
+      font-size: 4em;
+      line-height: 120%;
+    }
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    li {
+      background-color: rgba(283, 24, 51, 0.4);
+      color: #FFF;
+      padding: 1em;
+      margin-bottom: 0.5em;
+      &.current {
+        background-color: rgba(283, 24, 51, 1);
+      }
+      span {
+        display: block;
+        font-size: 3em;
+        width: 17em;
+      }
+    }
+  }
+}
+
+.popup {
+  background-color: #FFF;
+  box-shadow: 0 0 2em rgba($color: #000000, $alpha: 0.5);
+  color: rgb(151, 20, 42);
+  display: none;
+  left: 50%;
+  // opacity: 0;
+  padding: 1em;
+  // pointer-events: none;
+  position: absolute;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  // transition: opacity 0.2s;
+  user-select: none;
+  width: 35em;
+  z-index: 3;
+  &:after {
+    content: 'x';
+    display: block;
+    font-family: 'Space SemiBold';
+    font-size: 3em;
+    padding: 0 0.3em;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  &.show {
+    // opacity: 1;
+    pointer-events: all;
+    display: block;
+  }
+  
+  &:nth-child(3) {
+    width: 60em;
+    top: 48%;
+    img {
+      height: 40em;
+      position: relative;
+      margin-top: -4em;
+      margin-left: 25em;
+    }
+  }
+  
+  h2, p {
+    font-family: 'Space Light';
+    font-size: 3em;
+    margin: 0 0 0.25em;
+  }
+  h2 {
+    font-family: 'Space SemiBold';
+  }
+}
+
+
+#object {
+  right: 3em;
+  pointer-events: none;
+  position: absolute;
+  bottom: -10px;
+  transform: none;
+  transition: all 0.5s;
+  width: 28.8em;
+  z-index: 2;
+  img {
+    position: relative;
+    transition: width 0.5s;
+    width: 100%;
+  }
+  p {
+    bottom: 0.5em;
+    color: #FFF;
+    opacity: 0.7;
+    position: absolute;
+    transition: all 0.5s;
+    right: 19em;
+    span {
+      font-size: 2em;
+    }
+  }
+}
+
+#title {
+  bottom: 0;
+  opacity: 0;
+  position: absolute;
+  transition: opacity 0.5s;
+  width: 96em;
+  z-index: 3;
+}
+
+@media (min-aspect-ratio: 16/9) {
+  html, body {
+    font-size: 1.85vh;
+  }
+  #game-wrapper {
+    height: 100vh;
+    width: calc((100vh / 9) * 16);
+}
+}
+@media (max-aspect-ratio: 16/9) {
+  html, body {
+    font-size: 1.0417vw;
+  }
+  #game-wrapper {
+      height: calc((100vw / 16) * 9);
+      width: 100vw;
+    }
+}

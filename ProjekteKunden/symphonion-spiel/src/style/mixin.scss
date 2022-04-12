@@ -1,0 +1,29 @@
+@mixin labelStyle($top, $left) {
+  width: 13.5rem;
+  height: 13.5rem;
+  z-index: 2;
+  &.original {
+    top: $top;
+    left: $left;
+  }
+  &.plate1 {
+    left: 11rem;
+    top: 25.5rem;
+  }
+  &.plate2 {
+    left: 41.1rem;
+    top: 25.5rem;
+  }
+  &.plate3 {
+    left: 71.25rem;
+    top: 25.5rem;
+  }
+}
+
+@mixin plateStyle($left) {
+  top: 17.25rem;
+  left: $left;
+  width: 30rem;
+  height: 30rem;
+  z-index: 1;
+}

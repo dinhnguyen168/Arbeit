@@ -1,0 +1,242 @@
+@import 'font';
+$global-font-family: "Space Regular";
+
+html,
+body {
+  background: rgb(240, 235, 230);
+  /* fontsize = 20px bei fensterbreite 1920px */
+  font-size: 1.0417vw;
+  margin: 0;
+}
+
+body,
+* {
+  box-sizing: border-box;
+  font-family: $global-font-family, sans-serif;
+  font-weight: 500;
+}
+
+#game-wrapper {
+  background: url(../assets/background.jpg) no-repeat;
+  background-size: cover;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  display: flex;
+  margin: auto;
+  position: relative;
+  overflow: hidden;
+  width: 96rem;
+  height: 54rem;
+}
+
+#intro{
+  width: inherit;
+  height: inherit;
+  z-index: 99;
+  img{
+    position: absolute;
+    width: inherit;
+    bottom: 0;
+  }
+  &.fade-leave-active {
+    transition: opacity 200ms;
+  }
+  &.fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+  }
+}
+
+.target{
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  width: 26rem;
+  height: 18.5rem;
+
+  .shooting-target{
+    position: absolute;
+    width: 4rem;
+    height: 4rem;
+    top: 10.6rem;
+    left: 10.9rem;
+    border-radius: 50%;
+  }
+}
+
+.target-position-0{
+  left: -8rem;
+  background-image: url("../assets/target-0.png");
+}
+
+.target-position-1{
+  left: -8rem + 17.5rem;
+  background-image: url("../assets/target-1.png");
+}
+
+.target-position-2{
+  left: -8rem + 17.5rem*2;
+  background-image: url("../assets/target-2.png");
+}
+
+.target-position-3{
+  left: -8rem + 17.5rem*3;
+  background-image: url("../assets/target-3.png");
+}
+
+.target-position-4{
+  left: -8rem + 17.5rem*4;
+  background-image: url("../assets/target-4.png");
+}
+
+.target-position-5{
+  left: -8rem + 17.5rem*5;
+  background-image: url("../assets/target-5.png");
+}
+
+#amor-shadow {
+  bottom: 5.5em;
+  position: absolute;
+  right: 0;
+  img {
+    height: auto;
+    width: 34.1em;
+  }
+}
+
+#amor-base{
+  position: absolute;
+  right: 0;
+  bottom: 11rem;
+  width: 30.25rem;
+  height: 27.1rem;
+  z-index: 4;
+}
+
+#amor-face {
+  position: absolute;
+  left: 70.55rem;
+  top: 23.5rem;
+  width: 8.5rem;
+  height: 7.5rem;
+  z-index: 4;
+}
+
+.amor-arm {
+  position: absolute;
+  left: 58rem;
+  top: 6.4rem;
+  width: 20.25rem;
+  height: 28.5rem;
+  z-index: 2;
+}
+
+#amor-arm-0 {
+  &.place-arrow {
+    left: 51rem;
+    top: 18.5rem;
+    transform: rotate(-90deg);
+  }
+}
+
+#amor-arm-1{
+  &.place-arrow{
+    left: 51rem;
+    top: 18.5rem;
+    transform: rotate(-90deg);
+  }
+  &.get-arrow{
+    left: 63rem;
+    top: 6.5rem;
+    transform: rotate(20deg);
+  }
+}
+
+.arrow{
+  position: absolute;
+  width: 10rem;
+  height: 8rem;
+  left: 74.8rem;
+  top:10.8rem;
+  z-index: 2;
+}
+
+#arrow{
+  background-image: url("../assets/arrow.png");
+  background-size: cover;
+  position:  absolute;
+  top: 29rem;
+  left: calc((96rem - 10.75rem)/2);
+  width: 10.75rem;
+  height: 28.15rem;
+
+  #arrow-head{
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    top: 2.5rem;
+    left: 4.3rem;
+    border-radius: 50%;
+  }
+}
+
+.message {
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  z-index: 10000;
+}
+
+.text-wrapper {
+  pointer-events: none;
+  position: absolute;
+  left: 50%;
+  bottom: 5em;
+  transform: translateX(-50%);
+  padding: 1em 3em 1em 2em;
+  background: #FFF;
+  width: 60em;
+  color: rgb(151, 20, 42);
+  box-shadow: 0 0 2em rgba($color: #000, $alpha: 0.5);
+  h2, p{
+    font-family: 'Space Light', serif;
+    font-size: 3em;
+    margin: 0 0 0.25em;
+  }
+  h2 {
+    font-family: 'Space SemiBold', serif;
+  }
+  &:after {
+    content: 'x';
+    display: block;
+    font-family: 'Space SemiBold';
+    font-size: 3em;
+    padding: 0 0.3em;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+img:not(img[alt="title"]){
+  width: inherit;
+  height: inherit;
+}
+
+@media (min-aspect-ratio: 16/9) {
+  html, body {
+    font-size: 1.85vh;
+  }
+  #game-wrapper {
+    height: 100vh;
+    width: calc((100vh / 9) * 16);
+  }
+}
+@media (max-aspect-ratio: 16/9) {
+  html, body {
+    font-size: 1.0417vw;
+  }
+  #game-wrapper {
+    height: calc((100vw / 16) * 9);
+    width: 100vw;
+  }
+}

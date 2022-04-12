@@ -1,0 +1,216 @@
+@import 'font';
+$global-font-family: "Space Regular";
+
+html,
+body {
+  background: rgb(240, 235, 230);
+  /* fontsize = 20px bei fensterbreite 1920px */
+  font-size: 1.0417vw;
+  margin: 0;
+}
+
+body,
+* {
+  box-sizing: border-box;
+  font-family: $global-font-family, sans-serif;
+  font-weight: 500;
+}
+
+#game-wrapper {
+  background: url(../assets/background.jpg) no-repeat;
+  background-size: cover;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  display: flex;
+  margin: auto;
+  position: relative;
+  overflow: hidden;
+  width: 96em;
+  height: 54em;
+}
+
+#start-screen {
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  #title {
+    width: inherit;
+    position: inherit;
+    bottom: 0;
+    z-index: 1000;
+    img {
+      width: inherit;
+      transform: translateY(0.3em);
+    }
+  }
+}
+
+.jacobus {
+  position: absolute;
+  top: 0;
+  left: 32.85em;
+  height: inherit;
+  z-index: 1;
+  img {
+    height: inherit;
+  }
+}
+
+#main-screen{
+  background: url("../assets/spielfeld.png") no-repeat;
+  background-size: cover;
+  position: absolute;
+  height: inherit;
+  width: inherit;
+
+  .message {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    z-index: 10000;
+  }
+
+  .text-wrapper {
+    position: absolute;
+    left: calc((96em - 52.5em) / 2);
+    top: 20em;
+    padding: 1em 3em 1em 2em;
+    background: #FFF;
+    width: 52.5em;
+    color: rgb(151, 20, 42);
+    box-shadow: 0 0 2em rgba($color: #000000, $alpha: 0.5);
+    h2, p{
+      font-family: 'Space Light', serif;
+      font-size: 3em;
+      margin: 0 0 0.25em;
+    }
+    h2 {
+      font-family: 'Space SemiBold', serif;
+    }
+    &:after {
+      content: 'x';
+      display: block;
+      font-family: 'Space SemiBold';
+      font-size: 3em;
+      padding: 0 0.3em;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+
+  #stab {
+    top: 13em;
+    left: 63.5em;
+    width: 10.15em;
+    &.placed {
+      top: 18em;
+      left: 31em;
+      z-index: 1;
+    }
+  }
+  #fliege {
+    top: 1em;
+    left: 67em;
+    width: 12.9em;
+  }
+  #rucksack {
+    top: 20.5em;
+    left: 70.5em;
+    width: 17.65em;
+    &.placed {
+      top: 34em;
+      left: 36em;
+      z-index: 0;
+    }
+  }
+  #rollschuhe{
+    top: 8em;
+    left: 78.8em;
+    width: 17.1em;
+  }
+  #trolley{
+    top: 27em;
+    left: 81.4em;
+    width: 14.3em;
+  }
+  #muschel{
+    top: 9em;
+    left: 68em;
+    width: 11.55em;
+    &.placed {
+      top: 47em;
+      left: 49em;
+      z-index: 3;
+    }
+  }
+  #stöckelschuhe{
+    top: 37.5em;
+    left: 3em;
+    width: 15.2em;
+  }
+  #roller{
+    top: 16.5em;
+    left: 1.5em;
+    width: 18.7em;
+  }
+  #jacke{
+    top: 16.5em;
+    left: 16.5em;
+    width: 16.75em;
+  }
+  #wanderschuhe{
+    top: 5em;
+    left: 16.5em;
+    width: 15.2em;
+    &.placed {
+      top: 44.5em;
+      left: 29em;
+      z-index: 2;
+    }
+  }
+  #wasserflasche{
+    top: 5em;
+    left: 1.5em;
+    width: 11.9em;
+    &.placed{
+      left: 56.5em;
+      top: 40em;
+      z-index: 2;
+    }
+  }
+}
+
+.draggable {
+  position: absolute;
+  cursor: move;
+  img {
+    width: inherit;
+  }
+}
+
+.dragged{
+  z-index: auto;
+}
+
+.wore {
+  visibility: hidden;
+}
+
+@media (min-aspect-ratio: 16/9) {
+  html, body {
+    font-size: 1.85vh;
+  }
+  #game-wrapper {
+    height: 100vh;
+    width: calc((100vh / 9) * 16);
+  }
+}
+@media (max-aspect-ratio: 16/9) {
+  html, body {
+    font-size: 1.0417vw;
+  }
+  #game-wrapper {
+    height: calc((100vw / 16) * 9);
+    width: 100vw;
+  }
+}
