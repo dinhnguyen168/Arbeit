@@ -1,0 +1,466 @@
+{
+  "Milch": [
+    {
+      "frage": "Wie nennt man frisch gemolkene Milch?",
+      "punkte": 25,
+      "antworten": ["Frischmilch", "Rohmilch", "Direktmilch"],
+      "richtig": 2
+    },
+    {
+      "frage": "Milchprodukte sind",
+      "punkte": 25,
+      "antworten": ["empfindlich gegen Zugluft", "licht-, luft- und wärmeempfindlich", "empfindlich bei Gewitter"],
+      "richtig": 2
+    },
+    {
+      "frage": "Wie lange ist H-Milch haltbar?",
+      "punkte": 50,
+      "antworten": ["1 - 2 Wochen", "6 - 8 Wochen", "12 - 14 Wochen"],
+      "richtig": 2
+    },
+    {
+      "frage": "Kondensierte Milchprodukte sind",
+      "punkte": 50,
+      "antworten": ["eingedickte, eingedämpfte Milchprodukte", "mit kleinen Wassertröpfchen versetzte Milchprodukte", "besonders gekühlte Milchprodukte"],
+      "richtig": 1
+    },
+    {
+      "frage": "Wie lange verweilt Milch im Magen?",
+      "punkte": 75,
+      "antworten": ["30 Minuten", "2,5 Stunden", "8 Stunden"],
+      "richtig": 2
+    },
+    {
+      "frage": "1 Liter Vollmilch enthält",
+      "punkte": 75,
+      "antworten": ["ca. 100 kcal", "ca. 640 kcal", "ca. 1000 kcal"],
+      "richtig": 2
+    },
+    {
+      "frage": "Wie viel Liter Milch gaben die ersten Hausrinder?",
+      "punkte": 100,
+      "antworten": ["6 - 8 Liter täglich", "14 - 16 Liter täglich", "20 - 25 Liter täglich"],
+      "richtig": 1
+    },
+    {
+      "frage": "1 Liter Magermilch enthält",
+      "punkte": 100,
+      "antworten": ["ca. 50 kcal", "ca. 350 kcal", "ca. 800 kcal"],
+      "richtig": 2
+    },
+    {
+      "frage": "Welcher Mineralstoff steckt in der Milch?",
+      "punkte": 25,
+      "antworten": ["Kupfer", "Calcium", "Brom"],
+      "richtig": 2
+    },
+    {
+      "frage": "Was ist richtig?",
+      "punkte": 50,
+      "antworten": ["Milch ist wichtig für die Ohren", "Milch ist wichtig für Leber und Magen", "Milch ist wichtig für die Knochen und Zähne"],
+      "richtig": 3
+    },
+    {
+      "frage": "Was versteht man unter Vorzugsmilch?",
+      "punkte": 100,
+      "antworten": ["Rohmilch, die nicht erhitzt ist", "Milch mit einem besonders hohen Fettgehalt", "Milch, die von besonders guten Kühen kommt"],
+      "richtig": 1
+    }
+  ],
+  "Kühe": [
+    {
+      "frage": "Die Milch befindet sich bei der Kuh im",
+      "punkte": 25,
+      "antworten": ["Euter", "Kühltank", "Vorratsbehälter"],
+      "richtig": 1
+    },
+    {
+      "frage": "Wie lange kaut eine Kuh wieder?",
+      "punkte": 50,
+      "antworten": ["bis zu einer Stunde am Tag", "bis zu 2 Stunden am Tag", "bis zu 8 Stunden am Tag"],
+      "richtig": 3
+    },
+    {
+      "frage": "Eine Kuh frisst am Tag ca.",
+      "punkte": 75,
+      "antworten": ["20 kg Gras", "50 kg Gras", "70 kg Gras"],
+      "richtig": 3
+    },
+    {
+      "frage": "Wie alt können Kühe werden?",
+      "punkte": 100,
+      "antworten": ["2 - 4 Jahre", "15 - 20 Jahre", "20 - 40 Jahre"],
+      "richtig": 2
+    },
+    {
+      "frage": "Kühe haben",
+      "punkte": 25,
+      "antworten": ["einen feinen Geruchssinn", "keinen Geruchssinn", "nur einen schlechten Geruchssinn"],
+      "richtig": 1
+    },
+    {
+      "frage": "Wie stehen Kühe auf?",
+      "punkte": 50,
+      "antworten": ["zuerst mit den Hinterbeinen", "zuerst mit den Vorderbeinen", "mit beiden Beinen gleichzeitig"],
+      "richtig": 2
+    },
+    {
+      "frage": "Wann sind Kühe geschlechtsreif?",
+      "punkte": 75,
+      "antworten": ["nach 2 Monaten", "nach 3 Jahren", "nach 5 Jahren"],
+      "richtig": 2
+    },
+    {
+      "frage": "Wie lange sind Kühe tragend?",
+      "punkte": 100,
+      "antworten": ["6 Monate", "9 Monate", "16 Monate"],
+      "richtig": 2
+    },
+    {
+      "frage": "Wie nennen sich Tiere, die als Gruppe zusammen leben?",
+      "punkte": 25,
+      "antworten": ["Herdentiere", "Familientiere", "Clans"],
+      "richtig": 1
+    },
+    {
+      "frage": "Womit rupft die Kuh das Gras ab?",
+      "punkte": 50,
+      "antworten": ["mit der Zunge", "mit den Zähnen", "mit der Lippe"],
+      "richtig": 1
+    },
+    {
+      "frage": "Wie lang ist der Darm einer Kuh?",
+      "punkte": 75,
+      "antworten": ["1 Meter", "10 Meter", "50 Meter"],
+      "richtig": 3
+    },
+    {
+      "frage": "Wie viele Wochen vor der Geburt geben hochträchtige Kühe keine Milch mehr?",
+      "punkte": 100,
+      "antworten": ["1 Woche", "4 Wochen", "8 Wochen"],
+      "richtig": 3
+    },
+    {
+      "frage": "Wie viele Zitzen haben 4 Kühe?",
+      "punkte": 25,
+      "antworten": ["16", "18", "20"],
+      "richtig": 1
+    },
+    {
+      "frage": "Wie heißt die besondere Eigenart der Kühe?",
+      "punkte": 50,
+      "antworten": ["wiedermampfen", "wiederkauen", "wiederverdauen"],
+      "richtig": 2
+    },
+    {
+      "frage": "Was bedeutet es, wenn eine Kuh trockengestellt wird?",
+      "punkte": 75,
+      "antworten": ["Sie wird bei schlechtem Wetter im Stall untergestellt", "Sie wird nicht mehr gemolken", "Der Bauer streut trockenes Stroh in den Stall ein"],
+      "richtig": 2
+    },
+    {
+      "frage": "Welches der folgenden Fellmuster gibt es nicht bei den Kühen?",
+      "punkte": 100,
+      "antworten": ["schwarz-weiß", "braun", "grau-braun"],
+      "richtig": 3
+    }
+  ],
+  "Butter": [
+    {
+      "frage": "Woraus wird Butter gemacht?",
+      "punkte": 25,
+      "antworten": ["Margarine", "Sahne", "Buttermilch"],
+      "richtig": 2
+    },
+    {
+      "frage": "Wie viel Liter Milch werden für die Herstellung von 1 kg Butter benötigt?",
+      "punkte": 50,
+      "antworten": ["4 - 5", "9 - 10", "23 - 24"],
+      "richtig": 3
+    },
+    {
+      "frage": "Butterschmalz ist",
+      "punkte": 75,
+      "antworten": ["nur für Schmalzgebäck geeignet", "ideal für Salatsaucen", "zum Backen, Braten, Kochen geeignet"],
+      "richtig": 3
+    },
+    {
+      "frage": "Wie viel Fett enthält Butter?",
+      "punkte": 100,
+      "antworten": ["70 %", "82 %", "98 %"],
+      "richtig": 2
+    },
+    {
+      "frage": "Butter hat",
+      "punkte": 25,
+      "antworten": ["weniger kcal als Margarine", "mehr kcal als Margarine", "etwa gleich viele kcal wie Margarine"],
+      "richtig": 3
+    },
+    {
+      "frage": "Butterschmalz ist",
+      "punkte": 50,
+      "antworten": ["ein mit Schmalz vermischtes Produkt", "eine besonders pflegende Handcreme", "ein von Eiweiß und Wasser befreites Produkt"],
+      "richtig": 3
+    },
+    {
+      "frage": "Wie viel Fett hat Butterschmalz?",
+      "punkte": 100,
+      "antworten": ["20 %", "50 %", "90 %"],
+      "richtig": 3
+    },
+    {
+      "frage": "Wie lange lässt sich Butter bei - 18 Grad Celsius (in Folie gewickelt) einfrieren?",
+      "punkte": 100,
+      "antworten": ["1 Woche", "6 - 8 Monate", "3 Jahre"],
+      "richtig": 2
+    },
+    {
+      "frage": "Butter gibt es in welchen Handelsklassen:",
+      "punkte": 50,
+      "antworten": ["Deutsche Markenbutter / Molkereibutter", "Deutsche Landbutter", "Deutsche Bauernbutter"],
+      "richtig": 1
+    },
+    {
+      "frage": "Wie lange ist Butter nach der Herstellung (bei + 10 Grad Celsius) noch haltbar?",
+      "punkte": 75,
+      "antworten": ["bis 2 Wochen", "über 3 Wochen", "über 6 Monate"],
+      "richtig": 2
+    },
+    {
+      "frage": "Wann entwickelt Butter ihr Aroma?",
+      "punkte": 100,
+      "antworten": ["7 Wochen nach der Herstellung", "6 - 8 Tage nach der Herstellung", "sofort"],
+      "richtig": 2
+    },
+    {
+      "frage": "Buttermilch ist",
+      "punkte": 50,
+      "antworten": ["besonders reich an Fett", "besonders arm an Fett", "besonders für die Butterherstellung geeignet"],
+      "richtig": 2
+    },
+    {
+      "frage": "Buttermilch hat",
+      "punkte": 75,
+      "antworten": ["10 % Fett", "50 % Fett", "1 % Fett"],
+      "richtig": 3
+    },
+    {
+      "frage": "Wie viel Buttersorten gibt es?",
+      "punkte": 100,
+      "antworten": ["2", "5", "3"],
+      "richtig": 3
+    }
+  ],
+  "Joghurt & Co": [
+    {
+      "frage": "Sauermilch ist die Bezeichnung für",
+      "punkte": 25,
+      "antworten": ["ungenießbar gewordene Milch", "Dickmilch", "Milch von Kühen, die Sauerampfer gefressen haben"],
+      "richtig": 2
+    },
+    {
+      "frage": "Welches der folgenden Produkte enthält Milchsäure?",
+      "punkte": 50,
+      "antworten": ["Milch", "Kakao", "Joghurt"],
+      "richtig": 3
+    },
+    {
+      "frage": "Kefir reift am besten bei",
+      "punkte": 75,
+      "antworten": ["21 °C", "42 °C", "60 °C"],
+      "richtig": 1
+    },
+    {
+      "frage": "Was wird bei dem Produkt BIOGHURT verwendet?",
+      "punkte": 100,
+      "antworten": ["Recyclingbecher", "Biomilch", "milde Joghurtkulturen"],
+      "richtig": 3
+    },
+    {
+      "frage": "Kefir wird u. a. hergestellt mit",
+      "punkte": 100,
+      "antworten": ["Kefirpilzen", "Satanspilzen", "Birkenpilzen"],
+      "richtig": 1
+    },
+    {
+      "frage": "Was ist Lactose?",
+      "punkte": 75,
+      "antworten": ["Milchzucker", "Milchfett", "Milcheiweiß"],
+      "richtig": 1
+    }
+  ],
+  "A - Z": [
+    {
+      "frage": "Wann schließt das Internet?",
+      "punkte": 25,
+      "antworten": ["kurz vor Mitternacht", "kurz nach Mitternacht", "nie"],
+      "richtig": 3
+    },
+    {
+      "frage": "Welcher berühmte Zauberer hat eine blitzförmige Narbe auf der Stirn?",
+      "punkte": 50,
+      "antworten": ["Dirty Harry", "Harry Potter", "Merlin"],
+      "richtig": 2
+    },
+    {
+      "frage": "Wie lautet das internationale Notsignal im Funksprechverkehr?",
+      "punkte": 75,
+      "antworten": ["Don`t panic", "Mann über Bord", "Mayday"],
+      "richtig": 3
+    },
+    {
+      "frage": "Wie viele Einwohner hat Niedersachsen?",
+      "punkte": 100,
+      "antworten": ["5.820.000", "7.815.000", "11.377.000"],
+      "richtig": 2
+    },
+    {
+      "frage": "Ein unerfahrener junger Mensch ist ein",
+      "punkte": 25,
+      "antworten": ["Grünschnabel", "Blauschnabel", "Rotschnabel"],
+      "richtig": 1
+    },
+    {
+      "frage": "Wie heißt der kürzeste Monat des Jahres?",
+      "punkte": 50,
+      "antworten": ["Januar", "Februar", "März"],
+      "richtig": 2
+    },
+    {
+      "frage": "Wer trieb sich im Wunderland herum?",
+      "punkte": 75,
+      "antworten": ["Nicole", "Alice", "Linda"],
+      "richtig": 2
+    },
+    {
+      "frage": "Was sind Quäker?",
+      "punkte": 100,
+      "antworten": ["Frösche", "Religionsgemeinschaft", "Kleinkinder"],
+      "richtig": 2
+    },
+    {
+      "frage": "Worauf sind polizeilich gesuchte Straftäter abgebildet?",
+      "punkte": 25,
+      "antworten": ["Steckbrief", "Pfandbrief", "Freibrief"],
+      "richtig": 1
+    },
+    {
+      "frage": "Wie heißt der Filmpartner von Stan Laurel?",
+      "punkte": 50,
+      "antworten": ["Johnny Depp", "Oliver Hardy", "Fat Boy Slim"],
+      "richtig": 2
+    },
+    {
+      "frage": "Wie nennt man eine Anlage zur Gewinnung von Salz?",
+      "punkte": 75,
+      "antworten": ["Airline", "Praline", "Saline"],
+      "richtig": 3
+    },
+    {
+      "frage": "Eine Zitadelle ist",
+      "punkte": 100,
+      "antworten": ["ein Grashüpfer", "eine Festungsanlage", "eine ängstliche Frau"],
+      "richtig": 2
+    },
+    {
+      "frage": "Wie nennt man eine Wasserstelle in der Wüste?",
+      "punkte": 25,
+      "antworten": ["Orakel", "Oase", "Ornament"],
+      "richtig": 2
+    },
+    {
+      "frage": "Was ist ein Billett?",
+      "punkte": 50,
+      "antworten": ["Bettbezug", "Eintrittskarte", "Fechtwaffe"],
+      "richtig": 2
+    },
+    {
+      "frage": "Wie heißt der längste Fluss Italiens?",
+      "punkte": 75,
+      "antworten": ["Po", "Dispy", "Laa Laa"],
+      "richtig": 1
+    },
+    {
+      "frage": "Wie lautet ein anderes Wort für Bienen?",
+      "punkte": 100,
+      "antworten": ["Ammen", "Gemmen", "Immen"],
+      "richtig": 3
+    }
+  ],
+  "Sahne": [
+    {
+      "frage": "Saure Sahne ist",
+      "punkte": 25,
+      "antworten": ["alte Schlagsahne, die sauer geworden ist", "mit Zitronensaft versetzte Sahne", "Sauerrahm mit mindestens 10 % Fett"],
+      "richtig": 3
+    },
+    {
+      "frage": "Crème fraiche hat welche der genannten Eigenschaften:",
+      "punkte": 50,
+      "antworten": ["wird ausschließlich in Frankreich produziert", "hat einen Buttercremè-Geschmack", "ist beim Kochen hitzestabil"],
+      "richtig": 3
+    },
+    {
+      "frage": "Wie viel Fett muss Crème double mindestens aufweisen?",
+      "punkte": 75,
+      "antworten": ["40 %", "60 %", "90 %"],
+      "richtig": 1
+    },
+    {
+      "frage": "Wie viel kcal hat eine Portion (40 g) Schlagsahne?",
+      "punkte": 100,
+      "antworten": ["ca. 490 kcal", "ca. 120 kcal", "ca. 300 kcal"],
+      "richtig": 2
+    }
+  ],
+  "Käse": [
+    {
+      "frage": "Kochkäse",
+      "punkte": 25,
+      "antworten": ["eignet sich besonders gut zum Kochen", "ist ein Sauermilchkäse (Magerkäse)", "ist ein besonderer Käse, den nur Köche benutzen"],
+      "richtig": 2
+    },
+    {
+      "frage": "Schichtkäse ist",
+      "punkte": 50,
+      "antworten": ["ein durch farbgebende Lebensmittel (Kräuter, Paprika ...) geschichteter Käse", "ein Käse in Pyramidenform", "ein in verschiedenen Fettschichten und Formen geschichteter Käse"],
+      "richtig": 3
+    },
+    {
+      "frage": "Labkäse ist",
+      "punkte": 75,
+      "antworten": ["Hartkäse, Schnittkäse, Weichkäse", "Korbkäse", "Quark"],
+      "richtig": 1
+    },
+    {
+      "frage": "Pasta filata ist",
+      "punkte": 100,
+      "antworten": ["ein Nudelgericht", "eine besondere Nudelform", "ein Mozzarella"],
+      "richtig": 3
+    },
+    {
+      "frage": "Harzer Käse ist",
+      "punkte": 25,
+      "antworten": ["ein geharzter Käse", "ein Käse, der nur zu geharztem Wein gegessen wird", "ein Sauermilchkäse"],
+      "richtig": 3
+    },
+    {
+      "frage": "Fett i. Tr. bedeutet:",
+      "punkte": 50,
+      "antworten": ["Fett im Trinkjoghurt", "Fett in Tropfenform", "Fettmenge im Käse"],
+      "richtig": 3
+    },
+    {
+      "frage": "Korbkäse ist",
+      "punkte": 75,
+      "antworten": ["ein Sauermilchkäse", "ein Käse, der in einem Flechtkorb angeboten wird", "ein Käse, der in einem besonderen Korb reift"],
+      "richtig": 3
+    },
+    {
+      "frage": "Der Pro-Kopf-Verbrauch an Käse lag im Jahr 2006 bei",
+      "punkte": 100,
+      "antworten": ["15 kg", "22 kg", "7 kg"],
+      "richtig": 2
+    }
+  ]
+}
