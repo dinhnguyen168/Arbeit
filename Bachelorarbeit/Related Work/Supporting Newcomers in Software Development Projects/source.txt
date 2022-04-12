@@ -1,0 +1,2 @@
+ S. Panichella, “Supporting Newcomers in Software Development Projects,” presented at the 31st International Conference 
+on Software Maintenance and Evolution (ICSME2015), Bremen, 2015.

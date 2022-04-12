@@ -1,0 +1,24 @@
+Wenn ein Benutzer eine Rootmap für eine Webanwendung erstellen möchte, erhält er zunächst einige Fragen zur Entwicklung eines Softwareprojekts. Diese Fragen zielen darauf ab, Benutzer in 3 Kategorien einzuteilen.
+
++ Rookie (eine Person, die neu in Technologien in einem laufenden Softwareprojekt ist)
++ Junior (eine Person, die Erfahrung in der Arbeit mit einigen Technologien im laufenden Softwareprojekt hat)
++ Senior (eine Person, die fast alle Technologien in den laufenden Softwareprojekten beherrscht)
+
+Der Benutzer wählt das Modell aus, das innerhalb des Projekts angewendet wird.
++ Wasserfall
++ AGILE
++ DevOps
++ ...
+
+Dann erhält der Benutzer weitere Fragen zu dem Projekt, an dem er teilnimmt. Diese Fragen sollen den Fortschritt des Projekts bestimmen, an dem der Benutzer beteiligt ist. Der Zweck dieser Fragen besteht darin, festzustellen, in welcher Phase sich das Projekt des Benutzers derzeit befindet.
+
++ Planning
++ Requirements
++ Design 
++ Build
++ Document
++ Test
++ Deploy
++ Maintain
+
+Wenn alle Fragen beantwortet sind, werden die Daten der Antworten in der Datenbank gespeichert und der Benutzer wird auf die Homepage umgeleitet, wo er eine Rootmap für das Projekt erstellen kann, die den Bedürfnissen des Benutzers entspricht.
