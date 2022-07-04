@@ -1,7 +1,0 @@
-jeder ton/akkord ist 5 sekunden lang.
-
-0:00 - 0:40 principal
-0:40 - 1:20 flöte
-1:20 - 2:00 posaune
-2:00 - 2:40 tutti
-2:40 - 2:55 akkorde

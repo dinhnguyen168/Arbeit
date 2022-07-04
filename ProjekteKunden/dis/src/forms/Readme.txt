@@ -1,2 +1,0 @@
-To customize the user interface of a form beyond the possibilities of the template manager, please copy the corresponding file "*.vue.generated" and remove ".generated" from the copied file.
-I.e. to customize the "CoresForm" copy the file "CoresForm.vue.generated" to "CoresForm.vue" in this folder.
